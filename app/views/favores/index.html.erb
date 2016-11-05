@@ -1,0 +1,30 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Título</th>
+			<th>Descripción</th>
+			<th>Ubicación</th>
+		</tr>
+	</thead>
+	<tbody>	
+		<% favores = Favor.all %>
+		<% favores.each do |f| %>
+		<tr>
+			<td><%= f.id %></td>
+			<td><%= f.titulo %></td>
+			<td><%= f.descripcion %></td>
+			<td><%= f.ubicacion %></td>
+		</tr>
+		<% end %>
+	</tbody>	
+</table>
+</div>

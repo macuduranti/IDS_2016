@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104221212) do
+ActiveRecord::Schema.define(version: 20161105202143) do
+
+  create_table "favors", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "descripcion"
+    t.string   "ubicacion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "postulantes", force: :cascade do |t|
+    t.integer  "id_user"
+    t.integer  "id_gauchada"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
