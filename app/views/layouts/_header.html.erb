@@ -1,13 +1,17 @@
 <header>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           
           
           <%= link_to root_path, class: 'navbar-brand' do %>
             <%= image_tag "logo.png", title: "Logo", class: "logo" %>
+  
+          <% end %>
+          <%= link_to root_path, class: 'navbar-text' do %>
             Una Gauchada
           <% end %>
+          
         </div>
         <div class="collapse navbar-collapse">
           
