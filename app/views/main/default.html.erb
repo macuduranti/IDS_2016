@@ -1,8 +1,12 @@
 <h1> Bienvenido a UnaGauchada </h1>
 <h3> ¿Qué desea hacer? </h3>
 <ul>
-  <li> <%= link_to "Iniciar Sesión", new_usuario_session_path %></li>
+  
+  <% if usuario_signed_in? %>
   <li> <%= link_to "Cerrar Sesión", destroy_usuario_session_path, :method => :delete %></li>  
+  <% else %>
+  <li> <%= link_to "Iniciar Sesión", new_usuario_session_path %></li>
   <li> <%= link_to "Registrarme", new_usuario_registration_path %></li>  
+  <% end %>
   <li> <%= link_to "Listado de Gauchadas",gauchadas_path %></li>
 </ul>
