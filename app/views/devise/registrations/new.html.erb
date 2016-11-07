@@ -13,15 +13,31 @@
     <%= f.text_field :nombre%>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= f.label :apellido %><br />
     <%= f.text_field :apellido%>
   </div>
 
   <div class="field">
+    <%= f.radio_button :es_mujer, true %> 
+    <%= f.label :es_mujer, "Mujer" %>
+  </div>
+
+  <div class="field">
+    <%= f.radio_button :es_mujer, false %> 
+    <%= f.label :es_mujer, "Hombre" %>
+  </div>
+    
+  
+  <div>
+    <%= f.label :fecha_de_nacimiento %><br />
+    <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year-90 ,:end_year=>Date.today.year - 18%>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(Mínimo <%= @minimum_password_length %> caracteres)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
