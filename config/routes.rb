@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'logros/index'
+
   get 'main/default'
   root to: 'main#default'
 

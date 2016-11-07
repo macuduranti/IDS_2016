@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106033512) do
+ActiveRecord::Schema.define(version: 20161106233902) do
 
   create_table "favors", force: :cascade do |t|
     t.string   "titulo"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20161106033512) do
     t.string   "ubicacion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "logros", force: :cascade do |t|
+    t.string   "etiqueta"
+    t.integer  "puntosMin"
+    t.integer  "puntosMax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "postulantes", force: :cascade do |t|

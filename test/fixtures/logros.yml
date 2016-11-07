@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  etiqueta: MyString
+  puntosMin: 1
+  puntosMax: 1
+
+two:
+  etiqueta: MyString
+  puntosMin: 1
+  puntosMax: 1
