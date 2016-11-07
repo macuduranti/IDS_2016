@@ -1,4 +1,4 @@
-dbclass CreateLogros < ActiveRecord::Migration
+class CreateLogros < ActiveRecord::Migration
   def change
     create_table :logros do |t|
       t.string :etiqueta

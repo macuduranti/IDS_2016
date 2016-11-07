@@ -1,2 +1,29 @@
-<h1>Logros#index</h1>
-<p>Find me in app/views/logros/index.html.erb</p>
+<h1> Listado de Logros </h1>
+
+<table class="table table-bordered">
+
+	<tr>
+		<th> Etiqueta </th>
+		<th> Puntos Minimos </th>
+		<th> Puntos Maximos </th>
+		<th> Opciones </th>
+	</tr>
+
+	<% logros = Logro.all %>
+	<% logros.each do |l| %>
+		<tr>
+			<td> <%= l.etiqueta %> </td>
+			<td> <%= l.puntosMin %> </td>
+			<td> <%= l.puntosMax %> </td>
+			<td>
+				<%= link_to "Editar", 'logros/edit', class: 'btn btn-info btn-sm' %>
+				<%= link_to "Eliminar", 'logros/eliminar', class: 'btn btn-danger btn-sm' %>
+			</td>
+		</tr>
+	<% end %>
+
+	<% if logros.size == 0 %>
+		<tr> <td colspan="3"> No hay logros </td> </tr>
+	<% end %>
+
+</table>
