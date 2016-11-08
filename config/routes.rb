@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get 'logros/eliminar'
 
-  get 'logros/edit'
-
-  get 'logros/index'
+  resources :logros 
 
   get 'main/default'
   root to: 'main#default'
@@ -65,9 +62,5 @@ Rails.application.routes.draw do
 
    get '/gauchadas', to: 'favores#index'
 
-   get '/logros', to: 'logros#index'
 
-   get 'logros/edit', to: 'logros#edit'
-
-   get 'logros/eliminar', to: 'logros#eliminar'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106233902) do
+ActiveRecord::Schema.define(version: 20161107041139) do
 
   create_table "favors", force: :cascade do |t|
     t.string   "titulo"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20161106233902) do
     t.string   "apellido"
     t.boolean  "admin",                  default: false
     t.integer  "puntos",                 default: 0
+    t.datetime "fecha_de_nacimiento"
+    t.boolean  "es_mujer"
   end
 
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true

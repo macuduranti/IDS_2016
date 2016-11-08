@@ -1,2 +1,16 @@
-<h1>Logros#edit</h1>
-<p>Find me in app/views/logros/edit.html.erb</p>
+<h1> Editar logro </h1>
+<hr/>
+<%= form_for (@logro) do |f| %>
+	<%= f.label :etiqueta %>
+	<%= f.text_field :etiqueta, required: true, placeholder: 'Ingrese etiqueta' %>
+	<hr/>
+	<%= f.label :puntosMin %>
+	<%= f.text_field :puntosMin, required: true, placeholder: 'Puntos Minimos' %> 
+	<hr/>
+	<%= f.label :puntosMax %>
+	<%= f.text_field :puntosMax, required: true, placeholder: 'Puntos Maximos' %>
+	<hr/>
+	<%= link_to "Cancelar", logros_path, class: 'btn btn-danger btn-xs' %>
+	<%= f.submit 'Guardar', class: 'btn btn-info btn-xs' %>
+<% end %> 
+</div>

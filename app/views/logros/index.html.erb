@@ -1,5 +1,8 @@
-<h1> Listado de Logros </h1>
+<%= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %>
+<br/>
+<hr/>
 
+<h1> Listado de Logros </h1>
 <table class="table table-bordered">
 
 	<tr>
@@ -16,8 +19,8 @@
 			<td> <%= l.puntosMin %> </td>
 			<td> <%= l.puntosMax %> </td>
 			<td>
-				<%= link_to "Editar", logros_edit_path, class: 'btn btn-info btn-sm' %>
-				<%= link_to "Eliminar", logros_eliminar_path, class: 'btn btn-danger btn-sm' %>
+				<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-xs' %>
+				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-warning btn-xs' %>
 			</td>
 		</tr>
 	<% end %>
@@ -27,3 +30,4 @@
 	<% end %>
 
 </table>
+
