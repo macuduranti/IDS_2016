@@ -1,66 +1,71 @@
-<h2>Registrate wachin</h2>
+<!--  <%= devise_error_messages! %> -->
 
+<div class="border-form-div">
+<h2>Registrate!</h2>
+<p> <font color="grey"> <i>Los campos con <sub><big>*</big></sub> son obligatorios</i> </font></p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, 'Email *' %>
+    <p class= 'error'> <%=  error_para @usuario, :nombre %> </p>
     <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :nombre %><br />
+    <%= f.label :nombre, 'Nombre *' %>
+    <p class= 'error'> <%=  error_para @usuario, :nombre %> </p>
     <%= f.text_field :nombre%>
   </div>
 
   <div class="field">
-    <%= f.label :apellido %><br />
+    <%= f.label :apellido, 'Apellido *' %>
+    <p class= 'error'> <%=  error_para @usuario, :nombre %> </p>
     <%= f.text_field :apellido%>
   </div>
 
   <div class="field">
     <%= f.radio_button :es_mujer, true %> 
     <%= f.label :es_mujer, "Mujer" %>
-  </div>
-
-  <div class="field">
     <%= f.radio_button :es_mujer, false %> 
     <%= f.label :es_mujer, "Hombre" %>
   </div>
-  
+
+  <br/>
+
   <div>
-    <%= f.label :fecha_de_nacimiento %><br />
+    <%= f.label :fecha_de_nacimiento %>
+    <p class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </p>
     <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 18 ,:end_year=>Date.today.year - 90%>
   </div>
 
+  <br/>
+
   <div class="field">
   <%= f.label :ubicacion, "Ubicación" %><br />
-  <td> 
-    <%= f.select :ubicacion, opciones_para_ubicacion, {}, include_blank: "Elija una ubicación" %>
-  </td>
+    <%= f.select :ubicacion, opciones_para_ubicacion, {} %>
   </div>
-
+  <br/>
   <div class="field">
     <%= f.label :foto, "Foto de perfil"%><br />
-    <%= f.text_field :foto , placeholder: "Ingrese el URL de la foto", autocomplete: "off"%>
+    <%= f.text_field :foto , placeholder: "Ingrese el URL de su foto", autocomplete: "off"%>
   </div>
 
   <div class="field">
-    <%= f.label :password, "Contraseña" %>
-    <% if @minimum_password_length %>
-    <em>(Mínimo <%= @minimum_password_length %> caracteres)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.label :password, "Contraseña *" %>
+    <p class= 'error'> <%=  error_para @usuario, :password %> </p>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Mínimo ' +@minimum_password_length.to_s+' caracteres' %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation , "Confirmación de Contraseña"%><br />
+    <%= f.label :password_confirmation , "Confirmación de Contraseña *"%>
+    <p class= 'error'> <%=  error_para @usuario, :password_confirmation %> </p>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
   <div class="actions">
-    <%= f.submit "Registrarme" %>
+    <%= f.submit "Registrarme", :class=>'btn btn-primary'%>
+    <%= link_to "Cancelar", root_path, :class =>'btn btn-default' %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

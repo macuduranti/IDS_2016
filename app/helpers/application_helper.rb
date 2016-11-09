@@ -1,5 +1,14 @@
 module ApplicationHelper
-	def usuario_es_admin? 
+    
+    def error_para(model, attribute)
+        if model.errors[attribute].present?
+            content_tag :span, :class => "'error_explanation'" do
+            model.errors[attribute].join(", ")
+        end
+    end
+    end
+
+    def usuario_es_admin? 
   		current_usuario.admin
   	end
 
