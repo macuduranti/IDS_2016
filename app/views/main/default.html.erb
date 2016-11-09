@@ -1,13 +1,14 @@
-<h1> Bienvenido a UnaGauchada </h1>
-<h3> ¿Qué desea hacer? </h3>
-<ul>
-  
-  <% if usuario_signed_in? %>
-  <li> <%= link_to "Cerrar Sesión", destroy_usuario_session_path, :method => :delete %></li>  
-  <% else %>
-  <li> <%= link_to "Iniciar Sesión", new_usuario_session_path %></li>
-  <li> <%= link_to "Registrarme", new_usuario_registration_path %></li>  
-  <% end %>
-  <li> <%= link_to "Listado de Gauchadas",gauchadas_path %></li>
-  <li> <%= link_to "Listado de Logros(TEST)",logros_path %></li>
-</ul>
+<h1 style="color:white"> Bienvenido! </h1>
+<h3 style="color:white"> ¿Que desea hacer? </h3>
+<br>
+<br>
+<div class="row">
+<% if usuario_signed_in? %>
+<div class="col-md-3"><%= link_to "Cerrar Sesion", destroy_usuario_session_path, :method => :delete, class: 'btn btn-danger btn-lg'%></div>
+<% else %>
+<div class="col-md-3"><%= link_to "Iniciar Sesion", new_usuario_session_path, class: 'btn btn-info btn-lg' %></div>
+<div class="col-md-3"><%= link_to "Registrarme", new_usuario_registration_path, class: 'btn btn-success btn-lg' %></div>
+<% end %>
+<div class="col-md-3"><%= link_to "Listado de Gauchadas",gauchadas_path, class: 'btn btn-warning btn-lg' %></div>
+<div class="col-md-3"><%= link_to "Listado de Logros(TEST)",logros_path, class: 'btn btn-warning btn-lg' %></div>
+</div>

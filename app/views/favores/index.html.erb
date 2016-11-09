@@ -1,22 +1,23 @@
 <% if !usuario_signed_in? %>
-<div class="alert alert-warning" role="alert">Para ver el detalle de una gauchada debes iniciar sesión</div>
-<%end%>
-<div class="page-header">
-  <h3 class="text-center">Listado de Gauchadas</h3>
+<div class="row">
+<div class="col-md-8"><div class="alert alert-warning" role="alert">Para ver el detalle de una gauchada debes iniciar sesion</div></div>
+<div class="col-md-4"><%= link_to "Iniciar Sesion", new_usuario_session_path, class: 'btn btn-info btn-lg' %></div>
 </div>
+<%end%>
+  <h2 class="text-center" style="color:white">Listado de Gauchadas</h2>
 <div class="container">
-<table class="table table-striped">
+<table class="table">
 	<tbody>	
 		<% favores = Favor.all %>
 		<% favores.each do |f| %>
 		<% string = "favor_"+f.id.to_s+".png"%>
 		<tr>
-			<td><%= f.titulo%></td>
-			<td><%= image_tag string, title: "FotoGau", class:"listadogau"%></td>
+			<td style="color:white; font-size:18px"><%= f.titulo%></td>
+			<td style="color:white"><%= image_tag string, title: "FotoGau", class:"listadogau"%></td>
 			<td><% if usuario_signed_in? %>
-				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-warning btn-md' %>
 				<% else %>
-				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-default btn-xs disabled' %>
+				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
 				<% end %>
 				</td>
 		</tr>
@@ -24,6 +25,6 @@
 	</tbody>	
 </table>
 </div>
-<%= link_to "Volver", root_path, class: 'btn btn-info btn-xs' %>
+<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
 <br>
 

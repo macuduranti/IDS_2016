@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109015210) do
+ActiveRecord::Schema.define(version: 20161109191036) do
 
   create_table "favors", force: :cascade do |t|
     t.string   "titulo"
     t.string   "descripcion"
-    t.string   "ubicacion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "foto"
+    t.string   "ubicacion"
   end
 
   create_table "logros", force: :cascade do |t|

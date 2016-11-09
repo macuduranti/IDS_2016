@@ -1,33 +1,37 @@
-<%= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4"><%= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %></div>
+<div class="col-md-4"></div>
+</div>
 <br/>
-<hr/>
 
-<h1> Listado de Logros </h1>
-<table class="table table-bordered">
-
+<h1 style="color:white"> Listado de Logros </h1>
+<table class="table">
+<thead>
 	<tr>
-		<th> Etiqueta </th>
-		<th> Puntos Minimos </th>
-		<th> Puntos Maximos </th>
-		<th> Opciones </th>
+		<th style="color:white; font-size:18px"> Etiqueta </th>
+		<th style="color:white; font-size:18px"> Puntos Minimos </th>
+		<th style="color:white; font-size:18px"> Puntos Maximos </th>
+		<th style="color:white; font-size:18px"> Opciones </th>
 	</tr>
-
+</thead>
+<tbody>
 	<% logros = Logro.all.order(:puntosMin) %>
 	<% logros.each do |l| %>
 		<tr>
-			<td> <%= l.etiqueta %> </td>
-			<td> <%= l.puntosMin %> </td>
-			<td> <%= l.puntosMax %> </td>
-			<td>
-				<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-xs' %>
-				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-warning btn-xs' %>
+			<td style="color:white; font-size:18px"> <%= l.etiqueta %> </td>
+			<td style="color:white; font-size:18px"> <%= l.puntosMin %> </td>
+			<td style="color:white; font-size:18px"> <%= l.puntosMax %> </td>
+			<td style="color:white; font-size:18px">
+				<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-md' %>
+				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger btn-md' %>
 			</td>
 		</tr>
 	<% end %>
 
 	<% if logros.size == 0 %>
-		<tr> <td colspan="3"> No hay logros </td> </tr>
+		<tr> <td colspan="3" style="color:white"> No hay logros </td> </tr>
 	<% end %>
-
+</tbody>
 </table>
-
+<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
