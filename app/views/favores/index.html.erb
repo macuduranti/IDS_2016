@@ -1,18 +1,11 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<% if !usuario_signed_in? %>
+<div class="alert alert-warning" role="alert">Para ver el detalle de una gauchada debes iniciar sesión</div>
+<%end%>
+<div class="page-header">
+  <h3 class="text-center">Listado de Gauchadas</h3>
+</div>
 <div class="container">
 <table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Título</th>
-			<th>Foto</th>
-		</tr>
-	</thead>
 	<tbody>	
 		<% favores = Favor.all %>
 		<% favores.each do |f| %>
@@ -31,3 +24,6 @@
 	</tbody>	
 </table>
 </div>
+<%= link_to "Volver", root_path, class: 'btn btn-info btn-xs' %>
+<br>
+

@@ -1,11 +1,24 @@
-/* Orange */
-$bgDefault      : #e67e22;
-$bgHighlight    : #d35400;
-$colDefault     : #ecf0f1;
-$colHover       : #ffe6d1; 
+/*--- Fondo de la imagen ---*/
+$bgDefault      : #ffffff;
+/*--- Linea que delimita la barra de arriba ---*/
+$bgHighlight    : #0000ff;
+$colDefault     : #ff0000;
+$colHover       : #00ff00; 
 
 body {
-  padding-top: 150px;
+  padding-top: 0px;
+}
+
+damn{
+    width: auto;
+    height: auto;
+    max-width: 500px;
+    max-height: 130px;
+}
+
+#header{
+    left: 50%;
+    margin-left: 0px;
 }
 
 header {
@@ -16,7 +29,7 @@ header {
   }
    
   .navbar-brand {
-    height: 130px;
+    height: 0px;
   }
 }
 
