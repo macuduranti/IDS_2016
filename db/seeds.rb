@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "Creo logro base"
+Logro.find_or_create_by(id: 1, etiqueta: "Newbie", puntosMin: 0, puntosMax: 5)

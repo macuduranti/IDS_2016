@@ -12,7 +12,7 @@
 		<th> Opciones </th>
 	</tr>
 
-	<% logros = Logro.all %>
+	<% logros = Logro.all.order(:puntosMin) %>
 	<% logros.each do |l| %>
 		<tr>
 			<td> <%= l.etiqueta %> </td>
