@@ -4,6 +4,8 @@ class Usuario < ActiveRecord::Base
   validates_presence_of :nombre
   validates_presence_of :apellido
   validates_inclusion_of :es_mujer, in: [true,false]
+  validates_presence_of :foto
+  validates_presence_of :ubicacion
 
 
   validates :fecha_de_nacimiento, :presence => true
