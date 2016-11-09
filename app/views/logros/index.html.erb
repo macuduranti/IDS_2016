@@ -24,7 +24,11 @@
 			<td style="color:white; font-size:18px"> <%= l.puntosMax %> </td>
 			<td style="color:white; font-size:18px">
 				<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-md' %>
+				<% if l.id == 1 %>
+				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-default disabled btn-md' %>
+				<% else %>
 				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger btn-md' %>
+				<% end %>				
 			</td>
 		</tr>
 	<% end %>

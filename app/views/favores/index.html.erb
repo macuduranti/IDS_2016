@@ -13,7 +13,8 @@
 		<% string = "favor_"+f.id.to_s+".png"%>
 		<tr>
 			<td style="color:white; font-size:18px"><%= f.titulo%></td>
-			<td style="color:white"><%= image_tag string, title: "FotoGau", class:"listadogau"%></td>
+			<td style="color:white"><%= Usuario.find(f.usuario_id).nombre%> <%= Usuario.find(f.usuario_id).nombre%></td>
+			<td style="color:white; font-size:18px"><%= image_tag string, title:"FotoGau", class:"listadogau"%></td>
 			<td><% if usuario_signed_in? %>
 				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-warning btn-md' %>
 				<% else %>
