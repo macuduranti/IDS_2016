@@ -18,8 +18,14 @@
 		<% favores.each do |f| %>
 		<% string = "favor_"+f.id.to_s+".png"%>
 		<tr>
-			<td><%= link_to f.titulo, favore_path(:id => f.id)%></td>
+			<td><%= f.titulo%></td>
 			<td><%= image_tag string, title: "FotoGau", class:"listadogau"%></td>
+			<td><% if usuario_signed_in? %>
+				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+				<% else %>
+				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-default btn-xs disabled' %>
+				<% end %>
+				</td>
 		</tr>
 		<% end %>
 	</tbody>	
