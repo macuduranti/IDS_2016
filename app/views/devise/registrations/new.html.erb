@@ -1,11 +1,11 @@
-<h2>Sign up</h2>
+<h2>Registrate wachin</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
   </div>
 
   <div class="field">
@@ -27,15 +27,26 @@
     <%= f.radio_button :es_mujer, false %> 
     <%= f.label :es_mujer, "Hombre" %>
   </div>
-    
   
   <div>
     <%= f.label :fecha_de_nacimiento %><br />
-    <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year-90 ,:end_year=>Date.today.year - 18%>
+    <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 18 ,:end_year=>Date.today.year - 90%>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+  <%= f.label :ubicacion, "Ubicación" %><br />
+  <td> 
+    <%= f.select :ubicacion, opciones_para_ubicacion, {}, include_blank: "Elija una ubicación" %>
+  </td>
+  </div>
+
+  <div class="field">
+    <%= f.label :foto, "Foto de perfil"%><br />
+    <%= f.text_field :foto , placeholder: "Ingrese el URL de la foto", autocomplete: "off"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Contraseña" %>
     <% if @minimum_password_length %>
     <em>(Mínimo <%= @minimum_password_length %> caracteres)</em>
     <% end %><br />
@@ -43,12 +54,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation , "Confirmación de Contraseña"%><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Registrarme" %>
   </div>
 <% end %>
 
