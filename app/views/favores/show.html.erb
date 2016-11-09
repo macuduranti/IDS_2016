@@ -1,0 +1,7 @@
+<% if usuario_signed_in? %>
+<p>"hola"</p>
+<% string = "Esta es la gauchada "+@favor.id.to_s %>
+<p><%= string%></p>
+<% else %>
+<%flash[:notice] = "Debes iniciar sesión para acceder a los detalles de la gauchada" %>
+<% end %>

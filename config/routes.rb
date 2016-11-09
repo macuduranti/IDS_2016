@@ -59,8 +59,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
+  resources :favores
    get '/gauchadas', to: 'favores#index'
-
-
+   get '/gauchadas/:id', to: 'favores#show'
 end

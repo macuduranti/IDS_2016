@@ -9,20 +9,17 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>ID</th>
 			<th>Título</th>
-			<th>Descripción</th>
-			<th>Ubicación</th>
+			<th>Foto</th>
 		</tr>
 	</thead>
 	<tbody>	
 		<% favores = Favor.all %>
 		<% favores.each do |f| %>
+		<% string = "favor_"+f.id.to_s+".png"%>
 		<tr>
-			<td><%= f.id %></td>
-			<td><%= f.titulo %></td>
-			<td><%= f.descripcion %></td>
-			<td><%= f.ubicacion %></td>
+			<td><%= link_to f.titulo, favore_path(:id => f.id)%></td>
+			<td><%= image_tag string, title: "FotoGau", class:"listadogau"%></td>
 		</tr>
 		<% end %>
 	</tbody>	
