@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore schema.rb
-/rb/schema.rb
+/db/schema.rb
 
 # Ignore bundler config.
 /.bundle
