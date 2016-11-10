@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20161109223400) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "favors", force: :cascade do |t|
     t.string   "titulo"
     t.string   "descripcion"
@@ -61,7 +64,7 @@ ActiveRecord::Schema.define(version: 20161109223400) do
     t.string   "ubicacion"
   end
 
-  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
-  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
 
 end
