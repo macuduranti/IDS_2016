@@ -7,19 +7,19 @@
 
   <div class="field">
     <%= f.label :email, 'Email *' %>
-    <p class= 'error'> <%=  error_para @usuario, :nombre %> </p>
+    <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
     <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
   </div>
 
   <div class="field">
     <%= f.label :nombre, 'Nombre *' %>
-    <p class= 'error'> <%=  error_para @usuario, :nombre %> </p>
+    <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
     <%= f.text_field :nombre%>
   </div>
 
   <div class="field">
     <%= f.label :apellido, 'Apellido *' %>
-    <p class= 'error'> <%=  error_para @usuario, :nombre %> </p>
+    <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
     <%= f.text_field :apellido%>
   </div>
 
@@ -34,7 +34,7 @@
 
   <div>
     <%= f.label :fecha_de_nacimiento %>
-    <p class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </p>
+    <span class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </span>
     <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 18 ,:end_year=>Date.today.year - 90%>
   </div>
 
@@ -52,13 +52,13 @@
 
   <div class="field">
     <%= f.label :password, "Contraseña *" %>
-    <p class= 'error'> <%=  error_para @usuario, :password %> </p>
+    <span class= 'error'> <%=  error_para @usuario, :password %> </span>
     <%= f.password_field :password, autocomplete: "off", placeholder: 'Mínimo ' +@minimum_password_length.to_s+' caracteres' %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation , "Confirmación de Contraseña *"%>
-    <p class= 'error'> <%=  error_para @usuario, :password_confirmation %> </p>
+    <span class= 'error'> <%=  error_para @usuario, :password_confirmation %> </span>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
   <div class="actions">

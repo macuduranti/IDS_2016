@@ -1,41 +1,48 @@
 <div class="row">
-<div class="col-md-4"></div>
-<div class="col-md-4"><%= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %></div>
-<div class="col-md-4"></div>
+	<div class="col-md-3">
+		<br/>
+	</div>
+	<div class="col-md-6"><%= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %></div>
+	<div class="col-md-3">
+		<br/>
+	</div>
 </div>
 <br/>
 
-<h1 style="color:white"> Listado de Logros </h1>
-<table class="table">
-<thead>
-	<tr>
-		<th style="color:white; font-size:18px"> Etiqueta </th>
-		<th style="color:white; font-size:18px"> Puntos Minimos </th>
-		<th style="color:white; font-size:18px"> Puntos Maximos </th>
-		<th style="color:white; font-size:18px"> Opciones </th>
-	</tr>
-</thead>
-<tbody>
-	<% logros = Logro.all.order(:puntosMin) %>
-	<% logros.each do |l| %>
-		<tr>
-			<td style="color:white; font-size:18px"> <%= l.etiqueta %> </td>
-			<td style="color:white; font-size:18px"> <%= l.puntosMin %> </td>
-			<td style="color:white; font-size:18px"> <%= l.puntosMax %> </td>
-			<td style="color:white; font-size:18px">
-				<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-md' %>
-				<% if l.id == 1 %>
-				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-default disabled btn-md' %>
-				<% else %>
-				<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger btn-md' %>
-				<% end %>				
-			</td>
-		</tr>
-	<% end %>
+<div class="border-list-div">
+	<h1> Listado de Logros </h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="font-size:18px"> Etiqueta </th>
+				<th style="font-size:18px"> Puntos Minimos </th>
+				<th style="font-size:18px"> Puntos Maximos </th>
+				<th style="font-size:18px"> Opciones </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% logros = Logro.all.order(:puntosMin) %>
+			<% logros.each do |l| %>
+			<tr>
+				<td style="font-size:18px"> <%= l.etiqueta %> </td>
+				<td style="font-size:18px"> <%= l.puntosMin %> </td>
+				<td style="font-size:18px"> <%= l.puntosMax %> </td>
+				<td style="font-size:18px">
+					<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-md' %>
+					<% if l.id == 1 %>
+					<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger disabled btn-md' %>
+					<% else %>
+					<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger btn-md' %>
+					<% end %>				
+				</td>
+			</tr>
+			<% end %>
 
-	<% if logros.size == 0 %>
-		<tr> <td colspan="3" style="color:white"> No hay logros </td> </tr>
-	<% end %>
-</tbody>
-</table>
-<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
+			<% if logros.size == 0 %>
+			<tr> <td colspan="3"> No hay logros </td> </tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
+</div>
+

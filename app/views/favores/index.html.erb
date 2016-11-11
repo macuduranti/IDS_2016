@@ -1,31 +1,51 @@
 <% if !usuario_signed_in? %>
 <div class="row">
-<div class="col-md-8"><div class="alert alert-warning" role="alert">Para ver el detalle de una gauchada debes iniciar sesion</div></div>
-<div class="col-md-4"><%= link_to "Iniciar Sesion", new_usuario_session_path, class: 'btn btn-info btn-lg' %></div>
+	<div class="col-md-3">
+		<br/>
+	</div>
+	<div class="col-md-6">
+		<div class="alert alert-warning" role="alert">
+			<p style="text-align: center">
+				Para ver el detalle de una gauchada debes
+				<%= link_to "iniciar sesión", new_usuario_session_path%>
+			</p>
+
+		</div>
+	</div>
+	<div class="col-md-3">
+		<br />
+	</div>
+	
 </div>
 <%end%>
-  <h2 class="text-center" style="color:white">Listado de Gauchadas</h2>
-<div class="container">
-<table class="table">
-	<tbody>	
-		<% favores = Favor.all %>
-		<% favores.each do |f| %>
-		<% string = "favor_"+f.id.to_s+".png"%>
-		<tr>
-			<td style="color:white; font-size:18px"><%= f.titulo%></td>
-			<td style="color:white"><%= Usuario.find(f.usuario_id).nombre%> <%= Usuario.find(f.usuario_id).nombre%></td>
-			<td style="color:white; font-size:18px"><%= image_tag string, title:"FotoGau", class:"listadogau"%></td>
-			<td><% if usuario_signed_in? %>
-				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-warning btn-md' %>
-				<% else %>
-				<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
-				<% end %>
-				</td>
-		</tr>
-		<% end %>
-	</tbody>	
-</table>
-</div>
-<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
-<br>
+<div class="border-list-div">
+	<h2 class="text-center">Listado de Gauchadas</h2>
+	<% favores = Favor.all %>
+	<% favores.each do |f| %>
 
+	<div class="border-row-div">
+		<div class="row">
+			<div class="col-md-1">
+				<div class="image-container">
+					<%= image_tag f.foto, title:"FotoGau", class:"listadogau"%>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<p style="font-size:18px"><%= f.titulo%></p>
+				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre%> <%= Usuario.find(f.usuario_id).apellido%></p>
+			</div>
+			<div class="col-md-2">
+				<div class="align-btn-bottom">
+					<% if usuario_signed_in? %>
+					<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-warning btn-md' %>
+					<% else %>
+					<%= link_to "Ver Detalle", favore_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
+	<br>
+</div>
