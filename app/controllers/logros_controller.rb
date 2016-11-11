@@ -38,7 +38,7 @@ class LogrosController < ApplicationController
   	end
   	logros = Logro.all.order(:puntosMin)
 	logros.each_cons(2) do |l,ls|
-  	 if( l.etiqueta == @l.etiqueta || l.puntosMax == @l.puntosMin || ls.puntosMin == @l.puntosMax) then # nombre o puntos invalidos
+  	 if( l.etiqueta == @l.etiqueta || l.puntosMax == @l.puntosMin || ls.puntosMin == @l.puntosMax || l.puntosMin == @l.puntosMin || l.puntosMax == @l.puntosMax) then # nombre o puntos invalidos
   	 	return redirect_to logros_path, notice: 'Parametros invalidos'
   	 end
   	 if( l.puntosMin < @l.puntosMin && l.puntosMax > @l.puntosMax) then
@@ -58,6 +58,12 @@ class LogrosController < ApplicationController
   	 	@l.save
  	    return redirect_to logros_path, notice: 'Logro Creado'
  	end
+    end
+    primero = Logro.order(:puntosMin).first
+    if(Logro.count == 1) then
+    	if(primero.puntosMin == @l.puntosMin || primero.puntosMax == @l.puntosMin) then
+    		return redirect_to logros_path, notice: 'Parametros invalidos'
+    	end
     end
     ultimo = Logro.last #porque el each_cons tiene problemas con el ultimo
     if( ultimo.puntosMin < @l.puntosMin && ultimo.puntosMax > @l.puntosMax) then
@@ -92,12 +98,18 @@ class LogrosController < ApplicationController
   	if(@l.puntosMin >= @l.puntosMax) then
   		return redirect_to edit_logro_path(@logro), notice: 'Rango de puntos invalido'
   	end
-#  	logros = Logro.all
-#	logros.each do |l|
-#  	 if( l.etiqueta == @l.etiqueta ) then
-#  	 	return redirect_to edit_logro_path(@logro), notice: 'Logro existente'
-#  	 end
-#  	end
+  	ultimo = Logro.order(:puntosMin).last
+  	logros = Logro.all.order(:puntosMin)
+	logros.each_cons(2) do |l,ls|
+		if(ls.id == @logro.id) then
+			l.puntosMax=@l.puntosMin - 1
+			l.save
+		end
+		if(l.id == @logro.id && ultimo.id != @logro.id) then
+			ls.puntosMin=@l.puntosMax + 1
+			ls.save					
+		end
+	end
   	@logro.update(etiqueta: params[:logro][:etiqueta], puntosMin: params[:logro][:puntosMin], puntosMax: params[:logro][:puntosMax])
   	redirect_to logros_path, notice: 'Logro Actualizado'
   end

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="border-form-div">
 <h1> Editar logro </h1>
 <hr/>
 <%= form_for (@logro) do |f| %>
@@ -11,7 +11,7 @@
 	<%= f.label :puntosMax %>
 	<%= f.text_field :puntosMax, required: true, placeholder: 'Puntos Maximos' %>
 	<hr/>
-	<%= link_to "Cancelar", logros_path, class: 'btn btn-danger btn-xs' %>
-	<%= f.submit 'Guardar', class: 'btn btn-info btn-xs' %>
+	<%= link_to "Cancelar", logros_path, class: 'btn btn-danger btn-md' %>
+	<%= f.submit 'Guardar', data: {confirm: '¿Esta seguro de editar este logro?'}, class: 'btn btn-info btn-md' %>
 <% end %> 
 </div>
