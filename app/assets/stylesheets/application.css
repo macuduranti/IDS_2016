@@ -46,6 +46,9 @@
   border: 3px solid #e5e5e5;
   margin-left: -15px;
   margin-right: -15px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
 }
 
 .row{

@@ -13,13 +13,13 @@
 		</div>
 	</div>
 	<div class="col-md-3">
-		<br />
-	</div>
-	
+		<br/>
+	</div>	
 </div>
 <%end%>
+
 <div class="border-list-div">
-	<h2 class="text-center">Listado de Gauchadas</h2>
+	<h1>Listado de Gauchadas</h1>
 	<% favores = Favor.all %>
 	<% favores.each do |f| %>
 
@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-md-9">
 				<p style="font-size:18px"><%= f.titulo%></p>
-				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre%> <%= Usuario.find(f.usuario_id).apellido%></p>
+				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre.capitalize%> <%= Usuario.find(f.usuario_id).apellido.capitalize%></p>
 			</div>
 			<div class="col-md-2">
 				<div class="align-btn-bottom">

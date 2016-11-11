@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gauchada</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>Gauchada</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/header' %>
-<div class="container"> 
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-	<%= yield %>
+	<%= render 'layouts/header' %>
+	<div class="container"> 
+		<% if notice %>
+		<div class="row">
+			<div class="col-md-3">
+				<br/>
+			</div>
+			<div class="col-md-6">
+				<div class="alert alert-warning" role="alert">
+					<span class="notice" style="text-align: center"><%= notice %></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<br />
+		</div>	
+	</div>
+	<% end %>
+	<% if alert %>
+	<div class="row">
+		<div class="col-md-3">
+			<br/>
+		</div>
+		<div class="col-md-6">
+			<div class="alert alert-danger" role="alert">
+				<span class="alert" style="text-align: center"><%= alert %></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<br />
+	</div>	
+</div>
+<% end %>
+<%= yield %>
 </div>
 </body>
 </html>

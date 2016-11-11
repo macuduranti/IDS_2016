@@ -9,7 +9,9 @@ module ApplicationHelper
     end
 
     def usuario_es_admin? 
-  		current_usuario.admin
+        if usuario_signed_in? then
+  		    current_usuario.admin
+        end
   	end
 
  	def opciones_para_ubicacion
