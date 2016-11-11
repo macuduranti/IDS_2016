@@ -16,7 +16,11 @@
 			</div>
 			<div class="col-md-2">
 				<div class="image-container">
+					<% if current_usuario.foto.presence %>
 					<%= image_tag current_usuario.foto, title:"FotoUsuario", class:"listadogau"%>
+					<% else %>
+					<%= image_tag "foto_stock.jpeg", title:"FotoUsuario", class:"listadogau"%>
+					<% end %>
 				</div>
 			</div>
 		</div>

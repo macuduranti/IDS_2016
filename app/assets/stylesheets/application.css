@@ -37,6 +37,10 @@
     line-height: 53px;
   }
 
+.img-lg{
+  object-fit: contain;
+  width: 420px;
+}
 
 
 .image-container {

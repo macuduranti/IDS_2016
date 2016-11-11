@@ -34,6 +34,7 @@
 
   <div>
     <%= f.label :fecha_de_nacimiento %>
+    <br />
     <span class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </span>
     <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 18 ,:end_year=>Date.today.year - 90%>
   </div>
