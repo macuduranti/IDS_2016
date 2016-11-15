@@ -1,12 +1,23 @@
 module ApplicationHelper
-    
+
     def error_para(model, attribute)
         if model.errors[attribute].present?
             content_tag :span, :class => "'error_explanation'" do
-            model.errors[attribute].join(", ")
+                model.errors[attribute].join(", ")
+            end
         end
     end
+
+    def error_atributo(attribute)
+        if resource.errors[attribute].present?
+            content_tag :span, :class => "'error_explanation'" do
+                resource.errors[attribute].join(", ")
+            end
+        end
     end
+
+
+
 
     def usuario_es_admin? 
         if usuario_signed_in? then

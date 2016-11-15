@@ -7,6 +7,10 @@
 # Ignore schema.rb
 /db/schema.rb
 
+# Ignore .env and Procfile
+.env
+Procfile
+
 # Ignore bundler config.
 /.bundle
 

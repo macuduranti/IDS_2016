@@ -194,7 +194,6 @@ en:
               invalid: "Email inválido"
             password:
               blank: "Campo requerido"
-              #confirmation: "Las contraseñas no coinciden"
               too_short: "La contraseña es muy corta"
             password_confirmation:
               blank: "Campo requerido"

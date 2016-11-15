@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :email, 'Email *' %>
-    <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
+    <span class= 'error'> <%=  error_para @usuario, :email %> </span>
     <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
   </div>
 

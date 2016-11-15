@@ -1,18 +1,9 @@
 class Usuario < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  validates_presence_of :nombre #, message: 'Campo requerido'
-  validates_presence_of :apellido#, message: 'Campo requerido'
-  #validates_inclusion_of :es_mujer, in: [true,false]
-  #validates_presence_of :foto
-  #validates_presence_of :ubicacion
- #validates_presence_of :email#, message: 'Campo requerido'
-  #validates_presence_of :password#, message: 'Campo requerido'
-  #validates_confirmation_of :password#, message: 'Las contraseñas no coinciden'
-  #validates_presence_of :password_confirmation#, message: 'Campo requerido'
+  validates_presence_of :nombre
+  validates_presence_of :apellido
 
-
-  #validates :fecha_de_nacimiento, :presence => true
   validate :validar_edad
 
   private
@@ -24,6 +15,6 @@ class Usuario < ActiveRecord::Base
   end
  
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 end

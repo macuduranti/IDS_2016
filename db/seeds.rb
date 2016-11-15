@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Logro.find_or_create_by(id: 1, etiqueta: "Newbie", puntosMin: 0, puntosMax: 5)
-puts "Creo logro base"
+if Logro.find_or_create_by(id: 1, etiqueta: "Newbie", puntosMin: 0, puntosMax: 5) then
+	puts "Creo logro base"
+end
 
-correo = 'admin@example.com'
+correo = 'unagauchada.recovery@gmail.com'
 if not Usuario.exists?(email: correo) then
 	user = Usuario.new
 	user.email = correo
@@ -21,7 +22,8 @@ if not Usuario.exists?(email: correo) then
 	user.admin = true;
 	user.fecha_de_nacimiento = 100.years.ago
 	user.ubicacion = "Buenos Aires"
-	user.save! unless Usuario.exists?(user.email)
+	user.skip_confirmation!
+	user.save! 
 	puts "Creo usuario admin"
 end
 
@@ -37,7 +39,8 @@ if not Usuario.exists?(email: correo) then
 	user1.es_mujer = false;
 	user1.fecha_de_nacimiento = 20.years.ago
 	user1.ubicacion = "Buenos Aires"
-	user1.save!
+	user1.skip_confirmation!
+	user1.save! 
 	puts "Creo un usuario común"
 end
 
@@ -53,6 +56,7 @@ if not Usuario.exists?(email: correo) then
 	user2.es_mujer = true;
 	user2.fecha_de_nacimiento = 19.years.ago
 	user1.ubicacion = "Buenos Aires"
+	user2.skip_confirmation!
 	user2.save! 
 	puts "Creo otro usuario común"
 end
