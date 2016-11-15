@@ -1,13 +1,12 @@
-
 <div class="border-form-div">
 <h2> Crear logro </h2>
 <%= form_for(@logro) do |f| %>
-	<%= f.label :etiqueta %>
-	<%= f.text_field :etiqueta, required: true, placeholder: 'Ingrese la etiqueta' %>
-	<%= f.label :puntosMin %>
-	<%= f.text_field :puntosMin, required: true, placeholder: 'Ingrese el puntaje minimo' %> 
-	<%= f.label :puntosMax %>
-	<%= f.text_field :puntosMax, required: true, placeholder: 'Ingrese el puntaje máximo' %>
+	<%= f.label :etiqueta, 'Etiqueta' %>
+	<%= f.text_field :etiqueta, required: true, placeholder: 'Ingrese etiqueta' %>
+	<%= f.label :puntosMin, 'Puntos Mínimos' %>
+	<%= f.number_field :puntosMin, required: true, placeholder: 'Ingrese puntos' %> 
+	<br/>
+	<hr/>
 	<%= f.submit 'Crear', class: 'btn btn-primary' %>
 	<%= link_to "Cancelar", logros_path, class: 'btn btn-default ' %>
 <% end %> 

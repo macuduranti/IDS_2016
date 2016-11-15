@@ -16,8 +16,7 @@
 		<thead>
 			<tr>
 				<th style="font-size:18px"> Etiqueta </th>
-				<th style="font-size:18px"> Puntos Minimos </th>
-				<th style="font-size:18px"> Puntos Maximos </th>
+				<th style="font-size:18px"> Puntos Mínimos </th>
 				<th style="font-size:18px"> Opciones </th>
 			</tr>
 		</thead>
@@ -27,7 +26,6 @@
 			<tr>
 				<td style="font-size:18px"> <%= l.etiqueta %> </td>
 				<td style="font-size:18px"> <%= l.puntosMin %> </td>
-				<td style="font-size:18px"> <%= l.puntosMax %> </td>
 				<td style="font-size:18px">
 					<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-md' %>
 					<% if l.id == 1 %>
