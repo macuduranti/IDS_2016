@@ -42,6 +42,15 @@
   width: 420px;
 }
 
+.image-container-not-col {
+  overflow: hidden;
+  height: 71px;
+  width: 71px;
+  border: 3px solid #e5e5e5;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
 
 .image-container {
   overflow: hidden;

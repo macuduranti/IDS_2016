@@ -1,45 +1,31 @@
 <div class="container">
 <div class="border-list-div">
-	<div class="row" style="margin-left: -10px; margin-bottom: -15px">
+	<div style="overflow: auto;">
 		<% if usuario_signed_in? %>
-		<% ape = current_usuario.apellido.capitalize %> 
 		<% nom = current_usuario.nombre.capitalize %> 
-		<div class="col-md-6">
+		<div style="float: left;">
 			<h1> Bienvenido <%= nom %>!</h1>
 		</div>
-		<div class="col-md-6" style=" text-align: right;">
-			<div class="col-md-10" style=" text-align: right;">
-				<span> Logeado como <%= nom%> <%= ape%> </span>
-				<br/>
-				<span style="font-size: 12px; font-style: italic; color: grey"> <%= current_usuario.email %> </span>
-
-			</div>
-			<div class="col-md-2">
-				<div class="image-container">
-					<% if current_usuario.foto.presence %>
-					<%= image_tag current_usuario.foto, title:"FotoUsuario", class:"listadogau"%>
-					<% else %>
-					<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"listadogau"%>
-					<% end %>
-				</div>
-			</div>
+		<div style=" float: right; overflow: auto;">
+			<%= render 'layouts/logged_user_tag' %>
 		</div>
 		<% else %>
 		<h1> Bienvenido!</h1>
 		<% end %>
 
 	</div>
+
 	<h3> ¿Que desea hacer? </h3>
 	<br>
 	<br>
-	<div class="row">
-		<div class="col-md-6">
+		<div style="overflow: auto">
+		<div style="float: left;margin-bottom: 4px;">
 			<%= link_to "Listado de Gauchadas",gauchadas_path, class: 'btn btn-warning btn-lg' %>
 		<% if usuario_es_admin? %>
 			<%= link_to "Listado de Logros",logros_path, class: 'btn btn-warning btn-lg' %>
 		<% end %>
 		</div>
-		<div class="col-md-6" style="text-align: right">
+		<div style="float: right;margin-bottom: 4px;">
 			<% if usuario_signed_in? %>
 			<%= link_to "Cerrar Sesion", destroy_usuario_session_path, :method => :delete, class: 'btn btn-danger btn-lg'%>
 			<% else %>
@@ -47,7 +33,7 @@
 			<%= link_to "Registrarme", new_usuario_registration_path, class: 'btn btn-success btn-lg' %>
 			<% end %>
 		</div>
+		</div>
 
-	</div>
 </div>
 </div>

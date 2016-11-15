@@ -1,0 +1,20 @@
+			<% ape = current_usuario.apellido.capitalize %> 
+			<% nom = current_usuario.nombre.capitalize %> 
+			<div style="float: left;overflow: auto; margin-right: 3px;">
+				<div style="display: inline-block; text-align: right;">
+					<span style="margin-right: -3px">Logeado como <%= nom %> <%= ape %></span>
+					<br/>
+					<span style="font-size: 10px; font-style: italic; color: grey;"> <%= current_usuario.email %> </span>
+					<br/>
+					<span style="margin-right: 1px; font-size: 12px"> Puntos: <%= current_usuario.puntos %> </span>
+				</div>
+			</div>
+			<div style="float: right;overflow: auto;">
+				<div class="image-container-not-col" style="">
+					<% if current_usuario.foto.presence %>
+					<%= image_tag current_usuario.foto, title:"FotoUsuario", class:"listadogau"%>
+					<% else %>
+					<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"listadogau"%>
+					<% end %>
+				</div>
+			</div>
