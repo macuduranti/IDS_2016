@@ -1,12 +1,13 @@
 			<% ape = current_usuario.apellido.capitalize %> 
 			<% nom = current_usuario.nombre.capitalize %> 
 			<div style="float: left;overflow: auto; margin-right: 3px;">
-				<div style="display: inline-block; text-align: right;">
-					<span style="margin-right: -3px">Logeado como <%= nom %> <%= ape %></span>
-					<br/>
-					<span style="font-size: 10px; font-style: italic; color: grey;"> <%= current_usuario.email %> </span>
-					<br/>
-					<span style="margin-right: 1px; font-size: 12px"> Puntos: <%= current_usuario.puntos %> </span>
+				<div style="display: inline-block; text-align: right; overflow: auto;">
+					<p style="line-height: 90%">Logeado como <%= nom %> <%= ape %></p>
+					<p style="font-size: 10px; font-style: italic; color: grey;line-height: 50%;"> <%= current_usuario.email %> </p>
+
+					<p style=" font-size: 12px;line-height: 100%"> Puntos: <%= current_usuario.puntos %> </p>
+					<p style=" font-size: 12px;line-height: 90%"> <%= calc_logro(current_usuario.puntos) %> </p>	
+							
 				</div>
 			</div>
 			<div style="float: right;overflow: auto;">

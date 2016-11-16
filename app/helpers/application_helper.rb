@@ -16,8 +16,38 @@ module ApplicationHelper
         end
     end
 
+    def calc_logro(pts)
+        logros = Logro.all.order(:puntosMin)
+        if (logros.first.puntosMin > pts)
+            return 'Sin logro'
+        else
+            logros.each do |l|
+                if (pts >= l.puntosMin)
+                    @log = l.etiqueta
+                else
+                    return @log
+                end
+            end
+            return @log
+        end
+    end    
 
-
+    def calc_logro_de(uid)
+        pts = Usuario.find(uid).puntos
+        logros = Logro.all.order(:puntosMin)
+        if (logros.first.puntosMin > pts)
+            return 'Sin logro'
+        else
+            logros.each do |l|
+                if (pts >= l.puntosMin)
+                    @log = l.etiqueta
+                else
+                    return @log
+                end
+            end
+            return @log
+        end
+    end    
 
     def usuario_es_admin? 
         if usuario_signed_in? then

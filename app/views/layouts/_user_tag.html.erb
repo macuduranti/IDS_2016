@@ -1,0 +1,25 @@
+			<!-- 
+			Para usar esto:
+			render :partial => 'layouts/user_tag', :locals => {:uid => id_de_usuario} 
+			-->
+			<% u = Usuario.find(uid) %>
+			<% ape = u.apellido.capitalize %> 
+			<% nom = u.nombre.capitalize %> 
+			<div style="float: left;overflow: auto; margin-right: 3px;">
+				<div style="display: inline-block; text-align: right;">
+					<span style="margin-right: -3px"><%= nom %> <%= ape %></span>
+					<br/>
+					<span style="font-size: 10px; font-style: italic; color: grey;"> <%= u.email %> </span>
+					<br/>
+					<span style="margin-right: 1px; font-size: 12px"> Puntos: <%= u.puntos %> </span>
+				</div>
+			</div>
+			<div style="float: right;overflow: auto;">
+				<div class="image-container-not-col" style="">
+					<% if u.foto.presence %>
+					<%= image_tag u.foto, title:"FotoUsuario", class:"listadogau"%>
+					<% else %>
+					<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"listadogau"%>
+					<% end %>
+				</div>
+			</div>
