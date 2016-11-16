@@ -52,11 +52,11 @@ module ApplicationHelper
     private
 
     def verificar_admin
-        (current_usuario.nil?) ? redirect_to(root_path, alert: 'No puedes acceder a esa página.') : (redirect_to(root_path, alert: 'No puedes acceder a esa página') unless usuario_signed_in?)
+        (current_usuario.nil?) ? redirect_to(root_path, alert: 'No puedes acceder a esa página.') : (redirect_to(root_path, alert: 'No puedes acceder a esa página') unless current_usuario.admin?)
     end
  
     def verificar_usuario
-        (current_usuario.nil?) ? redirect_to(root_path, alert: 'No puedes acceder a esa página.') : (redirect_to(root_path, alert: 'No puedes acceder a esa página') unless current_usuario.admin?)
+        (current_usuario.nil?) ? redirect_to(root_path, alert: 'No puedes acceder a esa página.') : (redirect_to(root_path, alert: 'No puedes acceder a esa página') unless usuario_signed_in?)
     end
 
     def usuario_es_admin? 
