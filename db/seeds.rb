@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-if Logro.find_or_create_by(id: 1, etiqueta: "Newbie", puntosMin: 0, puntosMax: 5) then
+if Logro.find_or_create_by(id: 1, etiqueta: "Newbie", puntosMin: 0) then
 	puts "Creo logro base"
 end
 
