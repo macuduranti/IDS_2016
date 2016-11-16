@@ -19,29 +19,27 @@
 					<span class="notice" style="text-align: center;"><%= notice %></span>
 				</div>
 			</div>
+			<div class="col-md-3">
+				<br />
+			</div>	
 		</div>
-		<div class="col-md-3">
-			<br />
-		</div>	
-	</div>
-	<% end %>
-	<% if alert %>
-	<div class="row">
-		<div class="col-md-3">
-			<br/>
-		</div>
-		<div class="col-md-6">
-			<div class="alert alert-danger" style="text-align: center;" role="alert">
-				<span class="alert" style="text-align: center;"><%= alert %></span>
+		<% end %>
+		<% if alert %>
+		<div class="row">
+			<div class="col-md-3">
+				<br/>
 			</div>
-		</div>
+			<div class="col-md-6">
+				<div class="alert alert-danger" style="text-align: center;" role="alert">
+					<span class="alert" style="text-align: center;"><%= alert %></span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<br />
+			</div>
+		</div>	
+		<% end %>
+	<%= yield %>
 	</div>
-	<div class="col-md-3">
-		<br />
-	</div>	
-</div>
-<% end %>
-<%= yield %>
-</div>
 </body>
 </html>

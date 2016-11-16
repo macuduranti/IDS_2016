@@ -1,4 +1,6 @@
 class LogrosController < ApplicationController
+  include ApplicationHelper
+  before_filter :verificar_admin, :only => [:new, :edit, :create, :destroy, :update, :show, :index]
 
   def new
   	@logro=Logro.new
