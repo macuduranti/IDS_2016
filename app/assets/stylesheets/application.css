@@ -124,3 +124,9 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+.listadogau{
+  object-fit: cover;
+  height: 71px;
+  width: 71px;
+}
+

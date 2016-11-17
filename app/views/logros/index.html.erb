@@ -27,7 +27,7 @@
 				<td style="font-size:18px"> <%= l.etiqueta %> </td>
 				<td style="font-size:18px"> <%= l.puntosMin %> </td>
 				<td style="font-size:18px">
-					<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-info btn-md' %>
+					<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-primary btn-md' %>
 					<% if l.id == 1 %>
 					<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger disabled btn-md' %>
 					<% else %>

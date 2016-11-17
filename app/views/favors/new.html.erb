@@ -1,0 +1,25 @@
+<div class="border-form-div">
+<h2> Crear Gauchada </h2>
+<%= form_for (@favor) do |f| %>
+	<div class="field">
+		<%= f.label :titulo, 'Titulo' %>
+		<%= f.text_field :titulo, required: true, placeholder: 'Ingrese un titulo' %>
+	</div>
+	<div class="field">
+		<%= f.label :descripcion, 'Descripción' %>
+		<%= f.text_area :descripcion, required: true, placeholder: 'Indique de que trata...' %>
+	</div>
+	<div class="field">
+		<%= f.label :ubicacion, 'Ubicación' %>
+		<%= f.select :ubicacion, opciones_para_ubicacion, required: true%>
+	</div>
+	<div class="field">
+		<%= f.label :foto, 'Foto' %>
+		<%= f.text_field :foto, placeholder: 'Por favor, introduzca el link de la foto'%>
+	</div>
+	<div class="actions">
+    <%= f.submit "Postear", :class=>'btn btn-primary'%>
+    <%= link_to "Cancelar", gauchadas_path, :class =>'btn btn-default' %>
+  </div>
+ <% end %>
+</div>
