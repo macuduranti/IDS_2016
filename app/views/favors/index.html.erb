@@ -22,37 +22,30 @@
 	<h1>Listado de Gauchadas</h1>
 	<% favores = Favor.all %>
 	<% favores.each do |f| %>
+
 	<div class="border-row-div">
 		<div class="row">
 			<div class="col-md-1">
 				<div class="image-container">
-					<%= image_tag f.foto, title:"FotoGau", class:"listadogau"%>
+					<%= image_tag f.foto, title:"FotoGau", class:"img-md"%>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-9">
 				<p style="font-size:18px"><%= f.titulo%></p>
 				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre.capitalize%> <%= Usuario.find(f.usuario_id).apellido.capitalize%></p>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-2">
 				<div class="align-btn-bottom">
-				<% if usuario_signed_in? %>
-					<% if current_usuario.admin || current_usuario.id == f.usuario_id %>
-						<%= link_to "Eliminar", f, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta gauchada?'}, class: 'btn btn-danger btn-md' %>
-					<% end %>
+					<% if usuario_signed_in? %>
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-md' %>
-				<% end %>
+					<% else %>
+					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
+					<% end %>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 	<% end %>
 	<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
-	<% if usuario_signed_in?%>
-		<% if current_usuario.puntos > 0 %>
-			<%= link_to "Crear Gauchada", new_favor_path, class: 'btn btn-success btn-lg' %>
-		<% else %>
-			<%= link_to "Comprar Puntos", favors_path, class: 'btn btn-success btn-lg' %>
-		<% end %>
-	<% end %>
 	<br>
 </div>

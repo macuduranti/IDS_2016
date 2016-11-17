@@ -52,6 +52,17 @@
           border-radius: 3px;
 }
 
+.image-container-nav {
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  border: 3px solid #e5e5e5;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
+
 .image-container {
   overflow: hidden;
   height: 71px;
@@ -124,9 +135,15 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
-.listadogau{
+
+.img-md{
   object-fit: cover;
-  height: 71px;
-  width: 71px;
+  height: 65px;
+  width: 65px;
 }
 
+.img-sm{
+  object-fit: cover;
+  height: 44px;
+  width: 44px;
+}

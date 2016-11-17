@@ -1,4 +1,4 @@
-<div class="container">
+
 <div class="border-list-div">
 	<div style="overflow: auto;">
 		<% if usuario_signed_in? %>
@@ -6,9 +6,11 @@
 		<div style="float: left;">
 			<h1> Bienvenido <%= nom %>!</h1>
 		</div>
+		<!--
 		<div style=" float: right; overflow: auto;">
-			<%= render 'layouts/logged_user_tag' %>
+			< %= render 'layouts/logged_user_tag' %>
 		</div>
+		-->
 		<% else %>
 		<h1> Bienvenido!</h1>
 		<% end %>
@@ -24,16 +26,17 @@
 		<% if usuario_es_admin? %>
 			<%= link_to "Listado de Logros",logros_path, class: 'btn btn-warning btn-lg' %>
 		<% end %>
+		<!--
 		</div>
 		<div style="float: right;margin-bottom: 4px;">
-			<% if usuario_signed_in? %>
-			<%= link_to "Cerrar Sesion", destroy_usuario_session_path, :method => :delete, class: 'btn btn-danger btn-lg'%>
-			<% else %>
-			<%= link_to "Iniciar Sesion", new_usuario_session_path, class: 'btn btn-info btn-lg' %>
-			<%= link_to "Registrarme", new_usuario_registration_path, class: 'btn btn-success btn-lg' %>
-			<% end %>
+			< % if usuario_signed_in? %>
+			< %= link_to "Cerrar Sesion", destroy_usuario_session_path, :method => :delete, class: 'btn btn-danger btn-lg'%>
+			< % else %>
+			< %= link_to "Iniciar Sesion", new_usuario_session_path, class: 'btn btn-info btn-lg' %>
+			< %= link_to "Registrarme", new_usuario_registration_path, class: 'btn btn-success btn-lg' %>
+			< % end %>
 		</div>
 		</div>
+		-->
 
-</div>
 </div>

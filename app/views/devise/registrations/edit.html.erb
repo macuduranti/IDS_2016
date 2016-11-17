@@ -1,43 +1,85 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<div class="border-form-div">
+<h2>Edita tus datos</h2>
+<p> <font color="grey"> <i>Los campos con <sub><big>*</big></sub> son obligatorios</i> </font></p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :email, 'Email' %>
+    <span class= 'error'> <%=  error_para @usuario, :email %> </span>
+    <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <div>Se está esperando la confirmación para: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    <%= f.label :nombre, 'Nombre' %>
+    <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
+    <%= f.text_field :nombre%>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :apellido, 'Apellido' %>
+    <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
+    <%= f.text_field :apellido%>
+  </div>
+
+  <div class="field">
+    <%= f.radio_button :es_mujer, true %> 
+    <%= f.label :es_mujer, "Mujer" %>
+    <%= f.radio_button :es_mujer, false %> 
+    <%= f.label :es_mujer, "Hombre" %>
+  </div>
+
+  <br/>
+
+  <div>
+    <%= f.label :fecha_de_nacimiento %>
+    <br />
+    <span class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </span>
+    <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 100,:end_year=>Date.today.year - 18%>
+  </div>
+
+  <br/>
+
+  <div class="field">
+  <%= f.label :ubicacion, "Ubicación" %><br />
+    <%= f.select :ubicacion, opciones_para_ubicacion, {} %>
+  </div>
+  <br/>
+  <div class="field">
+    <%= f.label :foto, "Foto de perfil"%><br />
+    <%= f.text_field :foto , placeholder: "Ingrese el URL de su foto", autocomplete: "off"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Contraseña nueva" %>
+    <p> <font color="grey"> <i>Dejar en blanco si no desea modificar</i> </font></p>
+    <span class= 'error'> <%=  error_para @usuario, :password %> </span>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Mínimo ' +@minimum_password_length.to_s+' caracteres' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation , "Confirmación de Contraseña nueva"%>
+    <span class= 'error'> <%=  error_para @usuario, :password_confirmation %> </span>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.label :current_password, "Contraseña actual*" %>
+    <span class= 'error'> <%=  error_para @usuario, :current_password %> </span>
+    <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Ingresar para guardar cambios' %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Guardar", :class=>'btn btn-primary'%>
+    <%= link_to "Cancelar", root_path, :class =>'btn btn-default' %>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<% if !usuario_es_admin? %>
+<h3>Eliminar cuenta</h3>
+<p>Disconforme? </p>
+<%= link_to "Eliminar mi cuenta", registration_path(resource_name), :class =>'btn btn-danger', data: { confirm: "Estas seguro?" }, method: :delete %>
+<% end %>
+</div>

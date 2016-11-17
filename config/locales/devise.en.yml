@@ -35,7 +35,7 @@ en:
       updated: "Tu contraseña ha sido cambiada. Has iniciado sesión."
       updated_not_active: "Tu contraseña ha sido cambiada."
     registrations:
-      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      destroyed: "Tu cuenta ha sido eliminada. Esperamos volver a verte pronto."
       signed_up: "Bienvenido! Te has registrado con éxito."
       signed_up_but_inactive: "Te has registrado satisfactoriamente. De todas formas, tu sesión no se ha iniciado porque tu cuenta no está activada aún."
       signed_up_but_locked: "Te has registrado satisfactoriamente. De todas formas, tu sesión no se ha iniciado porque tu cuenta está bloqueada."

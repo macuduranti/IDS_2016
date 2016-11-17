@@ -195,6 +195,10 @@ en:
             password:
               blank: "Campo requerido"
               too_short: "La contraseña es muy corta"
+            current_password:
+              blank: "Campo requerido"
+              too_short: "La contraseña es muy corta"
+              invalid: "Contraseña inválida"
             password_confirmation:
               blank: "Campo requerido"
               confirmation: "Las contraseñas no coinciden"
