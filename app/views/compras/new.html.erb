@@ -1,0 +1,21 @@
+<div class="border-form-div">
+<h2 class="text-center"> Comprar puntos </h2>
+<%= form_for(@compra) do |f| %>
+	<div class="field text-center">
+	<%= f.label 'Pago con tarjeta de credito' %>
+	</div>
+	<div class="field">
+	<%= f.label :monto, 'Monto' %>
+	<%= f.text_field :monto, required: true, placeholder: 'Ingrese monto' %>
+	<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content=" Hasta aca llego, nos vimo en Disney"> Soy un popover </button>
+	</div>
+	<div class="field">
+	<%= f.label :n_tarjeta, 'Tarjeta' %>
+	<%= f.number_field :n_tarjeta, required: true, placeholder: 'Ingrese el numero de la tarjeta' %> 
+	</div>
+	<div class="actions">
+	<%= f.submit 'Crear', class: 'btn btn-primary' %>
+	<%= link_to "Cancelar", compras_path, class: 'btn btn-default ' %>
+	</div>
+<% end %> 
+</div>

@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
 
+ # get 'compras/new'
+
+ # get 'compras/index'
+
+ # get 'compras/show'
+
+ # get 'compras/destroy'
+
+ # get 'compras/create'
+
+ # get 'compras/update'
+
+ # get 'compras/edit'
+
+  resources :compras
+
   resources :logros 
 
   get 'main/default'
