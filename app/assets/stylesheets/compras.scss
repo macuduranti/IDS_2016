@@ -12,3 +12,32 @@
 .text-white{
 	color: #ffffff
 }
+
+.border-list-div-compras-title {
+  max-width: auto;
+  padding: 0px 20px 10px;
+  margin: 0 auto 20px;
+  background-color: #E7973C;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+
+.border-list-div-compras {
+  max-width: auto;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #e1ab6f;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}

@@ -1,10 +1,14 @@
 <div class="row">
-	<div class="col-md-8 col-md-offset-2 col-md-4-orange">
+	<div class="border-list-div-compras-title">
+	<div class="col-md-8 col-md-offset-2">
 		<h3 class="text-center text-white"> Bienvenido a la tienda de gauchadas! </h3>
 	</div>
+	</div>
+
 </div>
 <br/>
-<dl class="row row-orange">
+<div class = "border-list-div-compras" style="overflow: auto">
+<dl class="row">
 	<h4 class="col-md-12">  De momento en la tienda tenemos la opcion de donar. Aqui te listamos las dudas que se podrian llegar a presentar, asi como los beneficios: </h4>
 	<hr/>
 	<div class="col-xs-12"> </div>
@@ -26,7 +30,14 @@
 	<dt class="col-sm-3 text-center"> ¿Como donar? </dt>
 	<dd class="col-sm-9"> Para donar tienes que hacer click en el link en la parte inferior de esta pantalla, luego completar la planilla de pago. </dd>
 	<div class="col-xs-12"> </div>
+
 </dl>
-	<div class="col-md-4 col-md-offset-8">
-				 <%= link_to "Comprar", {:controller => "compras", :action => "new"}, class: 'btn btn-warning btn-md pull-right' %>
+	<div style="float: left;">
+		<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
 	</div>
+	<div style="float: right;">
+		<%= link_to "Comprar", {:controller => "compras", :action => "new"}, class: 'btn btn-default btn-lg' %>
+	</div>
+					 
+</div>
+	
