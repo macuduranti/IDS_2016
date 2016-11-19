@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118021301) do
+ActiveRecord::Schema.define(version: 20161119230336) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "comentarios", force: :cascade do |t|
+    t.integer  "usuario_id"
+    t.text     "texto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "favor_id"
+  end
 
   create_table "compras", force: :cascade do |t|
     t.integer  "monto"
@@ -39,6 +44,14 @@ ActiveRecord::Schema.define(version: 20161118021301) do
     t.integer  "puntosMin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "postulacions", force: :cascade do |t|
+    t.integer  "usuario_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "favor_id"
+    t.text     "descripcion"
   end
 
   create_table "postulantes", force: :cascade do |t|
@@ -75,7 +88,7 @@ ActiveRecord::Schema.define(version: 20161118021301) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
-  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
 
 end
