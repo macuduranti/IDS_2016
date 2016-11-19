@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   #       get 'short'
   #       post 'toggle'
   #     end
-  #
+  # 
   #     collection do
   #       get 'sold'
   #     end
@@ -81,5 +81,13 @@ Rails.application.routes.draw do
   resources :favors
    get '/gauchadas', to: 'favors#index'
    get '/gauchadas/:id', to: 'favors#show'
+
+  resources :comentarios do
+    member do
+      post 'comentar/:gau_id', :action => 'comentar', :as => 'comentar'
+    end
+  end
+
+  resources :postulacions
 
 end

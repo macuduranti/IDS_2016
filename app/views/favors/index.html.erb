@@ -30,13 +30,16 @@
 					<%= image_tag f.foto, title:"FotoGau", class:"img-md"%>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-7">
 				<p style="font-size:18px"><%= f.titulo%></p>
 				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre.capitalize%> <%= Usuario.find(f.usuario_id).apellido.capitalize%></p>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-4">
 				<div class="align-btn-bottom">
 					<% if usuario_signed_in? %>
+					<% if current_usuario.id == f.usuario_id %>
+						<%= link_to "Eliminar", f, method: :delete, class: 'btn btn-danger btn-md' %>
+					<% end%>
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-md' %>
 					<% else %>
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>

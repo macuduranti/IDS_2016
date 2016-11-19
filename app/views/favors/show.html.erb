@@ -23,7 +23,27 @@
 	<br />
 	<br />
 	<%= link_to "Volver", gauchadas_path, class: 'btn btn-info btn-lg' %>
-	<% if current_usuario.id == @favor.usuario_id %>
-		<%= link_to "Resuelta!", gauchadas_path, data: {confirm: 'Al marcar esta gauchada como resuelta, esta se cerrará'},class: 'btn btn-success btn-lg' %>
+	<% if usuario_signed_in? %>
+		<a href="/comentarios/new?favor_id=<%=@favor.id%>", class="btn btn-info btn-lg">Comentar</a>
+		<% if current_usuario.id != @favor.usuario_id %>
+			<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success btn-lg">Postularse</a>
+		<% else %>
+			<%= link_to "Resuelta!", gauchadas_path, data: {confirm: 'Al marcar esta gauchada como resuelta, esta se cerrará'},class: 'btn btn-success btn-lg' %>
+		<% end %>
 	<% end %>
 </div>
+<% coments = @favor.comentarios %>
+<% coments.each do |c| %>
+<div class="border-row-div container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+			<div class="image-container">
+				<%= image_tag Usuario.find(c.usuario_id).foto, title:"FotoPerfil", class:"img-md"%>
+			</div>
+		</div>
+			<div class="col-md-11">
+				<%= c.texto%>
+			</div>	
+	</div>
+</div>
+<% end %>

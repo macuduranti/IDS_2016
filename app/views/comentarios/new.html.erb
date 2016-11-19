@@ -1,0 +1,14 @@
+<div class="border-form-div">
+	<h2> Crear Comentario </h2>
+	<%= form_for (@comentario) do |f| %>
+		<div class="field">
+			<%= f.label :texto, 'Comentario' %>
+			<%= f.text_area :texto%>
+		</div>
+		<%= f.hidden_field :favor_id, value: @favor_id%>
+		<div class="actions">
+    		<%= f.submit "Comentar", :class=>'btn btn-primary'%>
+    		<%= link_to "Cancelar", gauchadas_path, :class =>'btn btn-default' %>
+  		</div>
+	<% end %>
+</div>
