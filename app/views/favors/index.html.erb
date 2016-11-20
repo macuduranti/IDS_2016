@@ -23,24 +23,23 @@
 	<% favores = Favor.all %>
 	<% favores.each do |f| %>
 
-	<div class="border-row-div" style="overflow: auto">
-
-			<div style="float: left;">
-				<div class="image-container">
+	<div class="border-gau-md" style="overflow: scroll;">
+			<table style="margin-left: 10px;">
+			<tr>
+			<td>
+				<div class="image-container" style="margin-top: 10px">
 					<%= image_tag f.foto, title:"FotoGau", class:"img-md"%>
 				</div>
+			</td>
+			<td>
+			<div style="display: inline-block; margin-left: 30px; margin-top: 0px">
+				<p style="font-size:17px; max-height: 60px; overflow: scroll;"><%= f.titulo%></p>
+				<p style="font-style: italic%"> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
 			</div>
-			<div class="col-md-7">
-				<p style="font-size:18px"><%= f.titulo%></p>
-				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre.capitalize%> <%= Usuario.find(f.usuario_id).apellido.capitalize%></p>
-			</div>
-			<div class="col-md-4">
-			<div style="display: inline-block; margin-left: 20px">
-				<p style="font-size:18px"><%= f.titulo%></p>
-				<p style="font-style: italic"> por <%= Usuario.find(f.usuario_id).nombre.capitalize%> <%= Usuario.find(f.usuario_id).apellido.capitalize%></p>
-			</div>
-			<div style="float: right;">
-				<div class="align-btn-bottom">
+			</td>
+			</tr>
+			</table>
+			<div style="float: right; margin-top: -13px">
 					<% if usuario_signed_in? %>
 					<% if current_usuario.id == f.usuario_id %>
 						<%= link_to "Eliminar", f, method: :delete, class: 'btn btn-danger btn-md' %>
@@ -49,7 +48,6 @@
 					<% else %>
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
 					<% end %>
-				</div>
 			</div>
 
 	</div>

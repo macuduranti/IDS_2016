@@ -1,7 +1,118 @@
 <div class="border-list-div">
-			<% ape = @usuario.apellido.capitalize %> 
-			<% nom = @usuario.nombre.capitalize %> 
+	<% ape = @usuario.apellido.capitalize %> 
+	<% nom = @usuario.nombre.capitalize %> 
 
-<h2> Perfil de <%= nom %> <%= ape %></h2>
+	<h2> Perfil de <%= nom %> <%= ape %></h2>
+
+	<div class="border-element-div" style="overflow: auto; width: 90%">
+		<h3 style="width: 400px">
+			Información de cuenta
+		</h3>	
+		<table>
+		<tr>
+		<td>
+		<div class="image-container-prof" style="margin-right: 25px">
+			<% if current_usuario.foto.presence %>
+			<%= image_tag @usuario.foto, title:"FotoUsuario", class:"img-lg"%>
+			<% else %>
+			<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"img-lg"%>
+			<% end %>
+		</div>
+		</td>
+		<td>
+		<div style="display: inline-block; padding-right: 15px">
+			<p><strong> Email: </strong> <%= @usuario.email %></p>
+			<p><strong> Fecha de Nacimiento: </strong> <%= @usuario.fecha_de_nacimiento.strftime("%d/%m/%Y") %></p>
+			<p><strong> Usuario desde: </strong> <%=  @usuario.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
+			<p><strong> Ubicación: </strong> <%= @usuario.ubicacion %> </p>			
+			<% if @usuario.es_mujer %>
+			<p><strong> Sexo: </strong>Femenino</p>
+			<% else %>
+			<% if !@usuario.es_mujer %>
+			<p><strong> Sexo: </strong>Masculino</p>
+			<% else %>
+			<% end %>
+			<% end %>
+			<p><strong> Logro: </strong> <%= calc_logro(@usuario.puntos) %> </p>
+			<p><strong> Puntos: </strong> <%= @usuario.puntos %> </p>
+		</div>
+		</td>
+		</tr>
+		</table>
+			<div style="float: right; margin-top: -10px">
+				<% if @usuario == @current_usuario %>
+				<%= link_to "Editar", edit_usuario_registration_path, class: 'btn btn-primary' %>
+				<% end %>
+				<% if usuario_es_admin? && !@usuario.admin %>
+				<%= link_to "Eliminar usuario", admin_destroy_usuario_path(@usuario), :class =>'btn btn-danger', data: { confirm: "Estas seguro?" }, method: :delete %>
+				<% end %>
+			</div>
+		
+		
+	</div>
+
+
+
+	<div class="row" >
+		<div class="col-md-6">
+			<div class="border-element-sm-div" style="">
+				<h3 style="width: 1000px">Listado de Gauchadas</h3>
+				<% favores = Favor.where(:usuario_id => @usuario.id) %>
+				<% favores.each do |f| %>
+				<div class="border-gau-sm" style="overflow: auto">
+					<table>
+					<tr>
+					<td>
+						<div class="image-container-nav">
+							<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
+						</div>
+					</td>
+					<td>
+					<div style="display: inline-block; margin-left: 10px">
+						<p> <%= f.titulo%> </p>
+						<p style="font-style: italic; font-size: 11px;line-height: 50%"> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+					</div>
+					</td>
+					</tr>
+					</table>
+					<div style="float: right; margin-top: -18px; margin-bottom: -2px">
+						<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="border-element-sm-div" style="">
+				<h3 style="width: 1000px">Listado de Postulaciones</h3>
+				<% favores = Favor.all %>
+				<% favores.each do |f| %>
+				<div class="border-gau-sm" style="overflow: auto;">
+					<table>
+					<tr>
+					<td>
+						<div class="image-container-nav">
+							<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
+						</div>
+					</td>
+					<td>
+					<div style="display: inline-block; margin-left: 10px">
+						<p> <%= f.titulo%> </p>
+						<p style="font-style: italic; font-size: 11px;line-height: 50%"> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+					</div>
+					</td>
+					</tr>
+					</table>
+					<div style="float: right; margin-top: -18px; margin-bottom: -2px">
+						<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+
+
 
 </div>

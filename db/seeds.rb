@@ -55,7 +55,7 @@ if not Usuario.exists?(email: correo) then
 	user2.foto = "https://a2-images.myspacecdn.com/images01/40/0ada34ec69790d5aeda5a7edb1eb8b4e/300x300.jpg"
 	user2.es_mujer = true;
 	user2.fecha_de_nacimiento = 19.years.ago
-	user1.ubicacion = "Buenos Aires"
+	user2.ubicacion = "Buenos Aires"
 	user2.skip_confirmation!
 	user2.save! 
 	puts "Creo otro usuario común"

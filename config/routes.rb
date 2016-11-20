@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'main/default'
   root to: 'main#default'
 
+  match 'usuarios/:id' => 'usuarios#destroy', :via => :delete, :as => :admin_destroy_usuario
+
   devise_for :usuarios, :controllers => { registrations: 'registrations' }
 
   resources :usuarios, :only => [:index, :show]

@@ -5,7 +5,9 @@ class Usuario < ActiveRecord::Base
   validates_presence_of :apellido
 
   validate :validar_edad
-  has_many :favors
+
+  has_many :favors, dependent: :destroy
+
   private
 
   def validar_edad
