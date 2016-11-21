@@ -19,6 +19,20 @@
   font-style: italic;
 }
 
+.first-column{
+  width: 49%;
+  float: left;
+}
+
+.en-blanco{
+  color: white;
+}
+
+.second-column{
+  width: 49%;
+  float: right;
+}
+
 .row [class*="col-"]{
   margin-bottom: -99999px;
   padding-bottom: 99999px;

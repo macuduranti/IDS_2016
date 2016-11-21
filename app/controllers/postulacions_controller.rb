@@ -12,4 +12,10 @@ class PostulacionsController < ApplicationController
 	def postulacion_params
 		params.require(:postulacion).permit(:descripcion, :favor_id)
 	end
+
+	def destroy
+		@postulacion = Postulacion.find(params[:id])
+		@postulacion.destroy
+		redirect_to gauchadas_path, notice: 'Cancelaste tu oferta'
+	end
 end
