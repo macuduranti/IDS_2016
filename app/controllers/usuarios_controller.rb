@@ -6,11 +6,11 @@ class UsuariosController < ApplicationController
 		@usuario = Usuario.find(params[:id])
 	end
 
-	def destroy
-		@usuario = Usuario.find(params[:id])
-    	@usuario.destroy
-    	if @usuario.destroy
-    	    redirect_to root_url, notice: "Usuario eliminado."
-    	end
-	end
+	#def destroy
+	#	@usuario = Usuario.find(params[:id])
+    #	@usuario.destroy
+    #	if @usuario.destroy
+    #	    redirect_to root_url, notice: "Usuario eliminado."
+    #	end
+	#end
 end
