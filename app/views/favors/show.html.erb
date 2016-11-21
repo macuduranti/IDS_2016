@@ -26,10 +26,15 @@
 	<% if usuario_signed_in? %>
 		<a href="/comentarios/new?favor_id=<%=@favor.id%>", class="btn btn-info btn-lg">Comentar</a>
 		<% if current_usuario.id != @favor.usuario_id %>
-			<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success btn-lg">Postularse</a>
+			<% if current_usuario.esta_postulado?(@favor)%>
+				<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success btn-lg disabled">Ya estas postulado</a>
+			<% else %>
+				<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success btn-lg">Postularse</a>
+			<% end %>			
 		<% else %>
 			<%= link_to "Resuelta!", gauchadas_path, data: {confirm: 'Al marcar esta gauchada como resuelta, esta se cerrará'},class: 'btn btn-success btn-lg' %>
 		<% end %>
+
 	<% end %>
 </div>
 <% coments = @favor.comentarios %>

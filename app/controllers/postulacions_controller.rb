@@ -1,6 +1,7 @@
 class PostulacionsController < ApplicationController
 	def new
 		@postulacion = Postulacion.new()
+		@favor_id = params[:favor_id]
 	end
 	def create
 		@postulacion = Postulacion.new(postulacion_params)

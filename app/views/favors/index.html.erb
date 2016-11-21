@@ -41,8 +41,8 @@
 			</table>
 			<div style="float: right; margin-top: -13px">
 					<% if usuario_signed_in? %>
-					<% if current_usuario.id == f.usuario_id %>
-						<%= link_to "Eliminar", f, method: :delete, class: 'btn btn-danger btn-md' %>
+					<% if (current_usuario.id == f.usuario_id) || current_usuario.admin %>
+						<%= link_to "Eliminar", f, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta gauchada?'}, class: 'btn btn-danger btn-md' %>
 					<% end%>
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-md' %>
 					<% else %>

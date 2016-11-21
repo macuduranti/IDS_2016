@@ -7,6 +7,7 @@ class Usuario < ActiveRecord::Base
   validate :validar_edad
 
   has_many :favors, dependent: :destroy
+  has_many :postulacions, dependent: :destroy
 
   private
 
@@ -14,6 +15,11 @@ class Usuario < ActiveRecord::Base
       if fecha_de_nacimiento.present? && fecha_de_nacimiento.to_i >= 18.years.ago.to_i
           errors.add(:fecha_de_nacimiento, 'Debes ser mayor de 18 años.')
       end
+  end
+
+  def esta_postulado?(postulacion)
+   return false unless self.postulacions.any?
+   self.postulacions.include?(postulacion)
   end
  
   devise :database_authenticatable, :registerable,
