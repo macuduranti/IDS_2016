@@ -1,21 +1,86 @@
-<div class="border-form-div">
+<div class="border-form-div-2">
 <h2 class="text-center"> Comprar puntos </h2>
 <%= form_for(@compra) do |f| %>
 	<div class="field text-center">
 	<%= f.label 'Pago con tarjeta de credito' %>
 	</div>
+	<hr/>
+
+	<div class="row">
 	<div class="field">
-	<%= f.label :monto, 'Monto' %>
-	<%= f.text_field :monto, required: true, placeholder: 'Ingrese monto' %>
-	<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content=" Hasta aca llego, nos vimo en Disney"> Soy un popover </button>
+	<div class="col-sm-2">
+		<%= f.label :monto, 'Puntos' %> 
+	</div>
+	<div class="col-sm-8 text-center">
+		<%= f.number_field :monto, min: 1, required: true, placeholder: 'Ingrese puntos' %>
+	</div>
+	<div class="col-sm-2">
+		<button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="right" data-content="La cantidad de puntos que ingrese sera multiplicada por '$' y ese sera el importe de la compra."> ? </button>
+	</div>
+	</div>
+	</div>
+	<hr/>
+
+	<div class="row">
+	<div class="field">
+	<div class="col-sm-2">
+		<%= f.label :n_tarjeta, 'Tarjeta' %>
+	</div>
+	<div class="col-sm-8 text-center">
+		<%= f.text_field :n_tarjeta, maxlength:16, required: true, placeholder: 'Numero de tarjeta' %> 
+	</div>
+	</div>
+	<div class="col-sm-2">
+		<button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="right" data-content="Ingrese el numero de 16 digitos de su tarjeta de credito, con el formato XXXXXXXXXXXXXXXX."> ? </button>
+	</div>
+	</div>
+	<hr/>
+
+	<div class="row">
+	<div class="col-sm-4">
+		<%= f.label 'Vencimiento' %>
 	</div>
 	<div class="field">
-	<%= f.label :n_tarjeta, 'Tarjeta' %>
-	<%= f.number_field :n_tarjeta, required: true, placeholder: 'Ingrese el numero de la tarjeta' %> 
+	<div class="col-sm-1">
+		<%= f.label :mes, 'Mes' %>
 	</div>
+	<div class="col-sm-2 text-center">
+		<%= f.select(:mes, options_for_select(cc_months)) %> 
+	</div>
+	</div>
+	<div class="field">
+	<div class="col-sm-1">
+		<%= f.label :ano, 'Año' %>
+	</div>
+	<div class="col-sm-2 text-center">
+		<%= f.select(:ano, options_for_select(cc_years)) %> 
+	</div>
+	</div>
+	<div class="col-sm-2">
+		<button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="right" data-content="Ingrese la fecha de vencimiento de su tarjeta de credito con el formato mm/aa."> ? </button>
+	</div>
+	</div>
+	<hr/>
+
+	<div class="row">
+	<div class="field">
+	<div class="col-sm-6">
+		<%= f.label :cvv, 'Codigo de seguridad' %> 
+	</div>
+	<div class="col-sm-4">
+		<%= f.text_field :cvv, maxlength: 3, required: true, placeholder: 'CVV' %>
+	</div>
+	<div class="col-sm-2">
+		<button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="right" data-content="En la mayoria de las tarjetas de credito, es el numero de 3 digitos encontrado en la parte posterior de la tarjeta."> ? </button>
+	</div>
+	</div>
+	</div>
+	<hr/>
+
 	<div class="actions">
-	<%= f.submit 'Crear', class: 'btn btn-primary' %>
-	<%= link_to "Cancelar", compras_path, class: 'btn btn-default ' %>
+	<%= link_to "Cancelar", compras_path, class: 'btn btn-info pull-left' %>
+	<%= f.submit 'Continuar', class: 'btn btn-success pull-right' %>
 	</div>
+	<br/>
 <% end %> 
 </div>

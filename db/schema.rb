@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119230336) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20161122070158) do
 
   create_table "comentarios", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -27,9 +24,12 @@ ActiveRecord::Schema.define(version: 20161119230336) do
   create_table "compras", force: :cascade do |t|
     t.integer  "monto"
     t.integer  "usuario_id"
-    t.integer  "n_tarjeta"
+    t.string   "n_tarjeta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "mes"
+    t.string   "ano"
+    t.string   "cvv"
   end
 
   create_table "favors", force: :cascade do |t|
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20161119230336) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
-  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
 
 end

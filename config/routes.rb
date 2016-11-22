@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
  # get 'compras/edit'
 
+  get 'compras/confirmar', to: 'compras#confirmar'
+
+  get 'compras/agregar', to: 'compras#agregar'
+
   resources :compras
 
   resources :logros 
