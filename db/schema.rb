@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20161123181410) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comentarios", force: :cascade do |t|
     t.integer  "usuario_id"
     t.text     "texto"
@@ -93,7 +96,7 @@ ActiveRecord::Schema.define(version: 20161123181410) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
-  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
 
 end

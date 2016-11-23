@@ -27,6 +27,8 @@ class PostulacionsController < ApplicationController
 		p = Postulacion.find(params[:id])
 		p.elegido = true
 		p.save
+		u = Usuario.find(p.usuario_id)
+		MyMailer.elegido_mail(p).deliver_now
 		redirect_to favor_path(:id => p.favor_id), notice:'Elegiste quien resuelve tu gauchada!'
 	end
 end
