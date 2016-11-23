@@ -12,4 +12,23 @@ class Favor < ActiveRecord::Base
 	has_many :postulacions, dependent: :destroy
 	has_many :comentarios, dependent: :destroy
 
+	def tiene_elegido?
+		postus = self.postulacions
+		postus.each do |p|
+			if p.elegido
+				return true
+			end
+		end
+		return false
+	end
+
+	def get_elegido
+		p = self.postulacions.where(elegido: true)
+		p.each do |pp|
+			if pp.favor_id == self.id
+				return pp.usuario_id
+			end
+			return 0
+		end
+	end
 end

@@ -97,4 +97,6 @@ Rails.application.routes.draw do
 
   resources :postulacions
 
+  get '/elegiruser', to: 'postulacions#elegir_usuario'
+
 end

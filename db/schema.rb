@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122070158) do
+ActiveRecord::Schema.define(version: 20161123181410) do
 
   create_table "comentarios", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161122070158) do
     t.string   "foto"
     t.string   "ubicacion"
     t.integer  "usuario_id"
+    t.boolean  "resuelta"
   end
 
   create_table "logros", force: :cascade do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161122070158) do
     t.datetime "updated_at",  null: false
     t.integer  "favor_id"
     t.text     "descripcion"
+    t.boolean  "elegido"
   end
 
   create_table "postulantes", force: :cascade do |t|

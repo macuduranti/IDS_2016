@@ -1,0 +1,20 @@
+<div class="border-gau-md container-fluid">
+<h2> Atencion! </h2>
+<br>
+<p>Estas eligiendo a <%= Usuario.find(@postulacion.usuario_id).nombre.capitalize%> <%= Usuario.find(@postulacion.usuario_id).apellido.capitalize%> para resolver la gauchada, esto implica que no recibiras mas peticiones. Cuando la gauchada esté completa deberas indicarlo en la pagina.</p>
+<p>Cuando marques la gauchada como resuelta, la persona  elegida para resolverla recibira 1 punto.</p>
+<p>En caso de marcar la gauchada como incompleta, el elegido perdera 1 punto.</p>
+<p>Por favor, completa el formulario con tus datos de contacto, estos se enviaran al encargado de resolver la gauchada para que pueda comunicarse contigo.</p>
+
+<h2> insertar formulario acaaaaaa </h2>
+<div class="row">
+	<div class="col-md-8">
+	</div>
+	<div class="col-md-2">
+		<%= link_to 'Aceptar', elegiruser_path(:id => @postulacion.id), class: 'btn btn-info btn-lg'%> 
+	</div>
+	<div class="col-md-2">
+		<%= link_to 'Cancelar', favor_path(:id => @postulacion.favor_id), class: 'btn btn-info btn-lg'%> 
+	</div>
+</div>
+</div>
