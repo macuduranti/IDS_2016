@@ -10,8 +10,9 @@ class ComentariosController < ApplicationController
 	def create
 		@comentario = Comentario.new(comentario_params)
 		@comentario.usuario_id = current_usuario.id
+		back_id = @comentario.favor_id
 		@comentario.save
-		redirect_to gauchadas_path, notice: 'Comentario creado!'
+		redirect_to favor_path(:id => back_id), notice: 'Comentario creado!'
 	end
 
 	private

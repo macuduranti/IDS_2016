@@ -78,8 +78,8 @@
 								<b><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
 							</div>
 							<div class="col-md-2" style="float: right;">
-								<div class="btn btn-danger btn-xs">Cancelar</div>
-								<!--<%= link_to "Cancelar", p, class:"btn btn-danger btn-xs"%>-->
+								<!--<div class="btn btn-danger btn-xs">Cancelar</div>-->
+								<%= link_to "Cancelar", p, method: :delete, data: {confirm: 'Seguro quieres cancelar la postulacion?'}, class:"btn btn-danger btn-xs"%>
 							</div>
 						</div>
 					</div>

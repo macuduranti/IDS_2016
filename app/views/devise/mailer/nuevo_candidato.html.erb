@@ -1,0 +1,13 @@
+<!-- contenido del correo -->
+
+<p>Hola <%= @dueno.nombre.capitalize %>!</p>
+<p>El usuario <b><%= @usuario.nombre.capitalize%> <%= @usuario.apellido.capitalize%></b> se ofreció como candidato para resolver tu gauchada <b><u><%= @gauchada.titulo %></u></b>!!</p>
+<% if !(@argumento == "") %>
+	<p> A la hora de postularse, el usuario añadio la siguiente información:</p>
+	<p>"<%=@argumento%>"</p>
+<%end%>
+<p>El nuevo candidato es visible en la lista de Postulantes en el detalle de la gauchada</p>
+
+<p>Saludos cordiales,</p>
+
+<p>Equipo de Una Gauchada</p>

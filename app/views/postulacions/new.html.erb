@@ -2,17 +2,17 @@
 	<p>Gracias <%= current_usuario.nombre%> por postularte!</p>
 	<ul><li>El solicitante recibira una notificacion.</li>
 		<li>Si eres seleccionado por el solicitante, se te notificara.</li>
-		<li>Puedes cancelar tu oferta en cualquier momento; pero recuerda, si lo haces cuando ya fuiste seleccionado para resolver la gauchada perderas 1 punto!</li>
+		<li>Puedes cancelar tu oferta en cualquier momento; pero recuerda, si lo haces cuando ya fuiste seleccionado para resolver la gauchada, perderas 1 punto.</li>
 	</ul>
 	<%= form_for (@postulacion) do |p| %>
 		<div class="field">
-			<%= p.label :descripcion, 'Descripcion' %>
+			<%= p.label :descripcion, 'Informacion adicional para el solicitante' %>
 			<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion'%>
 		</div>
 		<%= p.hidden_field :favor_id, value: @favor_id%>
 		<div class="actions">
     		<%= p.submit "Aceptar", :class=>'btn btn-primary'%>
-    		<%= link_to "Cancelar", gauchadas_path, :class =>'btn btn-default' %>
+    		<%= link_to "Cancelar", favor_path(:id => @favor_id), :class =>'btn btn-default' %>
   		</div>
 	<% end %>
 </div>

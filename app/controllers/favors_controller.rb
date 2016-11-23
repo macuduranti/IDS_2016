@@ -27,6 +27,9 @@ class FavorsController < ApplicationController
 	end
 	def create
 		@fa=Favor.new(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto], usuario_id: current_usuario.id)
+		if @fa.foto == ""
+			@fa.foto = "http://i.imgur.com/XsXPRxb.png"
+		end
 		@fa.save
 		u = current_usuario
 		u.puntos = u.puntos - 1

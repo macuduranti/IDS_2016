@@ -1,8 +1,9 @@
-<p>Hola <%= @usuario.email %>!</p>
-<p>Usted ha sido elegido para resolver la gauchada con título: "<%= @gauchada.titulo %>"" por el usuario: "<%= @dueno.nombre.capitalize%> <%= @dueno.apellido.capitalize %>".</p>
-<p>
-	Puede contactarse con <%= @dueno.nombre.capitalize%> <%= @dueno.apellido.capitalize %> mediante su correo electronico:
-	<%= @dueno.email %>
-</p>
-<p>Saludos cordiales wachin, </p>
-<p>Una Gauchada</p>
+<!-- contenido del correo -->
+
+<p>Hola <%= @usuario.nombre.capitalize %>!</p>
+<p>Usted ha sido elegido para resolver la gauchada <b><%= @gauchada.titulo %></b>, solicitada por <b><%= @dueno.nombre.capitalize%> <%= @dueno.apellido.capitalize %></b>.</p>
+<p>Puede contactarse con <b><%= @dueno.nombre.capitalize%> <%= @dueno.apellido.capitalize %></b> mediante su correo electronico:</p>
+<p>- <%= @dueno.email %></p>
+<p>Saludos cordiales,</p>
+
+<p>Equipo de Una Gauchada</p>
