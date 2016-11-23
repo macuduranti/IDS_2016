@@ -37,6 +37,8 @@
 					<div class="btn btn-default btn-lg disabled">No acepta candidatos</div>
 				<% end %>
 			<% end %>
+		<% else %>
+			<%= link_to "Editar", edit_favor_path(:id => @favor.id), class: 'btn btn-info btn-lg' %>
 		<% end %>
 
 	<% end %>

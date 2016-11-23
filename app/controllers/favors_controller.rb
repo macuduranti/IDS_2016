@@ -46,4 +46,13 @@ class FavorsController < ApplicationController
 			redirect_to gauchadas_path, notice: "No tienes permiso para realizar esta acción. Solo el solicitante o el administrador pueden eliminar una gauchada"
 		end	
 	end	
+
+	def edit
+		@gauchada=Favor.find(params[:id])
+	end
+	def update
+		@gauchada=Favor.find(params[:id])
+		@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto])
+		redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
+	end
 end
