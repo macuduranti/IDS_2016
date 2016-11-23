@@ -124,7 +124,7 @@
 .border-gau-md {
   max-width: auto;
   padding: 13px 25px 5px;
-  margin: 15px auto 15px;
+  margin: 15px 15px 15px;
   background-color: #f9fafb;
   border: 2px solid #e5e5e5;
   -webkit-border-radius: 5px;
@@ -134,6 +134,42 @@
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
           box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
+
+.filtros-div {
+  max-width: auto;
+  padding: 10px 10px 10px;
+  margin: 0 auto 20px;
+  background-color: #e5e5e5;
+  border: 1px solid #c6c6c6;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.filtros-div .form-signin-heading,
+.filtros-div .checkbox {
+  margin-bottom: 10px;
+}
+
+.styled-select {
+  border: none;
+  font-size: 16px;
+}
+
+.filtros-div input[type="text"]{
+  background-color: #f8f8f8;
+  border: 0px;
+  font-size: 16px;
+  width: 200px;
+  height: auto;
+  padding: 4px 7px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
 
 .border-list-div {
   max-width: auto;
@@ -148,6 +184,20 @@
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
           box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
+
+.border-form-div-2 {
+   max-width: 400px;
+   padding: 19px 29px 29px;
+   margin: 0 auto 20px;
+   background-color: #fff;
+   border: 1px solid #e5e5e5;
+   -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+           border-radius: 5px;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           box-shadow: 0 1px 2px rgba(0,0,0,.05);
+ }
 
 .border-element-div {
   max-width: auto;
@@ -190,21 +240,6 @@
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
           box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
-
-.border-form-div-2 {
-  max-width: 400px;
-  padding: 19px 29px 29px;
-  margin: 0 auto 20px;
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-          box-shadow: 0 1px 2px rgba(0,0,0,.05);
-}
-
 .border-form-div .form-signin-heading,
 .border-form-div .checkbox {
   margin-bottom: 10px;

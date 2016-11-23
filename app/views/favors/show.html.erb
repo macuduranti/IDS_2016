@@ -1,6 +1,6 @@
 <% ape = Usuario.find(@favor.usuario_id).apellido.capitalize %> 
 <% nom = Usuario.find(@favor.usuario_id).nombre.capitalize %> 
-<% fech = @favor.created_at.to_formatted_s(:db) %>
+<% fech = @favor.created_at.strftime("%d/%m/%Y %H:%M") %>
 <% ubic = @favor.ubicacion %>
 <div class="border-list-div">
 	<h2> Detalle de Gauchada </h2>	

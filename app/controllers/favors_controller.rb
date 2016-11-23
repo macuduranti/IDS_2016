@@ -1,6 +1,16 @@
 class FavorsController < ApplicationController
 	def index
+		@favores = Favor.where(nil)
+  		@favores = @favores.ubicacion(params[:ubicacion]) if params[:ubicacion].present?
+  		@favores = @favores.titulo(params[:titulo]) if params[:titulo].present?
+  		@favores = @favores.titulo(params[:dueño]) if params[:dueño].present?
 	end
+
+	# A list of the param names that can be used for filtering the Product list
+	def filtro_params(params)
+  		params.slice(:ubicacion)
+	end
+
 	def show
 		@favor = Favor.find(params[:id])
 	end
