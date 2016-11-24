@@ -1,18 +1,32 @@
-<div class="border-form-div">
-	<p>Gracias <%= current_usuario.nombre%> por postularte!</p>
-	<ul><li>El solicitante recibira una notificacion.</li>
-		<li>Si eres seleccionado por el solicitante, se te notificara.</li>
-		<li>Puedes cancelar tu oferta en cualquier momento; pero recuerda, si lo haces cuando ya fuiste seleccionado para resolver la gauchada, perderas 1 punto.</li>
-	</ul>
-	<%= form_for (@postulacion) do |p| %>
-		<div class="field">
-			<%= p.label :descripcion, 'Informacion adicional para el solicitante' %>
-			<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion'%>
+<% if usuario_signed_in? %>
+	<div class="border-form-div">
+		<p>Gracias <%= current_usuario.nombre%> por postularte!</p>
+		<ul><li>El solicitante recibira una notificacion.</li>
+			<li>Si eres seleccionado por el solicitante, se te notificara.</li>
+			<li>Puedes cancelar tu oferta en cualquier momento; pero recuerda, si lo haces cuando ya fuiste seleccionado para resolver la gauchada, perderas 1 punto.</li>
+		</ul>
+		<%= form_for (@postulacion) do |p| %>
+			<div class="field">
+				<%= p.label :descripcion, 'Informacion adicional para el solicitante' %>
+				<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion'%>
+			</div>
+			<%= p.hidden_field :favor_id, value: @favor_id%>
+			<div class="actions">
+	    		<%= p.submit "Aceptar", :class=>'btn btn-primary'%>
+	    		<%= link_to "Cancelar", favor_path(:id => @favor_id), :class =>'btn btn-default' %>
+	  		</div>
+		<% end %>
+	</div>
+<% else %>
+	<div class="border-gau-md container-fluid">
+		<h3> Error </h3>
+		<br>
+		<p> No tienes los permisos para acceder a esta funcionalidad</p>
+		<br>
+		<div class="row">
+			<div class="col-md-12" style="float: center;"">
+				<%= link_to "Aceptar", root_path , class: 'btn btn-info btn-lg' %>
+			</div>
 		</div>
-		<%= p.hidden_field :favor_id, value: @favor_id%>
-		<div class="actions">
-    		<%= p.submit "Aceptar", :class=>'btn btn-primary'%>
-    		<%= link_to "Cancelar", favor_path(:id => @favor_id), :class =>'btn btn-default' %>
-  		</div>
-	<% end %>
-</div>
+	</div>
+<% end %>

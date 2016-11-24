@@ -27,7 +27,9 @@
 			<%= link_to "Listado de Logros",logros_path, class: 'btn btn-warning btn-lg' %>
 		<% end %>
 		<hr/>
-		<%= link_to "Tienda",compras_path, class: 'btn btn-warning btn-lg' %>
+		<%if usuario_signed_in? %>
+			<%= link_to "Tienda",compras_path, class: 'btn btn-warning btn-lg' %>
+		<% end %>
 		<!--
 		</div>
 		<div style="float: right;margin-bottom: 4px;">

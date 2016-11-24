@@ -93,6 +93,9 @@
 	<% if usuario_signed_in? %>
 		<% if current_usuario.puntos > 0 %>
 			<%= link_to "Pedir Gauchada", new_favor_path, class: 'btn btn-success btn-lg' %>
+		<% else %>
+			<%= link_to "No tienes puntos", new_favor_path, class: 'btn btn-default btn-lg disabled' %>
+			<%= link_to "Tienda", compras_path, class: 'btn btn-success btn-lg' %>
 		<% end %>
 	<% end %>
 	<br>

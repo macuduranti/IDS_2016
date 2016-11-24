@@ -1,20 +1,48 @@
-<div class="border-gau-md container-fluid">
-<h2> Atencion! </h2>
-<p>Estas eligiendo a <b><%= Usuario.find(@postulacion.usuario_id).nombre.capitalize%> <%= Usuario.find(@postulacion.usuario_id).apellido.capitalize%></b> para resolver la gauchada. Algunas cosas para tener en cuenta:</p>
-<ul>
-	<li> Debes marcar la gauchada como <b>Resuelta</b> cuando esto suceda.</li>
-	<li>Cuando marques la gauchada como resuelta, la persona  elegida para resolverla recibira 1 punto.</li>
-	<li>En caso de marcar la gauchada como incompleta, el elegido perdera 1 punto.</li>
-	<li>Se enviara un mail al usuario seleccionado con <b>tu direccion de correo</b>, de manera que pueda comunicarse contigo</li>
-</ul>
-<div class="row">
-	<div class="col-md-8">
-	</div>
-	<div class="col-md-2">
-		<%= link_to 'Aceptar', elegiruser_path(:id => @postulacion.id), class: 'btn btn-success btn-lg'%> 
-	</div>
-	<div class="col-md-2">
-		<%= link_to 'Cancelar', favor_path(:id => @postulacion.favor_id), class: 'btn btn-danger btn-lg'%> 
-	</div>
-</div>
-</div>
+<% if usuario_signed_in? %>
+	<% if current_usuario.id == Favor.find(@postulacion.favor_id).usuario_id %>
+		<div class="border-gau-md container-fluid">
+		<h2> Atencion! </h2>
+		<p>Estas eligiendo a <b><%= Usuario.find(@postulacion.usuario_id).nombre.capitalize%> <%= Usuario.find(@postulacion.usuario_id).apellido.capitalize%></b> para resolver la gauchada. Algunas cosas para tener en cuenta:</p>
+		<ul>
+			<li> Debes marcar la gauchada como <b>Resuelta</b> cuando esto suceda.</li>
+			<li>Cuando marques la gauchada como resuelta, la persona  elegida para resolverla recibira 1 punto.</li>
+			<li>En caso de marcar la gauchada como incompleta, el elegido perdera 1 punto.</li>
+			<li>Se enviara un mail al usuario seleccionado con <b>tu direccion de correo</b>, de manera que pueda comunicarse contigo</li>
+		</ul>
+		<div class="row">
+			<div class="col-md-8">
+			</div>
+			<div class="col-md-2">
+				<%= link_to 'Aceptar', elegiruser_path(:id => @postulacion.id), class: 'btn btn-success btn-lg'%> 
+			</div>
+			<div class="col-md-2">
+				<%= link_to 'Cancelar', favor_path(:id => @postulacion.favor_id), class: 'btn btn-danger btn-lg'%> 
+			</div>
+		</div>
+		</div>
+	<% else %>
+		<div class="border-gau-md container-fluid">
+			<h3> Error </h3>
+			<br>
+			<p> No tienes los permisos para acceder a esta funcionalidad</p>
+			<br>
+		<div class="row">
+			<div class="col-md-12" style="float: center;"">
+				<%= link_to "Aceptar", root_path , class: 'btn btn-info btn-lg' %>
+			</div>
+		</div>
+		</div>
+	<% end %>
+<% else %>
+		<div class="border-gau-md container-fluid">
+			<h3> Error </h3>
+			<br>
+			<p> No tienes los permisos para acceder a esta funcionalidad</p>
+			<br>
+		<div class="row">
+			<div class="col-md-12" style="float: center;"">
+				<%= link_to "Aceptar", root_path , class: 'btn btn-info btn-lg' %>
+			</div>
+		</div>
+		</div>
+<% end %>
