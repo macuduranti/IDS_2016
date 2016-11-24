@@ -89,7 +89,6 @@
 
 	</div>
 	<% end %>
-	<%= link_to "Volver", root_path, class: 'btn btn-info btn-lg' %>
 	<% if usuario_signed_in? %>
 		<% if current_usuario.puntos > 0 %>
 			<%= link_to "Pedir Gauchada", new_favor_path, class: 'btn btn-success btn-lg' %>

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :logros 
 
   get 'main/default'
-  root to: 'main#default'
+  root to: 'favors#index'
 
   
   #match 'usuarios/:id' => 'usuarios#destroy', :via => :delete, :as => :admin_destroy_usuario
