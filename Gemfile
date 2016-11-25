@@ -56,3 +56,5 @@ gem 'hirb'
 group :development, :test do
 gem 'foreman'
 end
+
+gem 'bootstrap-popover-rails', '~> 0.1.0'
