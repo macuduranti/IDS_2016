@@ -17,6 +17,6 @@
 //= require bootstrap/bootstrap-rails-tooltip
 //= require bootstrap/bootstrap-rails-popover
 
-$(function () {
+function () {
   $('[data-toggle="popover"]').popover();
-})
+}
