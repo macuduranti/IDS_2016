@@ -1,3 +1,4 @@
+<% session[:return_to] ||= request.referer %>
 <% ape = Usuario.find(@favor.usuario_id).apellido.capitalize %> 
 <% nom = Usuario.find(@favor.usuario_id).nombre.capitalize %> 
 <% fech = @favor.created_at.strftime("%d/%m/%Y %H:%M") %>
@@ -22,7 +23,7 @@
 	<br />
 	<br />
 	<br />
-	<%= link_to "Volver", gauchadas_path, class: 'btn btn-info btn-lg' %>
+	<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
 	<% if usuario_signed_in? %>
 		<a href="/comentarios/new?favor_id=<%=@favor.id%>", class="btn btn-info btn-lg">Comentar</a>
 		<% if current_usuario.id != @favor.usuario_id %>

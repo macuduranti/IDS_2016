@@ -1,6 +1,6 @@
 <% if usuario_signed_in? %>
 	<div class="border-form-div">
-		<p>Gracias <%= current_usuario.nombre%> por postularte!</p>
+		<h3>Gracias <%= current_usuario.nombre%> por postularte!</h3>
 		<ul><li>El solicitante recibira una notificacion.</li>
 			<li>Si eres seleccionado por el solicitante, se te notificara.</li>
 			<li>Puedes cancelar tu oferta en cualquier momento; pero recuerda, si lo haces cuando ya fuiste seleccionado para resolver la gauchada, perderas 1 punto.</li>
@@ -8,7 +8,7 @@
 		<%= form_for (@postulacion) do |p| %>
 			<div class="field">
 				<%= p.label :descripcion, 'Informacion adicional para el solicitante' %>
-				<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion'%>
+				<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion', class: "textarea"%>
 			</div>
 			<%= p.hidden_field :favor_id, value: @favor_id%>
 			<div class="actions">

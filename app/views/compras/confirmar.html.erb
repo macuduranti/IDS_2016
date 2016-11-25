@@ -5,7 +5,7 @@
 
 </dl>
 	<div style="float: left;">
-		<%= link_to "Cancelar", root_path , class: 'btn btn-danger btn-lg' %>
+		<%= link_to "Cancelar", compras_path , class: 'btn btn-danger btn-lg' %>
 	</div>
 	<div style="float: right;">
 		<%= link_to "Confirmar", compras_agregar_path(:monto => @c.monto, :n_tarjeta => @c.n_tarjeta, :mes => @c.mes, :ano => @c.ano, :cvv => @c.cvv), class: 'btn btn-success btn-lg' %>

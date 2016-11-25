@@ -37,23 +37,25 @@
         <% ape = current_usuario.apellido.capitalize %> 
         <% nom = current_usuario.nombre.capitalize %> 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="overflow: auto">
-                <div class="image-container-nav" style="margin-top: -15px; margin-bottom: -15px; float: right;">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="overflow: auto; height: 50px">
+                <div class="image-container-nav" style="margin-top: -15px; margin-bottom: -15px;">
                     <% if current_usuario.foto.presence %>
                     <%= image_tag current_usuario.foto, title:"FotoUsuario", class:"img-sm"%>
                     <% else %>
                     <%= image_tag "foto_stock.png", title:"FotoUsuario", class:"img-sm"%>
                     <% end %>
                 </div> 
-                <div style="float: left; margin-left: -13px">
+                <div style="margin-left: -13px">
 
-                    <span class="caret" style="margin-bottom: -40px; margin-right: 4px;"></span>
+                    <span class="caret" style="margin-bottom: 7px;"></span>
                 </div>
                 
           </a>
           <ul class="dropdown-menu">
             <li><a href="<%= usuario_path(:id => current_usuario.id) %>">Mi perfil</a></li>
             <li><a href="<%= edit_usuario_registration_path %>">Editar mi perfil</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="<%= compras_path%>"> Comprar puntos</a></li>
             <% if usuario_es_admin? %>
             <li role="separator" class="divider"></li>
             <li><a href="<%= logros_path %>"><strong> Listado de Logros </strong></a></li>

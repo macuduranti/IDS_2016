@@ -1,5 +1,5 @@
 <!--  <%= devise_error_messages! %> -->
-
+<% session[:return_to] ||= request.referer %>
 <div class="border-form-div">
 <h2>Registrate!</h2>
 <p> <font color="grey"> <i>Los campos con <sub><big>*</big></sub> son obligatorios</i> </font></p>
@@ -64,7 +64,7 @@
   </div>
   <div class="actions">
     <%= f.submit "Registrarme", :class=>'btn btn-primary'%>
-    <%= link_to "Cancelar", root_path, :class =>'btn btn-default' %>
+    <%= link_to "Cancelar", session.delete(:return_to), :class =>'btn btn-default' %>
   </div>
 <% end %>
 

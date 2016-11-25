@@ -1,3 +1,4 @@
+<% session[:return_to] ||= request.referer %>
 <div class="border-list-div">
 	<% ape = @usuario.apellido.capitalize %> 
 	<% nom = @usuario.nombre.capitalize %> 
@@ -65,14 +66,17 @@
 								</div>
 							</td>
 							<td>
-								<div style="display: inline-block; margin-left: 10px">
-									<p> <%= f.titulo%> </p>
-									<p style="font-style: italic; font-size: 11px;line-height: 50%"> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+								<div style="display: inline-block; margin-left: 10px;">
+									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
+									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %>, en <%= f.ubicacion %></p>
 								</div>
 							</td>
 						</tr>
 					</table>
 					<div style="float: right; margin-top: -18px; margin-bottom: -2px">
+						<% if (current_usuario.id == f.usuario_id)%>
+						<%= link_to "Eliminar", f, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta gauchada?'}, class: 'btn btn-danger btn-xs' %>
+						<% end%>
 						<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
 					</div>
 				</div>
@@ -105,8 +109,8 @@
 							</td>
 							<td>
 								<div style="display: inline-block; margin-left: 10px">
-									<p> <%= f.titulo%> </p>
-									<p style="font-style: italic; font-size: 11px;line-height: 50%"> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
+									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %>, en <%= f.ubicacion %>, por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
 								</div>
 							</td>
 						</tr>
@@ -123,8 +127,5 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
+	<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
 </div>

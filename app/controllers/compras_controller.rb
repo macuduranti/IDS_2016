@@ -53,6 +53,10 @@ class ComprasController < ApplicationController
     if ( (n <= 10) && (n1 == 16) ) then
       return redirect_to compras_path, notice: 'Tarjeta vencida'
     end
+    n = Integer(params[:compra][:n_tarjeta])
+    if (n==0) then #cuando viene un numero menor que 0
+      return redirect_to compras_path, notice: 'Tarjeta sin saldo'
+    end
 
     redirect_to compras_confirmar_path(:monto => params[:compra][:monto], :n_tarjeta => params[:compra][:n_tarjeta], :mes => params[:compra][:mes], :ano => params[:compra][:ano], :cvv => params[:compra][:cvv])
   end

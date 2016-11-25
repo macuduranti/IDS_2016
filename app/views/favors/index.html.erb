@@ -33,13 +33,26 @@
 			</div>
 		</td>
 		<td>
+		<!--
 		<div style="margin-right: 10px">
 			<strong> Usuario: </strong>
 			<br/>
-			<%= text_field_tag :dueño, params[:dueño], placeholder: "Ingrese texto para buscar" %>
+			< %= text_field_tag :dueño, params[:dueño], placeholder: "Ingrese texto para buscar" %>
 			</div>
 		</td>
-
+		<td>
+		<div style="margin-right: 10px">
+			<strong> Mostrar gauchadas resueltas: </strong>
+			<br/>
+			< %= label_tag :resuelta, "Si" %>
+			< %= radio_button_tag params[:resuelta], true %> 
+			<br/>
+    		< %= label_tag :resuelta, "No" %>
+    		< %= radio_button_tag params[:resuelta], false %> 
+    		
+    	</div>
+    	</td>
+    	-->
 		<td>
 		<div style="">
 			<strong> Ubicación: </strong>
@@ -50,11 +63,13 @@
 			</div>
 			</div>
 		</td>
-		</tr>
-		</table>
-		<div style="margin-top: 10px;">
+		<td>
+		<div style="margin-top: 17px; margin-left: 10px">
 				<%= submit_tag "Filtrar" , class: 'btn btn-default'%>
 		</div>
+		</td>
+		</tr>
+		</table>
 		<% end %>
 	</div>
 
