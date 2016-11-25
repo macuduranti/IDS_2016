@@ -37,7 +37,7 @@
         <% ape = current_usuario.apellido.capitalize %> 
         <% nom = current_usuario.nombre.capitalize %> 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="overflow: auto; height: 50px">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="height: 50px">
                 <div class="image-container-nav" style="margin-top: -15px; margin-bottom: -15px;">
                     <% if current_usuario.foto.presence %>
                     <%= image_tag current_usuario.foto, title:"FotoUsuario", class:"img-sm"%>
