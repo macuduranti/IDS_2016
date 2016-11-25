@@ -27,7 +27,7 @@ if not Usuario.exists?(email: correo) then
 	puts "Creo usuario admin"
 end
 
-correo = 'test1@example.com'
+correo = 'macuduranti@gmail.com'
 if not Usuario.exists?(email: correo) then
 	user1 = Usuario.new
 	user1.email = correo
@@ -44,7 +44,7 @@ if not Usuario.exists?(email: correo) then
 	puts "Creo un usuario común"
 end
 
-correo = 'test2@example.com'
+correo = 'facundo6991@gmail.com'
 if not Usuario.exists?(email: correo) then
 	user2 = Usuario.new
 	user2.email = correo
