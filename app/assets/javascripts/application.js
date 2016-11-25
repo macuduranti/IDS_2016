@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-//= require bootstrap/bootstrap-rails-tooltip
-//= require bootstrap/bootstrap-rails-popover
+//= require_tree.
+
 $(function () {
   $('[data-toggle="popover"]').popover();
 })
