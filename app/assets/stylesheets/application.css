@@ -61,6 +61,7 @@
 .image-container-gau {
   overflow: hidden;
   height: auto;
+  background-color: white;
   width: 400px;
   border: 5px solid #f1f1f1;
   -webkit-border-radius: 3px;
@@ -103,6 +104,7 @@
 .image-container {
   overflow: hidden;
   height: 71px;
+  background-color: white;
   width: 71px;
   border: 3px solid #e5e5e5;
   margin-left: -15px;

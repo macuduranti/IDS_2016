@@ -29,7 +29,7 @@ class FavorsController < ApplicationController
 	def create
 		@fa=Favor.new(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto], usuario_id: current_usuario.id)
 		if @fa.foto == ""
-			@fa.foto = "http://i.imgur.com/XsXPRxb.png"
+			@fa.foto = "http://i.imgur.com/HBEa2Op.png"
 		end
 		@fa.save
 		u = current_usuario
@@ -54,7 +54,7 @@ class FavorsController < ApplicationController
 	def update
 		@gauchada=Favor.find(params[:id])
 		if params[:favor][:foto] == ""
-			@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: "http://i.imgur.com/XsXPRxb.png")
+			@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: "http://i.imgur.com/HBEa2Op.png")
 			redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
 		else
 		@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto])
