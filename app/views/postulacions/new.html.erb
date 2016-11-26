@@ -8,7 +8,7 @@
 		<%= form_for (@postulacion) do |p| %>
 			<div class="field">
 				<%= p.label :descripcion, 'Informacion adicional para el solicitante' %>
-				<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion', class: "textarea"%>
+				<%= p.text_area :descripcion, placeholder: 'Razon de la postulacion', class: "form-control", style: "margin-bottom: 15px" %>
 			</div>
 			<%= p.hidden_field :favor_id, value: @favor_id%>
 			<div class="actions">

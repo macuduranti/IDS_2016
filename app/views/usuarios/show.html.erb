@@ -20,7 +20,7 @@
 						<% end %>
 					</div>
 				</td>
-				<td>
+				<td style="vertical-align: top; text-align: left;">
 					<div style="display: inline-block; padding-right: 15px">
 						<p><strong> Email: </strong> <%= @usuario.email %></p>
 						<p><strong> Fecha de Nacimiento: </strong> <%= @usuario.fecha_de_nacimiento.strftime("%d/%m/%Y") %></p>
@@ -60,7 +60,7 @@
 				<div class="border-gau-sm" style="overflow: auto">
 					<table>
 						<tr>
-							<td>
+							<td style="vertical-align: top">
 								<div class="image-container-nav">
 									<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
 								</div>
@@ -102,7 +102,7 @@
 				<div class="border-gau-sm" style="overflow: auto;">
 					<table>
 						<tr>
-							<td>
+							<td style="vertical-align: top">
 								<div class="image-container-nav">
 									<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
 								</div>

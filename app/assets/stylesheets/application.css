@@ -58,10 +58,20 @@
     line-height: 53px;
   }
 
+.image-container-gau {
+  overflow: hidden;
+  height: auto;
+  width: 400px;
+  border: 5px solid #f1f1f1;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
 
 .image-container-prof {
   overflow: hidden;
-  height: 216px;
+  height: 220px;
   width: auto;
   border: 5px solid #f1f1f1;
   -webkit-border-radius: 3px;
@@ -265,7 +275,8 @@
 
 .img-xl{
   object-fit: contain;
-  width: 420px;
+  max-height: 450px;
+  width: 390px;
 }
 
 .img-lg{

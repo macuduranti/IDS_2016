@@ -13,6 +13,7 @@ class FavorsController < ApplicationController
 
 	def show
 		@favor = Favor.find(params[:id])
+		@comentario = Comentario.new
 	end
 	def new
 		if usuario_signed_in?
@@ -52,7 +53,12 @@ class FavorsController < ApplicationController
 	end
 	def update
 		@gauchada=Favor.find(params[:id])
+		if params[:favor][:foto] == ""
+			@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: "http://i.imgur.com/XsXPRxb.png")
+			redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
+		else
 		@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto])
 		redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
+		end
 	end
 end

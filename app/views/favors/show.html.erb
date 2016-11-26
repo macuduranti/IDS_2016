@@ -3,122 +3,133 @@
 <% nom = Usuario.find(@favor.usuario_id).nombre.capitalize %> 
 <% fech = @favor.created_at.strftime("%d/%m/%Y %H:%M") %>
 <% ubic = @favor.ubicacion %>
+
 <div class="border-list-div">
 	<h2> Detalle de Gauchada </h2>	
-	<div class= "row">
-		<div class="col-md-6">
-		<h3> <%= @favor.titulo %></h3> 
-		<p style="font-size: 12px; font-style: italic; color: grey"> 
-			creada el <%=fech%>, en <%= ubic %>, por <%= link_to nom+" "+ape, usuario_path(:id => @favor.usuario_id)%>
-		</p>
-		<p > <%= @favor.descripcion %> </p>
-		</div>
-		<div class="col-md-6" style="margin-top: 25px">
-			<%= image_tag @favor.foto, title:"FotoGau", class:"img-xl"%>
-		</div>
-		
-	</div>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
-	<% if usuario_signed_in? %>
-		<a href="/comentarios/new?favor_id=<%=@favor.id%>", class="btn btn-info btn-lg">Comentar</a>
-		<% if current_usuario.id != @favor.usuario_id %>
-			<% if current_usuario.esta_postulado?(@favor)%>
-				<% posts = @favor.postulacions%>
-				<% postulacion_buscada = posts.find_by usuario_id: current_usuario.id %>
-				<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Si fuiste seleccionado y cancelas tu oferta perderás 1 punto!!'}, class: 'btn btn-danger btn-lg' %>
-			<% else %>
-				<% if !@favor.tiene_elegido? %>
-					<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success btn-lg">Postularse</a>
-				<% else %>
-					<div class="btn btn-default btn-lg disabled">No acepta candidatos</div>
-				<% end %>
-			<% end %>
-		<% else %>
-			<%= link_to "Editar", edit_favor_path(:id => @favor.id), class: 'btn btn-info btn-lg' %>
-		<% end %>
 
-	<% end %>
-</div>
-
-<div class="modal-body">
-	<% if @favor.comentarios.count > 0 %>
-	<div class="first-column">
-		<h3 class="en-blanco"><b>Comentarios</b></h3>
-		<% coments = @favor.comentarios %>
-		<% coments.each do |c| %>
-		<div class="border-gau-md" style="overflow: auto">
-			<table >
+	<div class="border-element-div" style="overflow: auto; width: 100%">	
+		<table>
 			<tr>
-			<td height="60" style="min-width: 60px;">
-						<div class="image-container">
-						<%= image_tag Usuario.find(c.usuario_id).foto, title:"FotoPerfil", class:"img-md"%>
-						</div>
-			</td>
-			<td>				
-					<div style="margin-left: 5px">
-					<p style="font-size: 16px"><b><%= link_to Usuario.find(c.usuario_id).nombre.capitalize+" "+Usuario.find(c.usuario_id).apellido.capitalize, usuario_path(:id => c.usuario_id)%></b></p>
-					<p style="font-size: 11px; margin-top: -15px; font-style: italic; color: grey"> <%= c.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
-					<p><%= c.texto%></p>
+				<td>
+					<div class= "image-container-gau" style="margin-right: 25px; margin-top: 30px">
+						<%= image_tag @favor.foto, title:"FotoGau", class:"img-xl"%>
 					</div>
-			</td>
+				</td>
+				<td style="vertical-align: top; text-align: left;">
+					<div style="display: inline-block;padding-right: 15px; margin-top: 10px">
+						<h3 style="width: 400px"> <%= @favor.titulo %> </h3>
+						<p><strong> Dueño: </strong> <%= link_to nom+" "+ape, usuario_path(:id => @favor.usuario_id) %></p>
+						<p><strong> Fecha de creación: </strong> <%= @favor.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+						<p><strong> Ubicación: </strong> <%= @favor.ubicacion %> </p>			
+						<p><strong> Descripción: </strong> </p>
+						<p style="margin-left: 15px"> <i> <%= @favor.descripcion %> </i> </p>
+					</div>
+				</td>
 			</tr>
-			</table>
+		</table>
+		<div style="float: right; margin-top: 15px; margin-bottom: -10px">
+			<% if usuario_signed_in? %>
+			<% if current_usuario.id != @favor.usuario_id %>
+			<% if current_usuario.esta_postulado?(@favor)%>
+			<% posts = @favor.postulacions%>
+			<% postulacion_buscada = posts.find_by usuario_id: current_usuario.id %>
+			<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Si fuiste seleccionado y cancelas tu oferta perderás 1 punto!!'}, class: 'btn btn-danger' %>
+			<% else %>
+			<% if !@favor.tiene_elegido? %>
+			<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success">Postularse</a>
+			<% else %>
+			<div class="btn btn-default disabled">No acepta candidatos</div>
+			<% end %>
+			<% end %>
+			<% else %>
+			<%= link_to "Editar", edit_favor_path(:id => @favor.id), class: 'btn btn-primary' %>
+			<% end %>
+
+			<% end %>
 		</div>
-		<% end %>
+
 	</div>
-	<% end %>
-	<% if (@favor.postulacions.count > 0) && current_usuario.id == @favor.usuario_id %>
-	<div class="second-column">
-		<h3 class="en-blanco"><b>Postulantes</b></h3>
-		<% postulantes = @favor.postulacions%>
-		<% if @favor.tiene_elegido? %>
-			<% elegido_id = @favor.get_elegido %>
-			<% postulantes.each do |p| %>
-				<%if p.usuario_id == elegido_id %>
-					<div class="border-gau-md container-fluid">
-						<div class="row">
-							<div class="col-md-6">
-								<b><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
-							</div>
-							<div class="col-md-2" style="float: right;">
-								<!--<div class="btn btn-danger btn-xs">Cancelar</div>-->
-								<%= link_to "Cancelar", p, method: :delete, data: {confirm: 'Seguro quieres cancelar la postulacion?'}, class:"btn btn-danger btn-xs"%>
-							</div>
-						</div>
+
+	<div class="row" >
+		<% if current_usuario.id == @favor.usuario_id %>
+		<div class="col-md-6">
+			<% else %>
+			<div class="col-md-12">
+				<% end %>
+				<div class="border-element-sm-div" style="overflow: hidden">
+					<h3 style="width: 500px">Comentarios</h3>
+					<% if @favor.comentarios.count > 0 %>
+					<% coments = @favor.comentarios %>
+					<% coments.each do |c| %>
+					<div class="border-gau-sm" style="overflow: auto">
+						<table >
+							<tr>
+								<td height="60" style="min-width: 60px; vertical-align: top">
+									<div class="image-container-nav">
+										<% if Usuario.find(c.usuario_id).foto.presence %>
+										<%= image_tag Usuario.find(c.usuario_id).foto, title:"FotoUsuario", class:"img-sm"%>
+										<% else %>
+										<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"img-sm"%>
+										<% end %>
+									</div>
+								</td>
+								<td>				
+									<div style="margin-left: 5px">
+										<p style="font-size: 16px"><b><%= link_to Usuario.find(c.usuario_id).nombre.capitalize+" "+Usuario.find(c.usuario_id).apellido.capitalize, usuario_path(:id => c.usuario_id)%></b></p>
+										<p style="font-size: 11px; margin-top: -15px; font-style: italic; color: grey"> <%= c.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
+										<p style="margin-top: -10px"><%= c.texto%></p>
+									</div>
+								</td>
+							</tr>
+						</table>
 					</div>
-				<% else %>
-					<div class="border-gau-md container-fluid">
-						<div class="row">
-							<div class="col-md-6">
-								<b><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
-							</div>
-							<div class="col-md-2" style="float: right;">
-								<div class="btn btn-default btn-xs disabled">Aceptar</div>
-							</div>
-						</div>
+					<% end %>
+					<% else %>
+					<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no hay comentarios. Haz uno!</p>
+					<% end %>
+					<% if usuario_signed_in? %>
+					<div style="overflow: auto">
+						<%= render :partial => 'comentarios/form' %>
 					</div>
-				<% end%>
-			<% end %>
-		<% else %>	
-			<% postulantes.each do |p| %>	
-				<div class="border-gau-md container-fluid">
-					<div class="row">
-						<div class="col-md-6">
-							<b><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
-						</div>
-						<div class="col-md-2" style="float: right;">
-							<%= link_to "Aceptar", p, class:"btn btn-success btn-xs"%>
-						</div>
-					</div>
+					<% end %>
 				</div>
+			</div>
+			<!-- ACA TERMINA COLUMNA COMENTARIOS -->
+			<% if current_usuario.id == @favor.usuario_id %>
+			<div class="col-md-6">
+				<div class="border-element-sm-div" style="overflow: hidden">
+					<h3 style="width: 500px">Postulantes</h3>
+				<% if @favor.postulacions.count > 0 %>
+					<% postulantes = @favor.postulacions%>
+					<% postulantes.each do |p| %>
+						<div class="border-gau-sm" style="overflow: auto">
+								<b style="display: inline-block;"><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
+								<i style="font-size: 10px; color: grey; display: inline-block;"> <%= p.created_at.strftime("%d/%m/%Y %H:%M") %> </i>
+								<br/>
+								<i style="display: inline-block;"> <%= p.descripcion %> </i>
+								<div style="float: right">
+								<% if @favor.tiene_elegido? %>
+									<% elegido_id = @favor.get_elegido %>
+									<% if p.usuario_id == elegido_id %>
+										<%= link_to "Cancelar", p, method: :delete, data: {confirm: 'Seguro quieres cancelar la postulacion?'}, class:"btn btn-danger btn-xs"%>
+									<% else %>
+										<div class="btn btn-default btn-xs disabled">Aceptar</div>
+									<% end %>
+								<% else %>
+									<%= link_to "Aceptar", p, class:"btn btn-success btn-xs"%>
+								<% end %>
+								</div>
+						</div>
+					<% end %>
+				<% else %>
+					<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no tienes postulantes.</p>
+				<% end %>
+
+				</div>
+			</div>
 			<% end %>
-		<% end %>
+		</div>
+		<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
+
 	</div>
-	<% end %>
-</div>
 
