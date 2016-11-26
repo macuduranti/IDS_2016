@@ -68,7 +68,7 @@
 							<td>
 								<div style="display: inline-block; margin-left: 10px;">
 									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
-									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %>, en <%= f.ubicacion %></p>
+									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %></p>
 								</div>
 							</td>
 						</tr>
@@ -110,7 +110,7 @@
 							<td>
 								<div style="display: inline-block; margin-left: 10px">
 									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
-									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %>, en <%= f.ubicacion %>, por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
 								</div>
 							</td>
 						</tr>
