@@ -33,26 +33,6 @@
 			</div>
 		</td>
 		<td>
-		<!--
-		<div style="margin-right: 10px">
-			<strong> Usuario: </strong>
-			<br/>
-			< %= text_field_tag :dueño, params[:dueño], placeholder: "Ingrese texto para buscar" %>
-			</div>
-		</td>
-		<td>
-		<div style="margin-right: 10px">
-			<strong> Mostrar gauchadas resueltas: </strong>
-			<br/>
-			< %= label_tag :resuelta, "Si" %>
-			< %= radio_button_tag params[:resuelta], true %> 
-			<br/>
-    		< %= label_tag :resuelta, "No" %>
-    		< %= radio_button_tag params[:resuelta], false %> 
-    		
-    	</div>
-    	</td>
-    	-->
 		<td>
 		<div style="">
 			<strong> Ubicación: </strong>
@@ -74,7 +54,6 @@
 	</div>
 
 	<% @favores.each do |f| %>
-
 	<div class="border-gau-md" style="overflow: auto;">
 			<table style="margin-left: 10px;">
 			<tr>
@@ -101,8 +80,10 @@
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
 					<% end %>
 			</div>
-
 	</div>
+	<% end %>
+	<% if @favores.count == 0 %>
+		<p style="font-size: 24px; font-style: italic; color: grey; margin-left: 20px; margin-bottom: 20px"> No hay gauchadas para mostrar!</p>
 	<% end %>
 	<% if usuario_signed_in? %>
 		<% if current_usuario.puntos > 0 %>

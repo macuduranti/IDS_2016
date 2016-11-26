@@ -4,6 +4,9 @@ class UsuariosController < ApplicationController
 
 	def show
 		@usuario = Usuario.find(params[:id])
+		if (@usuario == @current_usuario)
+			@pend = params[:pend]
+		end
 	end
 
 	#def destroy
