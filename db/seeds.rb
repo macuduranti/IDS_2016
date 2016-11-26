@@ -61,18 +61,18 @@ if not Usuario.exists?(email: correo) then
 	puts "Creo otro usuario común"
 end
 
-if Favor.find_or_create_by(titulo: 'Necesito ayuda para controlar el sitio', descripcion: 'Ayudaaaaa', foto: 'http://www.nocturnar.com/imagenes/cara-triste/cara-triste.jpg', ubicacion: 'Buenos Aires', usuario_id: 1) then
+if Favor.find_or_create_by(titulo: 'Necesito ayuda para controlar el sitio', descripcion: 'Ayudaaaaa', foto: 'http://www.nocturnar.com/imagenes/cara-triste/cara-triste.jpg', ubicacion: 'Buenos Aires', usuario_id: 1, resuelta: false) then
 	puts "Creo un favor para el usuario con id: 1"
 end
 
-if Favor.find_or_create_by(titulo: 'Necesito ayuda para publicar una gauchada', descripcion: 'Ayudaaaaa', foto: 'http://www.nocturnar.com/imagenes/cara-triste/cara-triste.jpg', ubicacion: 'Buenos Aires', usuario_id: 2) then
+if Favor.find_or_create_by(titulo: 'Necesito ayuda para publicar una gauchada', descripcion: 'Ayudaaaaa', foto: 'http://www.nocturnar.com/imagenes/cara-triste/cara-triste.jpg', ubicacion: 'Buenos Aires', usuario_id: 2, resuelta: false) then
 	puts "Creo un favor para el usuario con id: 2"
 end
 
-if Favor.find_or_create_by(titulo: 'Ya ta ya lo hice', descripcion: ':)', foto: 'https://image.freepik.com/iconos-gratis/cara-feliz-emoticono-sonriente-con-la-boca-abierta_318-58593.jpg', ubicacion: 'Buenos Aires', usuario_id: 2) then
+if Favor.find_or_create_by(titulo: 'Ya ta ya lo hice', descripcion: ':)', foto: 'https://image.freepik.com/iconos-gratis/cara-feliz-emoticono-sonriente-con-la-boca-abierta_318-58593.jpg', ubicacion: 'Buenos Aires', usuario_id: 2, resuelta: false) then
 	puts "Creo otro favor para el usuario con id: 2"
 end
 
-if Favor.find_or_create_by(titulo: 'Quiero cambiar mi foto de perfil', descripcion: 'Ayudaaaaa', foto: 'http://www.nocturnar.com/imagenes/cara-triste/cara-triste.jpg', ubicacion: 'Catamarca', usuario_id: 3) then
+if Favor.find_or_create_by(titulo: 'Quiero cambiar mi foto de perfil', descripcion: 'Ayudaaaaa', foto: 'http://www.nocturnar.com/imagenes/cara-triste/cara-triste.jpg', ubicacion: 'Catamarca', usuario_id: 3, resuelta: false) then
 	puts "Creo un favor para el usuario con id: 3"
 end

@@ -7,7 +7,6 @@ class FavorsController < ApplicationController
 		@favores = Favor.where(nil)
   		@favores = @favores.ubicacion(params[:ubicacion]) if params[:ubicacion].present?
   		@favores = @favores.titulo(params[:titulo]) if params[:titulo].present?
-  		@favores = @favores.dueno(params[:dueno]) if params[:dueno].present?
 	end
 
 	# A list of the param names that can be used for filtering the Product list
@@ -35,6 +34,7 @@ class FavorsController < ApplicationController
 		if @fa.foto == ""
 			@fa.foto = "http://i.imgur.com/HBEa2Op.png"
 		end
+		@fa.resuelta = false;
 		@fa.save
 		u = current_usuario
 		u.puntos = u.puntos - 1
