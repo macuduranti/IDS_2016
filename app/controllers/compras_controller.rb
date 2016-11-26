@@ -1,4 +1,8 @@
 class ComprasController < ApplicationController
+  include ApplicationHelper
+  before_filter :verificar_usuario
+
+
   def new
     @compra=Compra.new
   end

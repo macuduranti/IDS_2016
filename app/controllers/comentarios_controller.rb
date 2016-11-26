@@ -1,4 +1,7 @@
 class ComentariosController < ApplicationController
+	include ApplicationHelper
+	before_filter :verificar_usuario, :only => [:create, :new]
+
 	def new
 		if usuario_signed_in?
 			@favor_id = params[:favor_id] 

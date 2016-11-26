@@ -1,4 +1,7 @@
 class PostulacionsController < ApplicationController
+	include ApplicationHelper
+	before_filter :verificar_usuario
+
 	def new
 		@postulacion = Postulacion.new()
 		@favor_id = params[:favor_id]

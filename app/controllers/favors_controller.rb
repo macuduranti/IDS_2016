@@ -1,4 +1,8 @@
 class FavorsController < ApplicationController
+	include ApplicationHelper
+	before_filter :verificar_usuario, :only => [:show, :new, :create, :destroy, :update, :edit]
+
+
 	def index
 		@favores = Favor.where(nil)
   		@favores = @favores.ubicacion(params[:ubicacion]) if params[:ubicacion].present?
@@ -49,7 +53,11 @@ class FavorsController < ApplicationController
 	end	
 
 	def edit
-		@gauchada=Favor.find(params[:id])
+	    if current_usuario.id == Favor.find(params[:id]).usuario_id 
+			@gauchada=Favor.find(params[:id])
+		else
+			redirect_to(root_path, alert: 'No puedes acceder a esa página.')
+		end
 	end
 	def update
 		@gauchada=Favor.find(params[:id])

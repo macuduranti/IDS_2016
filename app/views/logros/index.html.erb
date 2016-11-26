@@ -1,4 +1,3 @@
-<% session[:return_to] ||= request.referer %>
 <div class="row">
 	<div class="col-md-3">
 		<br/>
@@ -42,7 +41,7 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
+	<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
 </div>
 
 

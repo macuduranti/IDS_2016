@@ -1,5 +1,3 @@
-<% if usuario_signed_in? %>
-	<% if current_usuario.id == @gauchada.usuario_id %>
 		<div class="border-form-div">
 		<h2> Editar Gauchada </h2>
 		<%= form_for (@gauchada) do |f| %>
@@ -26,29 +24,3 @@
 		  </div>
 		 <% end %>
 		</div>
-	<% else %>
-		<div class="border-gau-md container-fluid">
-			<h3> Error </h3>
-			<br>
-			<p> No tienes los permisos para acceder a esta funcionalidad</p>
-			<br>
-		<div class="row">
-			<div class="col-md-12" style="float: center;"">
-				<%= link_to "Aceptar", root_path , class: 'btn btn-info btn-lg' %>
-			</div>
-		</div>
-		</div>
-	<% end %>
-<% else %>
-		<div class="border-gau-md container-fluid">
-			<h3> Error </h3>
-			<br>
-			<p> No tienes los permisos para acceder a esta funcionalidad</p>
-			<br>
-		<div class="row">
-			<div class="col-md-12" style="float: center;"">
-				<%= link_to "Aceptar", root_path , class: 'btn btn-info btn-lg' %>
-			</div>
-		</div>
-		</div>
-<% end %>

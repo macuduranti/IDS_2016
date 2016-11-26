@@ -1,4 +1,3 @@
-<% session[:return_to] ||= request.referer %>
 <div class="border-list-div">
 	<% ape = @usuario.apellido.capitalize %> 
 	<% nom = @usuario.nombre.capitalize %> 
@@ -127,5 +126,5 @@
 			</div>
 		</div>
 	</div>
-	<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
+	<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
 </div>

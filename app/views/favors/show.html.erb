@@ -1,4 +1,3 @@
-<% session[:return_to] ||= request.referer %>
 <% ape = Usuario.find(@favor.usuario_id).apellido.capitalize %> 
 <% nom = Usuario.find(@favor.usuario_id).nombre.capitalize %> 
 <% fech = @favor.created_at.strftime("%d/%m/%Y %H:%M") %>
@@ -129,7 +128,6 @@
 			</div>
 			<% end %>
 		</div>
-		<%= link_to "Volver", session.delete(:return_to), class: 'btn btn-info btn-lg' %>
-
+		<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
 	</div>
 
