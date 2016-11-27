@@ -10,35 +10,16 @@
 	<%= render 'layouts/header' %>
 	<div class="container-fluid" style="padding-right: 80px; padding-left: 80px"> 
 		<% if notice %>
-		<div class="row">
-			<div class="col-md-3">
-				<br/>
-			</div>
-			<div class="col-md-6">
-				<div class="alert alert-warning alert-dismissable fade in" style="text-align: center;" role="alert">
+				<div class="alert alert-warning alert-dismissable fade in" style="width: 60%; margin-left: 20%;text-align: center;" role="alert">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<span class="notice" style="text-align: center;"><%= notice %></span>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<br />
-			</div>	
-		</div>
 		<% end %>
 		<% if alert %>
-		<div class="row">
-			<div class="col-md-3">
-				<br/>
-			</div>
-			<div class="col-md-6">
-				<div class="alert alert-danger alert-dismissable fade in" style="text-align: center;" role="alert">
+				<div class="alert alert-danger alert-dismissable fade in" style="width: 60%; margin-left: 20%;text-align: center;" role="alert">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<span class="alert" style="text-align: center;"><%= alert %></span>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<br />
-			</div>
 		</div>	
 		<% end %>
 	<%= yield %>

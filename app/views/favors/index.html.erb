@@ -1,21 +1,10 @@
 <% if !usuario_signed_in? %>
-<div class="row">
-	<div class="col-md-3">
-		<br/>
-	</div>
-	<div class="col-md-6">
-		<div class="alert alert-warning" role="alert">
+		<div class="alert alert-warning" role="alert"; style="width: 60%; margin-left: 20%;">
 			<p style="text-align: center">
 				Para ver el detalle de una gauchada debes
 				<%= link_to "iniciar sesión", new_usuario_session_path%>
 			</p>
-
 		</div>
-	</div>
-	<div class="col-md-3">
-		<br/>
-	</div>	
-</div>
 <%end%>
 
 <div class="border-list-div">
@@ -109,13 +98,16 @@
 	<% if @favores.count == 0 %>
 		<p style="font-size: 24px; font-style: italic; color: grey; margin-left: 20px; margin-bottom: 20px"> No hay gauchadas para mostrar!</p>
 	<% end %>
+	
 	<% if usuario_signed_in? %>
+		<div style="padding-top: 30px; margin-bottom: -20px">
 		<% if current_usuario.puntos > 0 %>
 			<%= link_to "Pedir Gauchada", new_favor_path, class: 'btn btn-success btn-lg' %>
 		<% else %>
 			<%= link_to "No tienes puntos", new_favor_path, class: 'btn btn-default btn-lg disabled' %>
 			<%= link_to "Tienda", compras_path, class: 'btn btn-success btn-lg' %>
 		<% end %>
+		</div>
 	<% end %>
 	<br>
 </div>
