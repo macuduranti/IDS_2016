@@ -32,7 +32,11 @@
 			<% if current_usuario.esta_postulado?(@favor)%>
 			<% posts = @favor.postulacions%>
 			<% postulacion_buscada = posts.find_by usuario_id: current_usuario.id %>
-			<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Si fuiste seleccionado y cancelas tu oferta perderás 1 punto!!'}, class: 'btn btn-danger' %>
+			<% if postulacion_buscada.elegido %>
+			<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Seguro que deseas cancelar tu oferta? (Aún no has sido elegido para resolverla)'}, class: 'btn btn-danger' %>
+			<% else %>
+			<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Fuiste seleccionado para resolver esta gauchada, si cancelas tu oferta perderás 1 punto!'}, class: 'btn btn-danger' %>
+			<% end %>
 			<% else %>
 			<% if !@favor.tiene_elegido? %>
 			<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success">Postularse</a>

@@ -1,7 +1,7 @@
 class Favor < ActiveRecord::Base
 	belongs_to :usuario
 
-	default_scope -> { order("created_at desc").where resuelta: false}
+	default_scope -> { order("created_at desc") }
 	scope :titulo, -> (titulo) { where("lower(titulo) like ?", "%#{titulo.downcase}%")}
   	scope :ubicacion, -> (ubicacion) { where ubicacion: ubicacion }
 

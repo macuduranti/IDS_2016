@@ -4,7 +4,14 @@ class FavorsController < ApplicationController
 
 
 	def index
-		@favores = Favor.where(nil)
+		if ( params[:resueltas].present?)
+			resueltas = params[:resueltas]
+			if resueltas
+				@favores = Favor.all
+			end
+		else
+			@favores = Favor.where resuelta: false
+		end
   		@favores = @favores.ubicacion(params[:ubicacion]) if params[:ubicacion].present?
   		@favores = @favores.titulo(params[:titulo]) if params[:titulo].present?
 	end
