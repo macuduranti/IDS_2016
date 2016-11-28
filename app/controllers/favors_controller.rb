@@ -4,16 +4,7 @@ class FavorsController < ApplicationController
 
 
 	def index
-		if ( params[:resueltas].present?)
-			resueltas = params[:resueltas]
-			if resueltas
-				@favores = Favor.all
-			end
-		else
-			@favores = Favor.where resuelta: false
-		end
-  		@favores = @favores.ubicacion(params[:ubicacion]) if params[:ubicacion].present?
-  		@favores = @favores.titulo(params[:titulo]) if params[:titulo].present?
+		@favores = Favor.filtrar(params[:resueltas], params[:ubicacion], params[:titulo])
 	end
 
 	# A list of the param names that can be used for filtering the Product list

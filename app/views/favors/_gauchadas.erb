@@ -1,0 +1,40 @@
+<% @favores.each do |f| %>
+	<% if f.resuelta %>
+		<div class="border-gau-md-res" style="overflow: auto;">
+	<% else %>
+		<div class="border-gau-md" style="overflow: auto;">
+	<% end %>
+			<table style="margin-left: 10px;">
+			<tr>
+			<td>
+				<div class="image-container" style="margin-top: 10px">
+					<%= image_tag f.foto, title:"FotoGau", class:"img-md"%>
+				</div>
+			</td>
+			<td>
+			<div style="margin-left: 30px; margin-top: 0px">
+				<p style="font-size:17px; max-height: 60px; overflow: auto;"><%= f.titulo%></p>
+				<% if !usuario_signed_in? %>
+				<p style="font-style: italic; font-size: 12px; color: grey"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize %></p>
+				<% else %>
+				<p style="font-style: italic; font-size: 12px; color: grey"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+				<% end %>
+			</div>
+			</td>
+			</tr>
+			</table>
+			<div style="float: right; margin-top: -13px">
+					<% if usuario_signed_in? %>
+					<% if (current_usuario.id == f.usuario_id)%>
+						<%= link_to "Eliminar", f, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta gauchada?'}, class: 'btn btn-danger btn-md' %>
+					<% end%>
+					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-md' %>
+					<% else %>
+					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-default btn-md disabled' %>
+					<% end %>
+			</div>
+	</div>
+	<% end %>
+	<% if @favores.count == 0 %>
+		<p style="font-size: 24px; font-style: italic; color: grey; margin-left: 20px; margin-bottom: 20px"> No hay gauchadas para mostrar!</p>
+	<% end %>

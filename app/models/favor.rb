@@ -8,6 +8,20 @@ class Favor < ActiveRecord::Base
 	has_many :postulacions, dependent: :destroy
 	has_many :comentarios, dependent: :destroy
 
+	def self.filtrar(resueltas,ubicacion,titulo)
+		if ( resueltas.present? )
+			if resueltas
+				favores = Favor.all
+			end
+		else
+			favores = Favor.where resuelta: false
+		end
+  		favores = favores.ubicacion(ubicacion) if ubicacion.present?
+  		favores = favores.titulo(titulo) if titulo.present?
+  		return favores
+
+	end
+
 	def tiene_elegido?
 		postus = self.postulacions
 		postus.each do |p|
