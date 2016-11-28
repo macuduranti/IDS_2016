@@ -3,10 +3,11 @@ class LogrosController < ApplicationController
   before_filter :verificar_admin
 
   def new
-  	@logro=Logro.new
+  	@l=Logro.new
   end
 
   def index
+    @l=Logro.new
   end
 
   def show
@@ -27,11 +28,14 @@ class LogrosController < ApplicationController
   	puts @l.puntosMin
 	logros.each do |l|
   	 if( l.etiqueta == @l.etiqueta || l.puntosMin == @l.puntosMin ) then # nombre o puntos invalidos
-  	 	return redirect_to logros_path, notice: 'No puede crear un logro con la misma Etiqueta o Puntos de uno ya existente'
+  	 	return redirect_to logros_path, notice: 'Ya existe un logro con esa etiqueta o puntaje'
   	 end
     end
-	@l.save
-    redirect_to logros_path, notice: 'Logro creado exitosamente'
+    if @l.save
+      redirect_to logros_path, notice: 'Logro creado exitosamente'
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -41,7 +45,7 @@ class LogrosController < ApplicationController
 	logros.each do |l|
 		if(l.etiqueta == @l.etiqueta || l.puntosMin == @l.puntosMin) then
 			if (l.id != @logro.id) then
-				return redirect_to logros_path, notice: 'No puede actualizar un logro con la misma Etiqueta o Puntos de uno ya existente'
+				return redirect_to logros_path, notice: 'Ya existe un logro con esa etiqueta o puntaje'
 			end
 		end
 	end

@@ -1,14 +1,14 @@
-
-	<div style="width: 60%; margin-left: 20%"><%= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %></div>
+<!--
+	<div style="width: 60%; margin-left: 20%">< %= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %></div>
 <br/>
-
-<div class="border-list-div">
-	<h1> Listado de Logros </h1>
+-->
+<div class="border-list-div" style="overflow: scroll;">
+	<h1 style="width: 330px;"> Listado de Logros </h1>
 	<table class="table">
 		<thead>
 			<tr>
 				<th style="font-size:18px"> Etiqueta </th>
-				<th style="font-size:18px"> Puntos Mínimos </th>
+				<th style="font-size:18px"> Puntos necesarios </th>
 				<th style="font-size:18px"> Opciones </th>
 			</tr>
 		</thead>
@@ -18,7 +18,7 @@
 			<tr>
 				<td style="font-size:18px"> <%= l.etiqueta %> </td>
 				<td style="font-size:18px"> <%= l.puntosMin %> </td>
-				<td style="font-size:18px">
+				<td style="font-size:18px; min-width: 170px">
 					<%= link_to "Editar", edit_logro_path(l), class: 'btn btn-primary btn-md' %>
 					<% if l.id == 1 %>
 					<%= link_to "Eliminar", l, method: :delete , class: 'btn btn-danger disabled btn-md' %>
@@ -33,6 +33,27 @@
 			<tr> <td colspan="3"> No hay logros </td> </tr>
 			<% end %>
 		</tbody>
+		<thead>
+			<tr>
+				<th style="font-size:18px"> Nuevo logro </th>
+				<th style="font-size:18px"> </th>
+				<th style="font-size:18px"> </th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= form_for(@l) do |f| %>		
+			<td style="font-size:18px">
+			<%= f.text_field :etiqueta, required: true, placeholder: 'Ingrese etiqueta' %>
+			</td>
+			<td style="font-size:18px">
+			<%= f.number_field :puntosMin, required: true, placeholder: 'Ingrese puntos' %> 
+			</td>
+			<td style="font-size:18px">
+			<%= f.submit 'Añadir', class: 'btn btn-success' %>
+			</td>
+			<% end %>
+		</tbody>
+
 	</table>
 	<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
 </div>

@@ -25,13 +25,12 @@
 						<p><strong> Fecha de Nacimiento: </strong> <%= @usuario.fecha_de_nacimiento.strftime("%d/%m/%Y") %></p>
 						<p><strong> Usuario desde: </strong> <%=  @usuario.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
 						<p><strong> Ubicación: </strong> <%= @usuario.ubicacion %> </p>			
-						<% if @usuario.es_mujer %>
-						<p><strong> Sexo: </strong>Femenino</p>
-						<% else %>
-						<% if !@usuario.es_mujer %>
-						<p><strong> Sexo: </strong>Masculino</p>
-						<% else %>
-						<% end %>
+						<% if !(@usuario.es_mujer==nil) %>
+							<% if @usuario.es_mujer %>
+								<p><strong> Sexo: </strong>Femenino</p>
+							<% else %>
+								<p><strong> Sexo: </strong>Masculino</p>
+							<% end %>
 						<% end %>
 						<p><strong> Logro: </strong> <%= calc_logro(@usuario.puntos) %> </p>
 						<p><strong> Puntos: </strong> <%= @usuario.puntos %> </p>
@@ -68,7 +67,7 @@
 								</div>
 							</td>
 							<td>
-								<div style="display: inline-block; margin-left: 10px; pointer-events: none">
+								<div style="margin-left: 10px;">
 									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
 									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %></p>
 								</div>
@@ -131,9 +130,9 @@
 								</div>
 							</td>
 							<td>
-								<div style="display: inline-block; margin-left: 10px">
+								<div style="display: block; margin-left: 10px;">
 									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
-									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 8px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 7px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
 								</div>
 							</td>
 						</tr>
