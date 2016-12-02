@@ -188,6 +188,8 @@ en:
       models:
         usuario:
           attributes:
+            fecha_de_nacimiento:
+              blank: "Campo requerido"
             email:
               blank: "Campo requerido"
               taken: "Email ya utilizado"

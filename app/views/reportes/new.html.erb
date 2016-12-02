@@ -25,13 +25,13 @@
 		<div>
     		<%= f.label :fechainicial, "Desde" %>
     		<br />
-    		<%= f.date_select :fechainicial, :start_year=> Date.today.year ,:end_year=>Date.today.year - 90%>
+    		<%= f.date_field :fechainicial, min: "2016-11-01", max: Date.today.to_s, required:true %>
   		</div>
   		<br />
   		<div>
     		<%= f.label :fechafinal, "Hasta" %>
     		<br />
-    		<%= f.date_select :fechafinal, :start_year=> Date.today.year ,:end_year=>Date.today.year - 90%>
+    		<%= f.date_field :fechafinal, min: "2016-11-01", max: Date.today.to_s, value: Date.today.to_s,required: true%>
   		</div>
   		<br />
 	<% end %>

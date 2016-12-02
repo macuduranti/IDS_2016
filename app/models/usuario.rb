@@ -3,7 +3,7 @@ class Usuario < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates_presence_of :nombre
   validates_presence_of :apellido
-
+  validates_presence_of :fecha_de_nacimiento
   validate :validar_edad
 
   has_many :favors, dependent: :destroy
@@ -18,7 +18,7 @@ class Usuario < ActiveRecord::Base
   private
 
   def validar_edad
-      if fecha_de_nacimiento.present? && fecha_de_nacimiento.to_i >= 18.years.ago.to_i
+      if fecha_de_nacimiento.present? && fecha_de_nacimiento >= 18.years.ago
           errors.add(:fecha_de_nacimiento, 'Debes ser mayor de 18 años.')
       end
   end

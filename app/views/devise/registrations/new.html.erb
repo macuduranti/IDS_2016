@@ -1,4 +1,4 @@
-<div class="border-form-div">
+<div class="border-form-div" style="overflow: auto">
 <h2>Registrate!</h2>
 <p> <font color="grey"> <i>Los campos con <sub><big>*</big></sub> son obligatorios</i> </font></p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -6,19 +6,19 @@
   <div class="field">
     <%= f.label :email, 'Email *' %>
     <span class= 'error'> <%=  error_para @usuario, :email %> </span>
-    <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
+    <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :nombre, 'Nombre *' %>
     <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
-    <%= f.text_field :nombre%>
+    <%= f.text_field :nombre, required: true%>
   </div>
 
   <div class="field">
     <%= f.label :apellido, 'Apellido *' %>
     <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
-    <%= f.text_field :apellido%>
+    <%= f.text_field :apellido, required: true%>
   </div>
 
   <div class="field">
@@ -31,10 +31,9 @@
   <br/>
 
   <div>
-    <%= f.label :fecha_de_nacimiento %>
-    <br />
+    <%= f.label :fecha_de_nacimiento, "Fecha de nacimiento *" %>
     <span class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </span>
-    <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 18 ,:end_year=>Date.today.year - 90%>
+    <%= f.date_field :fecha_de_nacimiento, min: ""+90.years.ago.to_date.to_s+"", max: 18.years.ago.to_date.to_s, required: true %>
   </div>
 
   <br/>
@@ -52,13 +51,13 @@
   <div class="field">
     <%= f.label :password, "Contraseña *" %>
     <span class= 'error'> <%=  error_para @usuario, :password %> </span>
-    <%= f.password_field :password, autocomplete: "off", placeholder: 'Mínimo ' +@minimum_password_length.to_s+' caracteres' %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Mínimo ' +@minimum_password_length.to_s+' caracteres', required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation , "Confirmación de Contraseña *"%>
     <span class= 'error'> <%=  error_para @usuario, :password_confirmation %> </span>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
   </div>
   <div class="actions">
     <%= f.submit "Registrarme", :class=>'btn btn-primary'%>

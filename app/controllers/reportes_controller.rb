@@ -16,11 +16,8 @@ class ReportesController < ApplicationController
 	end
 
 	def create
-		@reporte=Reporte.new(titulo: params[:reporte][:titulo], tipo: params[:reporte][:tipo], cantidad: params[:reporte][:cantidad], tipodeusuarios: params[:reporte][:tipodeusuarios], usuario_id: current_usuario.id)
-		if @reporte.tipo == 'de_ganancias'
-			@reporte.fechainicial = Date.new(params[:reporte]["fechainicial(1i)"].to_i,params[:reporte]["fechainicial(2i)"].to_i,params[:reporte]["fechainicial(3i)"].to_i)
-			@reporte.fechafinal = Date.new(params[:reporte]["fechafinal(1i)"].to_i,params[:reporte]["fechafinal(2i)"].to_i,params[:reporte]["fechafinal(3i)"].to_i)
-		else
+		@reporte=Reporte.new(titulo: params[:reporte][:titulo], tipo: params[:reporte][:tipo], fechainicial: params[:reporte][:fechainicial], fechafinal: params[:reporte][:fechafinal], cantidad: params[:reporte][:cantidad], tipodeusuarios: params[:reporte][:tipodeusuarios], usuario_id: current_usuario.id)
+		if not @reporte.tipo == 'de_ganancias'
 		usuarios = Usuario.all 
 		usuarios.each do |u| 
 			if @reporte.tipodeusuarios == 'mas_gauchadas_pedidas'

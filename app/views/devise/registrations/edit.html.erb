@@ -1,4 +1,4 @@
-<div class="border-form-div">
+<div class="border-form-div" style="overflow: auto">
 <h2>Edita tus datos</h2>
 <p> <font color="grey"> <i>Los campos con <sub><big>*</big></sub> son obligatorios</i> </font></p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -6,7 +6,7 @@
   <div class="field">
     <%= f.label :email, 'Email' %>
     <span class= 'error'> <%=  error_para @usuario, :email %> </span>
-    <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true %>
+    <%= f.email_field :email, placeholder: "ejemplo@dominio.com", autofocus: true, required: true  %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,13 +16,13 @@
   <div class="field">
     <%= f.label :nombre, 'Nombre' %>
     <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
-    <%= f.text_field :nombre%>
+    <%= f.text_field :nombre, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :apellido, 'Apellido' %>
     <span class= 'error'> <%=  error_para @usuario, :nombre %> </span>
-    <%= f.text_field :apellido%>
+    <%= f.text_field :apellido, required: true %>
   </div>
 
   <div class="field">
@@ -36,10 +36,8 @@
 
   <div>
     <%= f.label :fecha_de_nacimiento %>
-    <br />
     <span class= 'error'> <%=  error_para @usuario, :fecha_de_nacimiento %> </span>
-    <%= f.date_select :fecha_de_nacimiento, :start_year=> Date.today.year - 100,:end_year=>Date.today.year - 18%>
-  </div>
+    <%= f.date_field :fecha_de_nacimiento, min: ""+90.years.ago.to_date.to_s+"", max: 18.years.ago.to_date.to_s, required: true %>  </div>
 
   <br/>
 
@@ -69,7 +67,7 @@
   <div class="field">
     <%= f.label :current_password, "Contraseña actual*" %>
     <span class= 'error'> <%=  error_para @usuario, :current_password %> </span>
-    <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Ingresar para guardar cambios' %>
+    <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Ingresar para guardar cambios', required: true %>
   </div>
 
   <div class="actions">
