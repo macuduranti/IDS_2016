@@ -1,0 +1,78 @@
+<h3> <%= @reporte.titulo %> </h3>
+<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 7px"> Reporte <%= @reporte.tipo.humanize.downcase %> creado el <%= @reporte.created_at.strftime("%d/%m/%Y %H:%M") %> por <%= link_to Usuario.find(@reporte.usuario_id).nombre.capitalize+" "+Usuario.find(@reporte.usuario_id).apellido.capitalize, usuario_path(:id => @reporte.usuario_id)%></p>
+<% if @reporte.tipo == 'de_usuarios' %>
+	<h4> Ranking de usuarios con <%= @reporte.tipodeusuarios.humanize.downcase %> </h4>
+	<table class="table">
+		<thead>
+			<tr>
+			<td> <strong> Nombre de usuario </strong> </td>
+			<td> 
+			<% if @reporte.tipodeusuarios == 'mas_gauchadas_pedidas' %>
+				<strong> # Gauchadas pedidas </strong>
+			<% else %>
+				<% if @reporte.tipodeusuarios == 'mas_gauchadas_resueltas' %>
+					<strong> # Gauchadas resueltas </strong>
+				<% else %>
+					<strong> Puntos </strong>
+				<% end %>
+			<% end %>
+			</td>
+			</tr>
+		</thead>
+
+		<% usuariosreporte = @reporte.usuarioreportes %>
+
+		<tbody>
+		<% usuariosreporte.each do |u| %>
+		<tr>
+			<td> <%= link_to Usuario.find(u.usuario_id).nombre.capitalize+" "+Usuario.find(u.usuario_id).apellido.capitalize, usuario_path(:id => u.id)%> </td>
+			<td> <%= u.cantidad %> </td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+
+<% else %>
+	<h4> Reporte de ganancias </h4>
+	<% compras = Compra.all %>
+	<table class="table">
+	<thead>
+		<tr>
+		<td> <strong> Comprador </strong> </td>
+		<td> <strong> Cantidad de puntos </strong> </td>
+		<td> <strong> Monto </strong> </td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% totalp = 0 %>
+		<% totalm = 0 %>
+		<% compras.each do |c| %>
+			<% if c.created_at.to_date >= @reporte.fechainicial && c.created_at.to_date <= @reporte.fechafinal %>
+				<% totalp = totalp + c.monto %>
+				<tr>
+					<td> <%= link_to Usuario.find(c.usuario_id).nombre.capitalize+" "+Usuario.find(c.usuario_id).apellido.capitalize, usuario_path(:id => c.usuario_id)%> </td>
+					<td> <%= c.monto %> </td>
+					<td> <%= c.monto * 12 %> </td>
+				</tr>
+			<% end %>
+		<% end %>	
+	</tbody>
+
+	<thead>
+		<tr>
+			<td></td>
+			<td><strong> Total puntos </strong></td>
+			<td><strong> Total monto </strong></td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td></td>
+			<td><%= totalp %></td>
+			<td><%= totalp * 12 %></td>
+		</tr>
+	</tbody>	
+	</table>
+<% end %>

@@ -1,0 +1,60 @@
+<!--
+	<div style="width: 60%; margin-left: 20%">< %= link_to "Crear logro", {:controller => "logros", :action => "new"}, class: 'btn btn-primary btn-block' %></div>
+<br/>
+-->
+<div class="border-list-div" style="overflow: scroll;">
+	<h1 style="width: 250px;"> Reportes </h1>
+	<%= form_tag new_reporte_path, :method => 'get' do %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="font-size:18px"> Titulo </th>
+				<th style="font-size:18px"> Tipo </th>
+				<th style="font-size:18px"> Creador </th>
+				<th style="font-size:18px"> Opciones </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @reportes.each do |r| %>
+			<tr>
+				<td style="font-size:18px"> <%= r.titulo %> </td>
+				<td style="font-size:18px"> <%= r.tipo.humanize %> </td>
+				<td style="font-size:18px"> <%= link_to Usuario.find(r.usuario_id).nombre.capitalize+" "+Usuario.find(r.usuario_id).apellido.capitalize, usuario_path(:id => r.usuario_id)%> </td>
+				<td style="font-size:18px; min-width: 160px;">
+					<%= link_to "Ver", reporte_path(:id => r.id),  class: 'btn btn-warning btn-md' %>	
+					<%= link_to "Eliminar", r, method: :delete, data: {confirm: '¿Esta seguro de eliminar este reporte?'}, class: 'btn btn-danger btn-md' %>		
+				</td>
+			</tr>
+			<% end %>
+
+			<% if @reportes.size == 0 %>
+			<tr> <td colspan="3"> <i> <p style="font-size: 24px; font-style: italic; color: grey; margin-left: 10px; margin-bottom: 20px"> No hay reportes!</p> </i> </td> </tr>
+			<% end %>
+		</tbody>
+		<thead>
+			<tr>
+				<th style="font-size:18px"> Nuevo reporte </th>
+				<th style="font-size:18px"> </th>
+				<th style="font-size:18px"> </th>
+				<th style="font-size:18px"> </th>
+			</tr>
+		</thead>
+		<tbody>
+			<td style="font-size:18px">
+			<%= text_field_tag :titulo,params[:titulo], placeholder: 'Ingrese titulo' %>
+			</td>
+			<td style="font-size:18px; padding-top: 10px;">
+			<%= select_tag :tipo, options_for_select(Reporte.tipos.keys.map {|key| [key.humanize, key]},params[:tipo]) %> 
+			</td>
+			<td style="font-size:18px">
+			</td>
+			<td style="font-size:18px">
+			<%= submit_tag 'Añadir', class: 'btn btn-success' %>
+			</td>
+		</tbody>
+	</table>
+	<% end %> <!-- del FORM -->
+	<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
+</div>
+
+

@@ -40,6 +40,7 @@
           <% if usuario_es_admin? %>
           <li role="separator" class="divider"></li>
           <li><a href="<%= logros_path %>"><strong> Listado de Logros </strong></a></li>
+          <li><a href="<%= reportes_path %>"><strong> Reportes </strong></a></li>
           <% end %>
           <li role="separator" class="divider"></li>
           <li><%= link_to "Cerrar Sesion", destroy_usuario_session_path, :method => :delete %></li>

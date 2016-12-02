@@ -18,9 +18,13 @@ Rails.application.routes.draw do
 
   get 'compras/agregar', to: 'compras#agregar'
 
+  post 'reportes/enviar', to: 'reportes#enviar'
+
   resources :compras
 
   resources :logros 
+
+  resources :reportes
 
   get 'main/default'
   root to: 'favors#index'

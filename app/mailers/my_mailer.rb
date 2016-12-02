@@ -20,4 +20,9 @@ class MyMailer < Devise::Mailer
     mail(to: @dueno.email, subject: 'Nuevo candidato para tu gauchada')
   end
 
+  def reporte_mail (reporte,user)
+    @reporte = reporte
+    mail(to: user.email, subject: 'Reporte '+reporte.tipo.humanize.downcase+'.')
+  end
+
 end

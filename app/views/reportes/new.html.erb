@@ -1,0 +1,44 @@
+<div class="border-form-div">
+<% if params[:tipo] == 'de_usuarios' %>
+	<h2> Crear Reporte de Usuarios</h2>
+<% else %>
+	<h2> Crear Reporte de Ganancias</h2>
+<% end %>
+<%= form_for (@reporte) do |f| %>
+	<%= f.hidden_field :tipo, value: params[:tipo]%>
+	<div class="field">
+		<%= f.label :titulo, 'Titulo' %>
+		<%= f.text_field :titulo, required: true, placeholder: 'Ingrese un titulo', :value => params[:titulo] %>
+	</div>
+	<% if params[:tipo] == 'de_usuarios' %>
+		<div class="field">
+    		<%= f.label :tipodeusuarios, "Tipo de reporte" %><br />
+			<%= f.select :tipodeusuarios, Reporte.tipodeusuarios.keys.map {|key| [key.humanize, key]} %>
+		</div>
+		<br />
+		<div class="cantidad">
+    		<%= f.label :cantidad, "Cantidad de usuarios incluidos" %><br />
+			<%= f.select :cantidad, options_for_select([ ["Todos",nil],["3",3], ["5",5], ["10",10], ["50",50], ["100",100]], "Todos" )%>
+		</div>
+		<br />
+	<% else %>
+		<div>
+    		<%= f.label :fechainicial, "Desde" %>
+    		<br />
+    		<%= f.date_select :fechainicial, :start_year=> Date.today.year ,:end_year=>Date.today.year - 90%>
+  		</div>
+  		<br />
+  		<div>
+    		<%= f.label :fechafinal, "Hasta" %>
+    		<br />
+    		<%= f.date_select :fechafinal, :start_year=> Date.today.year ,:end_year=>Date.today.year - 90%>
+  		</div>
+  		<br />
+	<% end %>
+
+	<div class="actions">
+    <%= f.submit "Generar", :class=>'btn btn-primary'%>
+    <%= link_to "Cancelar", reportes_path, :class =>'btn btn-default' %>
+  </div>
+ <% end %>
+</div>

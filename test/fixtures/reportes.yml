@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario_id: 1
+  titulo: MyString
+  tipo: 1
+  fechainicial: 2016-11-30 18:39:57
+  fechafinal: 2016-11-30 18:39:57
+  cantidad: 1
+
+two:
+  usuario_id: 1
+  titulo: MyString
+  tipo: 1
+  fechainicial: 2016-11-30 18:39:57
+  fechafinal: 2016-11-30 18:39:57
+  cantidad: 1

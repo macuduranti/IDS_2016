@@ -1,0 +1,8 @@
+<div class="border-list-div">
+ <h2> Información del reporte: </h2>
+ <div class="border-element-div" style="overflow: auto">
+ 	<%= render 'reportes/reporte' %>
+ </div>
+ <%= link_to "Volver", reportes_path , class: 'btn btn-info btn-lg' %>
+ <%= link_to "Enviar a mi correo", reportes_enviar_path(:id => @reporte.id), method: :post , class: 'btn btn-success btn-lg' %>
+</div>

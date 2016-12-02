@@ -15,9 +15,6 @@ class LogrosController < ApplicationController
 
   def destroy
   	 @logro=Logro.find(params[:id])
-  	 if @logro.id == 1 then
-  	 	redirect_to logros_path, notice: 'No se puede eliminar este logro'
-  	 end
   	 @logro.destroy
   	 redirect_to logros_path, notice: 'Logro eliminado'
   end
@@ -28,7 +25,7 @@ class LogrosController < ApplicationController
   	puts @l.puntosMin
 	logros.each do |l|
   	 if( l.etiqueta == @l.etiqueta || l.puntosMin == @l.puntosMin ) then # nombre o puntos invalidos
-  	 	return redirect_to logros_path, notice: 'Ya existe un logro con esa etiqueta o puntaje'
+  	 	return redirect_to logros_path, alert: 'Ya existe un logro con esa etiqueta o puntaje'
   	 end
     end
     if @l.save
@@ -45,7 +42,7 @@ class LogrosController < ApplicationController
 	logros.each do |l|
 		if(l.etiqueta == @l.etiqueta || l.puntosMin == @l.puntosMin) then
 			if (l.id != @logro.id) then
-				return redirect_to logros_path, notice: 'Ya existe un logro con esa etiqueta o puntaje'
+				return redirect_to logros_path, alert: 'Ya existe un logro con esa etiqueta o puntaje'
 			end
 		end
 	end
