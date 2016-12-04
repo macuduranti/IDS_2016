@@ -1,2 +1,2 @@
-$('#comentarios').append("<%= j render @comentario %>");
+$('#comentarios').append($("<%= j render @comentario %>").hide().fadeIn(500));
 $('#comentario_texto').val("");

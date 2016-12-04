@@ -58,3 +58,5 @@ gem 'foreman'
 end
 
 gem 'bootstrap-popover-rails', '~> 0.1.0'
+
+gem 'jquery-turbolinks'

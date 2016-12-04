@@ -9,7 +9,7 @@
 	<div class="border-element-div" style="overflow: auto; width: 100%">	
 		<table>
 			<tr>
-				<td>
+				<td style="vertical-align: top">
 					<div class= "image-container-gau" style="margin-right: 25px; margin-top: 30px">
 						<%= image_tag @favor.foto, title:"FotoGau", class:"img-xl"%>
 					</div>
@@ -21,7 +21,7 @@
 						<p><strong> Fecha de creación: </strong> <%= @favor.created_at.strftime("%d/%m/%Y %H:%M") %></p>
 						<p><strong> Ubicación: </strong> <%= @favor.ubicacion %> </p>			
 						<p><strong> Descripción: </strong> </p>
-						<p style="margin-left: 15px"> <i> <%= @favor.descripcion %> </i> </p>
+						<p style="margin-left: 15px; max-width: 320px"> <i> <%= @favor.descripcion %> </i> </p>
 					</div>
 				</td>
 			</tr>
