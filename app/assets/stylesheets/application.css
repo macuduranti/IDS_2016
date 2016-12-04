@@ -14,6 +14,10 @@
  *= require_self
  */
 
+#pendientes-seccion {
+  display: none
+}
+
  .error {
   color: #B71C1C;
   font-style: italic;

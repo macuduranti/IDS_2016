@@ -26,11 +26,11 @@
 						<p><strong> Usuario desde: </strong> <%=  @usuario.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
 						<p><strong> Ubicación: </strong> <%= @usuario.ubicacion %> </p>			
 						<% if !(@usuario.es_mujer==nil) %>
-							<% if @usuario.es_mujer %>
-								<p><strong> Sexo: </strong>Femenino</p>
-							<% else %>
-								<p><strong> Sexo: </strong>Masculino</p>
-							<% end %>
+						<% if @usuario.es_mujer %>
+						<p><strong> Sexo: </strong>Femenino</p>
+						<% else %>
+						<p><strong> Sexo: </strong>Masculino</p>
+						<% end %>
 						<% end %>
 						<p><strong> Logro: </strong> <%= calc_logro(@usuario.puntos) %> </p>
 						<p><strong> Puntos: </strong> <%= @usuario.puntos %> </p>
@@ -83,75 +83,108 @@
 				</div>
 				<% end %>
 				<% if favores.count == 0 %>
-					<p style="font-style: italic; color: grey; margin-left: 10px"> El usuario aún no pedido gauchadas </p>
+				<p style="font-style: italic; color: grey; margin-left: 10px"> El usuario aún no pedido gauchadas </p>
 				<% end %>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="border-element-sm-div" style="overflow: auto">
-				<% if params[:pend].present? && @pend %>
-					<div>
-						<h3 style="display: inline-block; width: 300px">Postulaciones pendientes</h3>
-						<div style="display: inline-block;">
+				<section id="pendientes-seccion">
+				<div>
+					<h3 style="display: inline-block; width: 300px">Postulaciones pendientes</h3>
+					<div style="display: inline-block;">
 						<% if (@usuario == @current_usuario) %>
-						<%= link_to "Ver resueltas", usuario_path(:id => @usuario.id), class: 'btn btn-default btn-xs', style: "margin-bottom: 7px" %>
+						<%= link_to "Ver resueltas", "#", id: "resueltas-link", class: 'btn btn-default btn-xs', style: "margin-bottom: 7px" %>
 						<% end %>
 					</div>
-					</div>
-					<%  favores = Favor.where.not(:usuario_id => @usuario.id).where(:resuelta => false) %>
-				<% else %>
-					<div>
-					<h3 style="display: inline-block; width: 280px">Postulaciones resueltas</h3>
-					<div style="display: inline-block;">
-					<% if (@usuario == @current_usuario) %>
-						<%= link_to "Ver pendientes", usuario_path(:id => @usuario.id, :pend => true), class: 'btn btn-default btn-xs', style: "margin-bottom: 7px"%>
-					<% end %>
-					</div>
-					</div>
-					<%  favores = Favor.where.not(:usuario_id => @usuario.id).where(:resuelta => true) %>
-				<% end %>
+				</div>
+				<%  favores = Favor.where.not(:usuario_id => @usuario.id).where(:resuelta => false) %>
 				<%  @count = 0 
-				    favores.each do |f| 
+				favores.each do |f| 
 					flag = false 
-					 f.postulacions.each do |p| 
-						 if p.usuario_id == @usuario.id 
+					f.postulacions.each do |p| 
+						if p.usuario_id == @usuario.id 
 							flag = true 
 							@count = @count+1
 							break		
 						end 
-					 end 
-					 if flag %>
-				<div class="border-gau-sm" style="overflow: auto;">
-					<table>
-						<tr>
-							<td style="vertical-align: top">
-								<div class="image-container-nav">
-									<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
-								</div>
-							</td>
-							<td>
-								<div style="display: block; margin-left: 10px;">
-									<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
-									<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 7px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<div style="float: right; margin-top: -18px; margin-bottom: -2px">
-						<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+					end 
+					if flag %>
+					<div class="border-gau-sm" style="overflow: auto;">
+						<table>
+							<tr>
+								<td style="vertical-align: top">
+									<div class="image-container-nav">
+										<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
+									</div>
+								</td>
+								<td>
+									<div style="display: block; margin-left: 10px;">
+										<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
+										<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 7px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<div style="float: right; margin-top: -18px; margin-bottom: -2px">
+							<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+						</div>
+					</div>
+					<% end %>
+					<% end %>
+					<% if @count == 0 %>
+					<p style="font-style: italic; color: grey; margin-left: 10px"> No tienes postulaciones pendientes </p>
+					<% end %>
+				</section>
+				<section id="resueltas-seccion">
+				<div>
+					<h3 style="display: inline-block; width: 280px">Postulaciones resueltas</h3>
+					<div style="display: inline-block;">
+						<% if (@usuario == @current_usuario) %>
+						<%= link_to "Ver pendientes", "#", id: "pendientes-link", class: 'btn btn-default btn-xs', style: "margin-bottom: 7px"%>
+						<% end %>
 					</div>
 				</div>
+				<%  favores = Favor.where.not(:usuario_id => @usuario.id).where(:resuelta => true) %>
+				<%  @count = 0 
+				favores.each do |f| 
+					flag = false 
+					f.postulacions.each do |p| 
+						if p.usuario_id == @usuario.id 
+							flag = true 
+							@count = @count+1
+							break		
+						end 
+					end 
+					if flag %>
+					<div class="border-gau-sm" style="overflow: auto;">
+						<table>
+							<tr>
+								<td style="vertical-align: top">
+									<div class="image-container-nav">
+										<%= image_tag f.foto, title:"FotoGau", class:"img-sm"%>
+									</div>
+								</td>
+								<td>
+									<div style="display: block; margin-left: 10px;">
+										<p style="margin-bottom: -3px"> <%= f.titulo%> </p>
+										<p style="font-style: italic; font-size: 11px; color: grey; padding-bottom: 7px"> Creada el <%= f.created_at.strftime("%d/%m/%Y %H:%M") %> en <%= f.ubicacion %> por <%= link_to Usuario.find(f.usuario_id).nombre.capitalize+" "+Usuario.find(f.usuario_id).apellido.capitalize, usuario_path(:id => f.usuario_id)%></p>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<div style="float: right; margin-top: -18px; margin-bottom: -2px">
+							<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
+						</div>
+					</div>
 					<% end %>
-				<% end %>
-				<% if @count == 0 %>
-					<% if params[:pend].present? && @pend %>
-					<p style="font-style: italic; color: grey; margin-left: 10px"> No tienes postulaciones pendientes </p>
-					<% else %>
+					<% end %>
+					<% if @count == 0 %>
 					<p style="font-style: italic; color: grey; margin-left: 10px"> El usuario aún no ha resuelto gauchadas </p>
 					<% end %>
-				<% end %>
+				</section>
+				</div>
 			</div>
 		</div>
+		<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
 	</div>
-	<%= link_to "Volver", root_path , class: 'btn btn-info btn-lg' %>
-</div>

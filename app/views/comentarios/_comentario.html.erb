@@ -1,0 +1,22 @@
+					<div class="border-gau-sm" style="overflow: auto">
+						<table >
+							<tr>
+								<td height="60" style="min-width: 60px; vertical-align: top">
+									<div class="image-container-nav">
+										<% if Usuario.find(comentario.usuario_id).foto.presence %>
+										<%= image_tag Usuario.find(comentario.usuario_id).foto, title:"FotoUsuario", class:"img-sm"%>
+										<% else %>
+										<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"img-sm"%>
+										<% end %>
+									</div>
+								</td>
+								<td>				
+									<div style="margin-left: 5px">
+										<p style="font-size: 16px"><b><%= link_to Usuario.find(comentario.usuario_id).nombre.capitalize+" "+Usuario.find(comentario.usuario_id).apellido.capitalize, usuario_path(:id => comentario.usuario_id)%></b></p>
+										<p style="font-size: 11px; margin-top: -15px; font-style: italic; color: grey"> <%= comentario.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
+										<p style="margin-top: -10px"><%= comentario.texto%></p>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>

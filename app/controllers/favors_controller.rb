@@ -14,6 +14,7 @@ class FavorsController < ApplicationController
 
 	def show
 		@favor = Favor.find(params[:id])
+		@comentarios = @favor.comentarios
 		@comentario = Comentario.new
 	end
 	def new

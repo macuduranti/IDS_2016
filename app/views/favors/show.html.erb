@@ -59,36 +59,13 @@
 			<% else %>
 			<div class="col-md-12">
 				<% end %>
-				<div class="border-element-sm-div" style="overflow: hidden">
+				<div id="seccion-comentarios" class="border-element-sm-div" style="overflow: hidden">
 					<h3 style="width: 500px">Comentarios</h3>
-					<% if @favor.comentarios.count > 0 %>
-					<% coments = @favor.comentarios %>
-					<% coments.each do |c| %>
-					<div class="border-gau-sm" style="overflow: auto">
-						<table >
-							<tr>
-								<td height="60" style="min-width: 60px; vertical-align: top">
-									<div class="image-container-nav">
-										<% if Usuario.find(c.usuario_id).foto.presence %>
-										<%= image_tag Usuario.find(c.usuario_id).foto, title:"FotoUsuario", class:"img-sm"%>
-										<% else %>
-										<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"img-sm"%>
-										<% end %>
-									</div>
-								</td>
-								<td>				
-									<div style="margin-left: 5px">
-										<p style="font-size: 16px"><b><%= link_to Usuario.find(c.usuario_id).nombre.capitalize+" "+Usuario.find(c.usuario_id).apellido.capitalize, usuario_path(:id => c.usuario_id)%></b></p>
-										<p style="font-size: 11px; margin-top: -15px; font-style: italic; color: grey"> <%= c.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
-										<p style="margin-top: -10px"><%= c.texto%></p>
-									</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<% end %>
-					<% else %>
-					<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no hay comentarios. Haz uno!</p>
+						<div id="comentarios">
+							<%= render @comentarios %>
+						</div>
+					<% if @comentarios.count <= 0 %>
+						<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no hay comentarios. Haz uno!</p>
 					<% end %>
 					<% if usuario_signed_in? %>
 					<div style="overflow: auto">

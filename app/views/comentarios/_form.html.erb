@@ -1,4 +1,4 @@
-	<%= form_for (@comentario) do |f| %>
+	<%= form_for @comentario , remote: true do |f| %>
 		
 		<%= f.hidden_field :favor_id, value: @favor.id%>
 			
