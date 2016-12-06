@@ -1,0 +1,19 @@
+<% if @duenocom == @comentario.usuario %>
+	<p>Hola <%= @duenocom.nombre.capitalize %>!</p>
+	<p>El usuario <b><%= @remitente.nombre.capitalize%> <%= @remitente.apellido.capitalize%></b> ha respondido a tu comentario:</p>
+	<p><i> @comentario.texto </i></p>
+	<p>En la gauchada "<%=@favor.titulo%>".</p>
+	<p>Y dice lo siguiente: </p>
+	<p><i> @respuesta.texto </i></p>
+<% else %>
+	<p>Hola <%= @duenogau.nombre.capitalize %>!</p>
+	<p>El usuario <b><%= @remitente.nombre.capitalize%> <%= @remitente.apellido.capitalize%></b> ha respondido al comentario:</p>
+	<p><i> @comentario.texto </i></p>
+	<p>En tu gauchada "<%=@favor.titulo%>".</p>
+	<p>Y dice lo siguiente: </p>
+	<p><i> @respuesta.texto </i></p>
+<% end %>
+
+<p>Saludos cordiales,</p>
+
+<p>Equipo de Una Gauchada</p>

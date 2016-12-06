@@ -33,7 +33,7 @@
 	</table>
 
 <% else %>
-	<h4> Reporte de ganancias </h4>
+	<h4> Reporte de ganancias entre <%= @reporte.fechainicial.strftime("%d/%m/%Y") %> y <%= @reporte.fechafinal.strftime("%d/%m/%Y") %></h4>
 	<% compras = Compra.all %>
 	<table class="table">
 	<thead>
@@ -53,7 +53,7 @@
 				<tr>
 					<td> <%= link_to Usuario.find(c.usuario_id).nombre.capitalize+" "+Usuario.find(c.usuario_id).apellido.capitalize, usuario_path(:id => c.usuario_id)%> </td>
 					<td> <%= c.monto %> </td>
-					<td> <%= c.monto * 12 %> </td>
+					<td>$<%= c.monto * 12 %> </td>
 				</tr>
 			<% end %>
 		<% end %>	
@@ -71,7 +71,7 @@
 		<tr>
 			<td></td>
 			<td><%= totalp %></td>
-			<td><%= totalp * 12 %></td>
+			<td>$<%= totalp * 12 %></td>
 		</tr>
 	</tbody>	
 	</table>

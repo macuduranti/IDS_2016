@@ -16,6 +16,7 @@ class FavorsController < ApplicationController
 		@favor = Favor.find(params[:id])
 		@comentarios = @favor.comentarios
 		@comentario = Comentario.new
+		@respuesta = Answer.new
 	end
 	def new
 		if usuario_signed_in?

@@ -1,0 +1,27 @@
+					<div class="border-gau-sm" style="overflow: auto">
+						<table >
+							<tr>
+								<td height="50" style="min-width: 60px; vertical-align: top">
+									<div class="image-container-ans">
+										<% if Usuario.find(answer.usuario_id).foto.presence %>
+										<%= image_tag Usuario.find(answer.usuario_id).foto, title:"FotoUsuario", class:"img-xs"%>
+										<% else %>
+										<%= image_tag "foto_stock.png", title:"FotoUsuario", class:"img-sm"%>
+										<% end %>
+									</div>
+								</td>
+								<td style="vertical-align: top">				
+									<div style="margin-left: -5px; margin-top: -3px;">
+										<p style="font-size: 14px"><b><%= link_to Usuario.find(answer.usuario_id).nombre.capitalize+" "+Usuario.find(answer.usuario_id).apellido.capitalize, usuario_path(:id => answer.usuario_id)%></b></p>
+										<p style="font-size: 9px; margin-top: -15px; font-style: italic; color: grey"> <%= answer.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
+										<p style="margin-top: -10px; font-size: 12px"><%= answer.texto%></p>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<div style="float: right; margin-top: -10px; margin-bottom: -2px;">
+							<% if (current_usuario.id == answer.usuario_id)%>
+								<%= link_to "Eliminar", answer, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta respuesta?'}, class: 'btn btn-danger btn-xs' %>
+							<% end%>
+						</div>
+					</div>

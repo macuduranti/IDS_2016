@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+ 
 #pendientes-seccion {
   display: none
 }
@@ -316,4 +316,19 @@
   width: 44px;
 }
 
+.img-xs{
+  object-fit: cover;
+  height: 36px;
+  width: 36px;
+}
+
+.image-container-ans {
+  overflow: hidden;
+  height: 40px;
+  width: 40px;
+  border: 2px solid #e5e5e5;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
 

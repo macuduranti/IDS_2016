@@ -10,5 +10,9 @@ $(document).on 'turbolinks:load', -> # cambiar por jQuery ->
     event.preventDefault()
     $('#pendientes-seccion').fadeToggle()
     $('#resueltas-seccion').toggle()
+  $('#comentarios').on 'click' , '.respuestas-link' , (event) ->
+    event.preventDefault()
+    commentSectionId = $(this).data('sectionId')
+    $('#' + commentSectionId).fadeToggle()
 #$(document).ready(ready) # sacar
 #$(document).on('page:load', ready) # sacar

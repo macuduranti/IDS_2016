@@ -1,0 +1,12 @@
+	<%= form_for @respuesta , remote: true do |f| %>
+		
+		<%= f.hidden_field :comentario_id, value: coment.id%>
+				<%= f.label :texto, "Escribe una respuesta:" %>
+				<br/>
+				<textarea required="required" class="form-control" style="width: 99%; max-width: 99%" name="answer[texto]" id="answer_texto_<%=coment.id%>"></textarea>
+			
+			<div style="float: right; padding-top: 10px; margin-right: 1%">
+				<%= f.submit "Enviar", :class=>'btn btn-primary'%>
+			</div>
+    		
+	<% end %>

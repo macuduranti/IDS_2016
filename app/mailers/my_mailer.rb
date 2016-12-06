@@ -25,4 +25,29 @@ class MyMailer < Devise::Mailer
     mail(to: user.email, subject: 'Reporte '+reporte.tipo.humanize.downcase+'.')
   end
 
+  def respuesta_mail (respuesta)
+    @respuesta = respuesta
+    @comentario = respuesta.comentario
+    @duenocom = @comentario.usuario
+    @favor = @comentario.favor
+    @duenogau = @favor.usuario
+    @remitente = respuesta.usuario
+    if (remitente != @duenocom)
+      mail(to: @duenocom.email, subject: 'Han respondido a tu comentario en la gauchada "'+@favor.titulo+'".')
+    end
+    if (remitente != dueñogau)
+      mail(to: @duenogau.email, subject: 'Han respondido a un comentario en tu gauchada "'+@favor.titulo+'".')
+    end
+  end
+
+  def comentario_mail (comentario)
+    @comentario = comentario
+    @favor = comentario.favor
+    @duenogau = @favor.usuario
+    @remitente = comentario.usuario
+    if (remitente != duenogau)
+      mail(to: @duenogau.email, subject: 'Han comentado tu gauchada "'+@favor.titulo+'".')
+    end
+  end
+
 end

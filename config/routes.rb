@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   post 'reportes/enviar', to: 'reportes#enviar'
 
+  resources :answers
+
   resources :compras
 
   resources :logros 

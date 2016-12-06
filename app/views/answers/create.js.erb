@@ -1,0 +1,2 @@
+$('#respuestas-' + <%= @respuesta.comentario.id %>).append($("<%= j render @respuesta %>").hide().fadeIn(500));
+$('#answer_texto_' + <%= @respuesta.comentario.id %>).val("");

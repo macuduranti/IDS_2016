@@ -11,7 +11,7 @@
 									</div>
 								</td>
 								<td>				
-									<div style="margin-left: 5px">
+									<div style="margin-left: 5px;">
 										<p style="font-size: 16px"><b><%= link_to Usuario.find(comentario.usuario_id).nombre.capitalize+" "+Usuario.find(comentario.usuario_id).apellido.capitalize, usuario_path(:id => comentario.usuario_id)%></b></p>
 										<p style="font-size: 11px; margin-top: -15px; font-style: italic; color: grey"> <%= comentario.created_at.strftime("%d/%m/%Y %H:%M") %> </p>
 										<p style="margin-top: -10px"><%= comentario.texto%></p>
@@ -19,4 +19,28 @@
 								</td>
 							</tr>
 						</table>
+						<div style="float: right; margin-top: -10px; margin-bottom: -2px;">
+							<% if (current_usuario.id == comentario.usuario_id)%>
+							<%= link_to "Eliminar", comentario, method: :delete, data: {confirm: '¿Esta seguro de eliminar este comentario?'}, class: 'btn btn-danger btn-xs' %>
+							<% end%>
+
+							<a class= "respuestas-link btn btn-primary btn-xs" data-section-id="respuestas-seccion-<%=comentario.id%>" href="#">
+								Respuestas
+								<span class="caret" style=""></span>
+							</a>
+						</div>
+						<section id="respuestas-seccion-<%=comentario.id%>" style="display: none">
+							<br/>
+							<div>
+								<div class="seccion-respuestas" style="overflow: auto">
+									<% respuestas = comentario.answers %>
+									<div id="respuestas-<%=comentario.id%>">
+										<%= render respuestas %>
+									</div>
+								</div>
+								<div style="overflow: auto">
+									<%= render :partial => 'answers/form', :locals => {:coment => comentario}  %>
+								</div>
+							</div>
+						</section>
 					</div>
