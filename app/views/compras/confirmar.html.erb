@@ -8,7 +8,7 @@
 		<%= link_to "Cancelar", compras_path , class: 'btn btn-danger btn-lg' %>
 	</div>
 	<div style="float: right;">
-		<%= link_to "Confirmar", compras_agregar_path(:monto => @c.monto, :n_tarjeta => @c.n_tarjeta, :mes => @c.mes, :ano => @c.ano, :cvv => @c.cvv), class: 'btn btn-success btn-lg' %>
+		<%= link_to "Confirmar", compras_agregar_path(:monto => @c.monto, :n_tarjeta => @c.n_tarjeta, :mes => @c.mes, :ano => @c.ano, :cvv => @c.cvv, :titular => @c.titular), class: 'btn btn-success btn-lg' %>
 	</div>
 					 
 </div>

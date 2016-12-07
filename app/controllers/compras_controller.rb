@@ -11,11 +11,11 @@ class ComprasController < ApplicationController
   end
 
   def confirmar
-    @c=Compra.new(monto: params[:monto], n_tarjeta: params[:n_tarjeta], mes: params[:mes], ano: params[:ano], cvv: params[:cvv])
+    @c=Compra.new(monto: params[:monto], n_tarjeta: params[:n_tarjeta], mes: params[:mes], ano: params[:ano], cvv: params[:cvv], titular: params[:titular])
   end
 
   def agregar
-    @c=Compra.new(monto: params[:monto], n_tarjeta: params[:n_tarjeta], mes: params[:mes], ano: params[:ano], cvv: params[:cvv])
+    @c=Compra.new(monto: params[:monto], n_tarjeta: params[:n_tarjeta], mes: params[:mes], ano: params[:ano], cvv: params[:cvv], titular: params[:titular])
     u = current_usuario
     @c.usuario_id = u.id
     @c.save
@@ -31,7 +31,7 @@ class ComprasController < ApplicationController
   end
 
   def create
-    @c=Compra.new(monto: params[:compra][:monto], n_tarjeta: params[:compra][:n_tarjeta], mes: params[:compra][:mes], ano: params[:compra][:ano], cvv: params[:compra][:cvv])
+    @c=Compra.new(monto: params[:compra][:monto], n_tarjeta: params[:compra][:n_tarjeta], mes: params[:compra][:mes], ano: params[:compra][:ano], cvv: params[:compra][:cvv], titular: params[:compra][:titular])
     if !(is_number?(params[:compra][:n_tarjeta])) then
       return redirect_to compras_path, notice: 'Operacion invalida, ingrese un numero de tarjeta valido'
     end
@@ -54,7 +54,7 @@ class ComprasController < ApplicationController
     end
     n = Integer(params[:compra][:mes])
     n1 = Integer(params[:compra][:ano])
-    if ( (n <= 10) && (n1 == 16) ) then
+    if ( (n <= 11) && (n1 == 16) ) then
       return redirect_to compras_path, notice: 'Tarjeta vencida'
     end
     n = Integer(params[:compra][:n_tarjeta])
@@ -62,7 +62,7 @@ class ComprasController < ApplicationController
       return redirect_to compras_path, notice: 'Tarjeta sin saldo'
     end
 
-    redirect_to compras_confirmar_path(:monto => params[:compra][:monto], :n_tarjeta => params[:compra][:n_tarjeta], :mes => params[:compra][:mes], :ano => params[:compra][:ano], :cvv => params[:compra][:cvv])
+    redirect_to compras_confirmar_path(:monto => params[:compra][:monto], :n_tarjeta => params[:compra][:n_tarjeta], :mes => params[:compra][:mes], :ano => params[:compra][:ano], :cvv => params[:compra][:cvv], :titular => params[:compra][:titular])
   end
 
   def update

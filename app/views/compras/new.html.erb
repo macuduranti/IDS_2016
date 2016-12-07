@@ -24,6 +24,21 @@
 	<div class="row">
 	<div class="field">
 	<div class="col-sm-2">
+		<%= f.label :titular, 'Titular' %> 
+	</div>
+	<div class="col-sm-8 text-center">
+		<%= f.text_field :titular, required: true, placeholder: 'Titular' %>
+	</div>
+	<div class="col-sm-2">
+		<button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="right" data-content="Ingrese el nombre del titular de la tarjeta, como figura en la parte frontal de la misma."> ? </button>
+	</div>
+	</div>
+	</div>
+	<hr/>
+
+	<div class="row">
+	<div class="field">
+	<div class="col-sm-2">
 		<%= f.label :n_tarjeta, 'Tarjeta' %>
 	</div>
 	<div class="col-sm-8 text-center">
