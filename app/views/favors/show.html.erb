@@ -5,8 +5,15 @@
 
 <div class="border-list-div">
 	<h2> Detalle de Gauchada </h2>	
-
-	<div class="border-element-div" style="overflow: auto; width: 100%">	
+	<% if @favor.resuelta %>
+		<div class="border-element-div-res" style="overflow: auto;">
+	<% else %>
+		<% if @favor.tiene_elegido? %>
+		<div class="border-element-div-pend" style="overflow: auto;">
+		<% else %>
+		<div class="border-element-div" style="overflow: auto; width: 100%">
+		<% end %>
+	<% end %>
 		<table>
 			<tr>
 				<td style="vertical-align: top">
@@ -32,23 +39,36 @@
 					<% if current_usuario.esta_postulado?(@favor)%>
 						<% posts = @favor.postulacions%>
 						<% postulacion_buscada = posts.find_by usuario_id: current_usuario.id %>
+						<% if not @favor.resuelta %>
 						<% if postulacion_buscada.elegido %>
-							<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Seguro que deseas cancelar tu oferta? (Aún no has sido elegido para resolverla)'}, class: 'btn btn-danger' %>
-						<% else %>
+							<%= link_to "Has sido elegido para resolver esta gauchada", "#{}", class: 'btn btn-default disabled' %>
 							<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Fuiste seleccionado para resolver esta gauchada, si cancelas tu oferta perderás 1 punto!'}, class: 'btn btn-danger' %>
+						<% else %>
+							<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Seguro que deseas cancelar tu oferta? (Aún no has sido elegido para resolverla)'}, class: 'btn btn-danger' %>
+						<% end %>
+						<% else %>
+							<%= link_to "Has resuelto esta gauchada", "#" , class: 'btn btn-default disabled' %>
 						<% end %>
 					<% else %>
+						<% if not @favor.resuelta %>
 						<% if !@favor.tiene_elegido? %>
 							<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success">Postularse</a>
 						<% else %>
 							<div class="btn btn-default disabled">No acepta candidatos</div>
+						<% end %>
+						<% else %>
+							<%= link_to "Esta gauchada ha sido resuelta", "#" , class: 'btn btn-default disabled' %>
 						<% end %>
 					<% end %>
 				<% else %>
 					<% if (@favor.tiene_elegido?) && (!@favor.resuelta) %>
 						<%= link_to "Finalizar", finalizar_gauchada_path(:id => @favor.id), class: 'btn btn-success' %>
 					<% end %>
+					<% if not @favor.resuelta %>
 					<%= link_to "Editar", edit_favor_path(:id => @favor.id), class: 'btn btn-primary' %>
+					<% else %>
+						<%= link_to "Esta gauchada ha sido resuelta", "#" , class: 'btn btn-default disabled' %>
+					<% end %>
 				<% end %>
 			<% end %>
 		</div>

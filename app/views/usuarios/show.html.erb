@@ -58,7 +58,15 @@
 				
 				<% favores = Favor.where(:usuario_id => @usuario.id) %>
 				<% favores.each do |f| %>
-				<div class="border-gau-sm" style="overflow: auto">
+				<% if f.resuelta %>
+					<div class="border-gau-sm-res" style="overflow: auto;">
+				<% else %>
+					<% if f.tiene_elegido? %>
+						<div class="border-gau-sm-pend" style="overflow: auto;">
+					<% else %>
+						<div class="border-gau-sm" style="overflow: auto;">
+					<% end %>
+				<% end %>
 					<table>
 						<tr>
 							<td style="vertical-align: top">
@@ -75,7 +83,7 @@
 						</tr>
 					</table>
 					<div style="float: right; margin-top: -18px; margin-bottom: -2px">
-						<% if (current_usuario.id == f.usuario_id)%>
+						<% if (current_usuario.id == f.usuario_id) && !(f.resuelta)%>
 						<%= link_to "Eliminar", f, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta gauchada?'}, class: 'btn btn-danger btn-xs' %>
 						<% end%>
 						<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-xs' %>
@@ -94,7 +102,7 @@
 					<h3 style="display: inline-block; width: 300px">Postulaciones pendientes</h3>
 					<div style="display: inline-block;">
 						<% if (@usuario == @current_usuario) %>
-						<%= link_to "Ver resueltas", "#", id: "resueltas-link", class: 'btn btn-default btn-xs', style: "margin-bottom: 7px" %>
+						<%= link_to "Ver resueltas", "#", id: "resueltas-link", class: 'btn btn-default btn-xs', style: "margin-bottom: 7px; margin-left: -9px" %>
 						<% end %>
 					</div>
 				</div>
@@ -110,7 +118,15 @@
 						end 
 					end 
 					if flag %>
-					<div class="border-gau-sm" style="overflow: auto;">
+					<% if f.resuelta %>
+						<div class="border-gau-sm-res" style="overflow: auto;">
+					<% else %>
+						<% if f.tiene_elegido? %>
+							<div class="border-gau-sm-pend" style="overflow: auto;">
+						<% else %>
+							<div class="border-gau-sm" style="overflow: auto;">
+						<% end %>
+					<% end %>
 						<table>
 							<tr>
 								<td style="vertical-align: top">
@@ -157,7 +173,15 @@
 						end 
 					end 
 					if flag %>
-					<div class="border-gau-sm" style="overflow: auto;">
+					<% if f.resuelta %>
+						<div class="border-gau-sm-res" style="overflow: auto;">
+					<% else %>
+						<% if f.tiene_elegido? %>
+							<div class="border-gau-sm-pend" style="overflow: auto;">
+						<% else %>
+							<div class="border-gau-sm" style="overflow: auto;">
+						<% end %>
+					<% end %>
 						<table>
 							<tr>
 								<td style="vertical-align: top">

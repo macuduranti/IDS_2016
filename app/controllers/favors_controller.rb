@@ -44,17 +44,20 @@ class FavorsController < ApplicationController
 
 	def destroy
 		@favor = Favor.find(params[:id])
-		if usuario_signed_in? & (current_usuario.admin || current_usuario.id = @favor.usuario_id)
+		if (current_usuario.id == @favor.usuario_id && !@favor.resuelta)
 			@favor.destroy
 			redirect_to gauchadas_path, notice: "Gauchada Eliminada"
 		else
-			redirect_to gauchadas_path, notice: "No tienes permiso para realizar esta acción. Solo el solicitante o el administrador pueden eliminar una gauchada"
+			redirect_to gauchadas_path, alert: "No tienes permiso para realizar esta acción"
 		end	
 	end	
 
 	def edit
-	    if current_usuario.id == Favor.find(params[:id]).usuario_id 
+	    if current_usuario.id == Favor.find(params[:id]).usuario_id
 			@gauchada=Favor.find(params[:id])
+			if @gauchada.resuelta
+				redirect_to(root_path, alert: 'No puedes acceder a esa página.')
+			end
 		else
 			redirect_to(root_path, alert: 'No puedes acceder a esa página.')
 		end

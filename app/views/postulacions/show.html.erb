@@ -9,15 +9,9 @@
 			<li>En caso de marcar la gauchada como incompleta, el elegido perdera 1 punto.</li>
 			<li>Se enviara un mail al usuario seleccionado con <b>tu direccion de correo</b>, de manera que pueda comunicarse contigo</li>
 		</ul>
-		<div class="row">
-			<div class="col-md-8">
-			</div>
-			<div class="col-md-2">
+		<div style="margin-top: 40px; margin-bottom: 25px;">
 				<%= link_to 'Aceptar', elegiruser_path(:id => @postulacion.id), class: 'btn btn-success btn-lg'%> 
-			</div>
-			<div class="col-md-2">
 				<%= link_to 'Cancelar', favor_path(:id => @postulacion.favor_id), class: 'btn btn-danger btn-lg'%> 
-			</div>
 		</div>
 		</div>
 	<% else %>

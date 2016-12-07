@@ -136,6 +136,33 @@
           box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 
+.border-gau-sm-res {
+  max-width: auto;
+  padding: 13px 15px 10px;
+  margin: 10px 5px 10px;
+  background-color: #edf9ed;
+  border: 2px solid #dae5da;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.border-gau-sm-pend {
+  max-width: auto;
+  padding: 13px 15px 10px;
+  margin: 10px 5px 10px;
+  background-color: #f9f9ed;
+  border: 2px solid #e5e5da;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
 
 .border-gau-md {
   max-width: auto;
@@ -157,6 +184,20 @@
   margin: 15px 15px 15px;
   background-color: #edf9ed;
   border: 2px solid #dae5da;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.border-gau-md-pend {
+  max-width: auto;
+  padding: 13px 25px 5px;
+  margin: 15px 15px 15px;
+  background-color: #f9f9ed;
+  border: 2px solid #e5e5da;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -234,6 +275,34 @@
   padding: 5px 50px 29px;
   margin: 0 auto 20px;
   background-color: #e5e5e5;
+  border: 1px solid #c6c6c6;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.border-element-div-res {
+  max-width: auto;
+  padding: 5px 50px 29px;
+  margin: 0 auto 20px;
+  background-color: #dae5da;
+  border: 1px solid #c6c6c6;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.border-element-div-pend {
+  max-width: auto;
+  padding: 5px 50px 29px;
+  margin: 0 auto 20px;
+  background-color: #e5e5da;
   border: 1px solid #c6c6c6;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;

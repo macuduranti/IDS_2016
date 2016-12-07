@@ -2,7 +2,11 @@
 	<% if f.resuelta %>
 		<div class="border-gau-md-res" style="overflow: auto;">
 	<% else %>
+		<% if f.tiene_elegido? %>
+		<div class="border-gau-md-pend" style="overflow: auto;">
+		<% else %>
 		<div class="border-gau-md" style="overflow: auto;">
+		<% end %>
 	<% end %>
 			<table style="margin-left: 10px;">
 			<tr>
@@ -25,7 +29,7 @@
 			</table>
 			<div style="float: right; margin-top: -13px">
 					<% if usuario_signed_in? %>
-					<% if (current_usuario.id == f.usuario_id)%>
+					<% if (current_usuario.id == f.usuario_id) && !(f.resuelta)%>
 						<%= link_to "Eliminar", f, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta gauchada?'}, class: 'btn btn-danger btn-md' %>
 					<% end%>
 					<%= link_to "Ver Detalle", favor_path(:id => f.id), class: 'btn btn-warning btn-md' %>

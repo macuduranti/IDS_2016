@@ -9,7 +9,7 @@
 	<div class="border-element-div" style="overflow: auto; width: 100%">
 		<div class="row">
 			<div class="col-md-1">
-				<div class="image-container" style="margin-top: 10px;">
+				<div class="image-container" style="margin-top: 10px; border: 3px solid #f1f1f1;">
 					<%= image_tag @gauchada.foto, title:"FotoGau", class:"img-md"%>
 				</div>
 			</div>
@@ -32,12 +32,9 @@
 		<li> Una vez elegida una opcion, no podra volver atras.</li>
 		<li> UnaGauchada deja en manos de los usuarios la verificacion de que una gauchada fue resuelta o no, y no provee herramientas en ese ambito. Por lo tanto, queda en responsabilidad del <b>solicitante</b> y del <b>candidato elegido</b> decidir si la gauchada fue bien resuelta o no.</li>
 	</ul>
-	<div class="row">
-		<div class="col-md-1">
-			<%= link_to "Resuelta", gauchada_resuelta_path(:id => @gauchada.id), class:"btn btn-success btn-md" %>
-		</div>
-		<div class="col-md-1">
-			<%= link_to "Sin Resolver", gauchada_no_resuelta_path(:id => @gauchada.id), class:"btn btn-danger btn-md" %>
-		</div>
+	<div style="margin-top: 20px; margin-bottom: 20px;">
+		<%= link_to "Resuelta", gauchada_resuelta_path(:id => @gauchada.id), class:"btn btn-success btn-lg" %>
+		<%= link_to "Sin Resolver", gauchada_no_resuelta_path(:id => @gauchada.id), class:"btn btn-danger btn-lg" %>
+		<%= link_to 'Cancelar', @gauchada, class: 'btn btn-info btn-lg'%> 
 	</div>
 </div>
