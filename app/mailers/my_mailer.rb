@@ -50,4 +50,17 @@ class MyMailer < Devise::Mailer
     end
   end
 
+  def resolvio_gauchada(gau)
+    @gauchada = gau
+    @duenogau = Usuario.find(@gauchada.usuario_id)
+    @user = Usuario.find(@gauchada.get_elegido)
+    mail(to: @user.email, subject: 'Has ganado un punto')
+  end
+  def no_resolvio_gauchada(gau)
+    @gauchada = gau
+    @duenogau = Usuario.find(@gauchada.usuario_id)
+    @user = Usuario.find(@gauchada.get_elegido)
+    mail(to: @user.email, subject: 'Has perdido un punto')
+  end
+
 end

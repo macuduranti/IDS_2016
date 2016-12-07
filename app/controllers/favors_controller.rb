@@ -65,8 +65,30 @@ class FavorsController < ApplicationController
 			@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: "http://i.imgur.com/HBEa2Op.png")
 			redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
 		else
-		@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto])
-		redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
+			@gauchada.update(titulo: params[:favor][:titulo], descripcion: params[:favor][:descripcion], ubicacion: params[:favor][:ubicacion], foto: params[:favor][:foto])
+			redirect_to favor_path(:id => @gauchada.id), notice: 'Gauchada actualizada!'
 		end
+	end
+
+	def finalizar_gauchada
+		if Favor.find(params[:id]).tiene_elegido?
+			@gauchada = Favor.find(params[:id])
+		else
+			redirect_to favor_path(:id => @gauchada.id), notice: 'Esta gauchada no tiene un candidato asignado por lo que no puede resolverse'
+		end
+	end
+
+	def gauchada_resuelta
+		g = Favor.find(params[:id])
+		MyMailer.resolvio_gauchada(g).deliver_now
+		g.resolver		
+		redirect_to root_path, notice:'Gauchada resuelta! :D'		
+	end
+
+	def gauchada_no_resuelta
+		g = Favor.find(params[:id])
+		MyMailer.no_resolvio_gauchada(g).deliver_now
+		g.no_resolver
+		redirect_to root_path, notice:'La gauchada volvio al listado :('	
 	end
 end

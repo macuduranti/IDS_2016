@@ -20,7 +20,7 @@
 							</tr>
 						</table>
 						<div style="float: right; margin-top: -10px; margin-bottom: -2px;">
-							<% if (current_usuario.id == comentario.usuario_id)%>
+							<% if (current_usuario.id == comentario.usuario_id) && (!Favor.find(comentario.favor_id).resuelta)%>
 							<%= link_to "Eliminar", comentario, method: :delete, data: {confirm: '¿Esta seguro de eliminar este comentario?'}, class: 'btn btn-danger btn-xs' %>
 							<% end%>
 
@@ -38,9 +38,11 @@
 										<%= render respuestas %>
 									</div>
 								</div>
-								<div style="overflow: auto">
-									<%= render :partial => 'answers/form', :locals => {:coment => comentario}  %>
-								</div>
+								<% if !Favor.find(comentario.favor_id).resuelta %>
+									<div style="overflow: auto">
+										<%= render :partial => 'answers/form', :locals => {:coment => comentario}  %>
+									</div>
+								<% end %>
 							</div>
 						</section>
 					</div>

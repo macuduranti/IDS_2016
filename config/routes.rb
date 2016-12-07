@@ -104,5 +104,7 @@ Rails.application.routes.draw do
   resources :postulacions
 
   get '/elegiruser', to: 'postulacions#elegir_usuario'
-
+  get '/finalizar_gauchada', to: 'favors#finalizar_gauchada'
+  get '/gauchada_resuelta', to: 'favors#gauchada_resuelta'
+  get '/gauchada_no_resuelta', to: 'favors#gauchada_no_resuelta'
 end

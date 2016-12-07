@@ -28,26 +28,28 @@
 		</table>
 		<div style="float: right; margin-top: 15px; margin-bottom: -10px">
 			<% if usuario_signed_in? %>
-			<% if current_usuario.id != @favor.usuario_id %>
-			<% if current_usuario.esta_postulado?(@favor)%>
-			<% posts = @favor.postulacions%>
-			<% postulacion_buscada = posts.find_by usuario_id: current_usuario.id %>
-			<% if postulacion_buscada.elegido %>
-			<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Seguro que deseas cancelar tu oferta? (Aún no has sido elegido para resolverla)'}, class: 'btn btn-danger' %>
-			<% else %>
-			<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Fuiste seleccionado para resolver esta gauchada, si cancelas tu oferta perderás 1 punto!'}, class: 'btn btn-danger' %>
-			<% end %>
-			<% else %>
-			<% if !@favor.tiene_elegido? %>
-			<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success">Postularse</a>
-			<% else %>
-			<div class="btn btn-default disabled">No acepta candidatos</div>
-			<% end %>
-			<% end %>
-			<% else %>
-			<%= link_to "Editar", edit_favor_path(:id => @favor.id), class: 'btn btn-primary' %>
-			<% end %>
-
+				<% if current_usuario.id != @favor.usuario_id %>
+					<% if current_usuario.esta_postulado?(@favor)%>
+						<% posts = @favor.postulacions%>
+						<% postulacion_buscada = posts.find_by usuario_id: current_usuario.id %>
+						<% if postulacion_buscada.elegido %>
+							<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Seguro que deseas cancelar tu oferta? (Aún no has sido elegido para resolverla)'}, class: 'btn btn-danger' %>
+						<% else %>
+							<%= link_to "Cancelar oferta", postulacion_buscada, method: :delete, data: {confirm: 'Atención! Fuiste seleccionado para resolver esta gauchada, si cancelas tu oferta perderás 1 punto!'}, class: 'btn btn-danger' %>
+						<% end %>
+					<% else %>
+						<% if !@favor.tiene_elegido? %>
+							<a href="/postulacions/new?favor_id=<%=@favor.id%>", class="btn btn-success">Postularse</a>
+						<% else %>
+							<div class="btn btn-default disabled">No acepta candidatos</div>
+						<% end %>
+					<% end %>
+				<% else %>
+					<% if (@favor.tiene_elegido?) && (!@favor.resuelta) %>
+						<%= link_to "Finalizar", finalizar_gauchada_path(:id => @favor.id), class: 'btn btn-success' %>
+					<% end %>
+					<%= link_to "Editar", edit_favor_path(:id => @favor.id), class: 'btn btn-primary' %>
+				<% end %>
 			<% end %>
 		</div>
 
@@ -67,7 +69,7 @@
 					<% if @comentarios.count <= 0 %>
 						<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no hay comentarios. Haz uno!</p>
 					<% end %>
-					<% if usuario_signed_in? %>
+					<% if (usuario_signed_in?) && (!@favor.resuelta)%>
 					<div style="overflow: auto">
 						<%= render :partial => 'comentarios/form' %>
 					</div>
@@ -79,32 +81,39 @@
 			<div class="col-md-6">
 				<div class="border-element-sm-div" style="overflow: hidden">
 					<h3 style="width: 500px">Postulantes</h3>
-				<% if @favor.postulacions.count > 0 %>
-					<% postulantes = @favor.postulacions%>
-					<% postulantes.each do |p| %>
-						<div class="border-gau-sm" style="overflow: auto">
-								<b style="display: inline-block;"><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
-								<i style="font-size: 10px; color: grey; display: inline-block;"> <%= p.created_at.strftime("%d/%m/%Y %H:%M") %> </i>
-								<br/>
-								<i style="display: inline-block;"> <%= p.descripcion %> </i>
-								<div style="float: right">
-								<% if @favor.tiene_elegido? %>
-									<% elegido_id = @favor.get_elegido %>
-									<% if p.usuario_id == elegido_id %>
-										<%= link_to "Cancelar", p, method: :delete, data: {confirm: 'Seguro quieres cancelar la postulacion?'}, class:"btn btn-danger btn-xs"%>
-									<% else %>
-										<div class="btn btn-default btn-xs disabled">Aceptar</div>
-									<% end %>
-								<% else %>
-									<%= link_to "Aceptar", p, class:"btn btn-success btn-xs"%>
-								<% end %>
+					<% if !@favor.resuelta %>
+						<% if @favor.postulacions.count > 0 %>
+							<% postulantes = @favor.postulacions%>
+							<% postulantes.each do |p| %>
+								<div class="border-gau-sm" style="overflow: auto">
+										<b style="display: inline-block;"><%= link_to Usuario.find(p.usuario_id).nombre.capitalize+" "+Usuario.find(p.usuario_id).apellido.capitalize, usuario_path(:id => p.usuario_id)%></b>
+										<i style="font-size: 10px; color: grey; display: inline-block;"> <%= p.created_at.strftime("%d/%m/%Y %H:%M") %> </i>
+										<br/>
+										<i style="display: inline-block;"> <%= p.descripcion %> </i>
+										<div style="float: right">
+										<% if @favor.tiene_elegido? %>
+											<% elegido_id = @favor.get_elegido %>
+											<% if p.usuario_id == elegido_id %>
+												<%= link_to "Cancelar", p, method: :delete, data: {confirm: 'Seguro quieres cancelar la postulacion?'}, class:"btn btn-danger btn-xs"%>
+											<% else %>
+												<div class="btn btn-default btn-xs disabled">Aceptar</div>
+											<% end %>
+										<% else %>
+											<%= link_to "Aceptar", p, class:"btn btn-success btn-xs"%>
+										<% end %>
+										</div>
 								</div>
+							<% end %>
+						<% else %>
+							<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no tienes postulantes.</p>
+						<% end %>
+					<% else %>
+						<%popostus = @favor.postulacions%>
+						<% ppp = popostus.find_by elegido: true%>
+						<div class="border-gau-sm" style="overflow: auto">
+							<b style="display: inline-block;"><%= link_to Usuario.find(ppp.usuario_id).nombre.capitalize+" "+Usuario.find(ppp.usuario_id).apellido.capitalize, usuario_path(:id => ppp.usuario_id)%></b> resolvio esta gauchada.
 						</div>
 					<% end %>
-				<% else %>
-					<p style="font-style: italic; color: grey; margin-left: 10px"> Aún no tienes postulantes.</p>
-				<% end %>
-
 				</div>
 			</div>
 			<% end %>

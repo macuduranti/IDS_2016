@@ -1,0 +1,43 @@
+<div class="border-list-div">
+	<h2>Cierre de la Gauchada</h2>
+	<hr>
+	<% posts = @gauchada.postulacions%>
+	<% postulacion_buscada = posts.find_by elegido: true %>
+	<% nombre = Usuario.find(postulacion_buscada.usuario_id).nombre.capitalize%>
+	<% apellido = Usuario.find(postulacion_buscada.usuario_id).apellido.capitalize%>
+	<p>Usted esta a punto de finalizar la siguiente gauchada:</p>
+	<div class="border-element-div" style="overflow: auto; width: 100%">
+		<div class="row">
+			<div class="col-md-1">
+				<div class="image-container" style="margin-top: 10px;">
+					<%= image_tag @gauchada.foto, title:"FotoGau", class:"img-md"%>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div style="margin-left: 0px; margin-top: 30px">
+					<p style="font-size:25px; max-height: 60px; overflow: auto;"><%= @gauchada.titulo%></p>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div style="margin-left: 0px; margin-top: 30px">
+					<p style="font-size:25px; max-height: 60px; overflow: auto;">Candidato elegido: <%= link_to nombre+" "+apellido, usuario_path(:id => postulacion_buscada.usuario_id) %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p> Por favor lea las siguientes aclaraciones:</p>
+	<ul>
+		<li> Al marcar la gauchada como <b>"Resuelta"</b>, esta se guardara en ese estado y el candidato elegido recibira <b>1 punto.</b></li>
+		<li> Al marcar la gauchada como <b>"No Resuelta"</b>, la misma volvera al listado como si nunca hubiese elegido un postulante (mantendra postulaciones anteriores y recibira nuevas) y el candidato elegido perdera <b>1 punto.</b></li>
+		<li> Una vez elegida una opcion, no podra volver atras.</li>
+		<li> UnaGauchada deja en manos de los usuarios la verificacion de que una gauchada fue resuelta o no, y no provee herramientas en ese ambito. Por lo tanto, queda en responsabilidad del <b>solicitante</b> y del <b>candidato elegido</b> decidir si la gauchada fue bien resuelta o no.</li>
+	</ul>
+	<div class="row">
+		<div class="col-md-1">
+			<%= link_to "Resuelta", gauchada_resuelta_path(:id => @gauchada.id), class:"btn btn-success btn-md" %>
+		</div>
+		<div class="col-md-1">
+			<%= link_to "Sin Resolver", gauchada_no_resuelta_path(:id => @gauchada.id), class:"btn btn-danger btn-md" %>
+		</div>
+	</div>
+</div>

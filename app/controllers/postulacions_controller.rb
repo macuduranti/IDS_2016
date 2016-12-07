@@ -13,6 +13,7 @@ class PostulacionsController < ApplicationController
 	def create
 		@postulacion = Postulacion.new(postulacion_params)
 		@postulacion.usuario_id = current_usuario.id
+		@postulacion.elegido = false
 		@postulacion.save
 		MyMailer.nuevo_candidato(@postulacion).deliver_now
 		redirect_to favor_path(:id => @postulacion.favor_id), notice: 'Te postulaste!'

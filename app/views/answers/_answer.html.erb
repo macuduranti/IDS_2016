@@ -20,7 +20,7 @@
 							</tr>
 						</table>
 						<div style="float: right; margin-top: -10px; margin-bottom: -2px;">
-							<% if (current_usuario.id == answer.usuario_id)%>
+							<% if (current_usuario.id == answer.usuario_id) && (!Favor.find(Comentario.find(answer.comentario_id).favor_id).resuelta)%>
 								<%= link_to "Eliminar", answer, method: :delete, data: {confirm: '¿Esta seguro de eliminar esta respuesta?'}, class: 'btn btn-danger btn-xs' %>
 							<% end%>
 						</div>

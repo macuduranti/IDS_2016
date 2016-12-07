@@ -41,4 +41,21 @@ class Favor < ActiveRecord::Base
 			return 0
 		end
 	end
+
+	def resolver
+		self.resuelta = true
+		self.postulacions.where(elegido: false).destroy_all
+		user = Usuario.find(self.get_elegido)
+		user.puntos = user.puntos + 1
+		user.save
+		self.save
+	end
+	def no_resolver
+		self.resuelta = false
+		user = Usuario.find(self.get_elegido)
+		user.puntos = user.puntos - 1
+		user.save
+		Postulacion.where(favor_id: self.id, usuario_id: user.id).destroy_all
+		self.save
+	end
 end
